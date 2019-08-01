@@ -34,7 +34,7 @@ In this whiteboard design session, you will look at the process for designing a 
 
 At the end of this whiteboard design session, you will be better able to architect a comprehensive and secure oil and gas manufacturing IoT solution.
 
-#### Outline: Key Concerns for Customer situation ####
+#### Outline: Key Concerns for Customer situation
 
 - How can we provide a secure identity to each of our devices?
 - How can we proactively guard against attacks to components in our solution, from device, to network to cloud? 
