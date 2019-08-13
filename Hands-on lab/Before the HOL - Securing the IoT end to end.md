@@ -1,4 +1,4 @@
-![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
 Securing the IoT end to end
@@ -9,9 +9,8 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-June 2019
+August 2019
 </div>
-
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
@@ -27,7 +26,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
--   [Securing the IoT End to End before the hands on lab setup guide](#securing-the-iot-end-to-end-before-the-hands-on-lab-setup-guide)
+-   [Securing the IoT End to End before the hands on-lab setup guide](#securing-the-iot-end-to-end-before-the-hands-on-lab-setup-guide)
     - [Requirements](#requirements)
     - [Before the hands-on lab](#before-the-hands-on-lab)
       - [Task 1: Download GitHub resources](#task-1-download-github-resources)
@@ -115,23 +114,23 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
        -  A Stream Analytics job.
 
-       -  App service plan. 
+       -  App service plan
 
-       -  Azure Cosmos DB Account.
+       -  Azure Cosmos DB Account
 
-       -  Several virtual machanies and supported resources (oilwells-edgevm, oilwells-001, oilwells-002).
+       -  Several virtual machanes and supported resources (oilwells-edgevm, oilwells-001, oilwells-002).
 
-       -  Event Hubs namespace.
+       -  Event Hubs namespace
        
-       -  IoT Hub (located in Centra US region).
+       -  IoT Hub (located in Central US region).
        
-       -  IoT Provisioning Service.
+       -  IoT Provisioning Service
 
-       -  Azure Key Vault.
+       -  Azure Key Vault
 
-       -  Time Series Insights environment.
+       -  Time Series Insights environment
 
-    >NOTE: Not all of these resources may be used in the current version of the hands on labs
+    >**Note**: Not all of these resources may be used in the current version of the hands-on labs.
 
     ![Created items list This screenshot is a list of the items that were created, including the items listed above. ](Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/beforehol-image8.png)
 
