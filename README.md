@@ -40,4 +40,4 @@ In this hands-on lab, you will look at the process for implementing an oil and g
 
 - [MCW](https://github.com/Microsoft/MCW)
 - [Introducing Azure Security Center for IoT](https://docs.microsoft.com/en-us/azure/asc-for-iot/overview)
-- [Internet of Things (IoT security architecture](https://docs.microsoft.com/en-us/azure/iot-fundamentals/iot-security-architecture) 
+- [Internet of Things (IoT) security architecture](https://docs.microsoft.com/en-us/azure/iot-fundamentals/iot-security-architecture) 
