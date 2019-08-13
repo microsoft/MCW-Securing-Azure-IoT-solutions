@@ -101,7 +101,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 Refer to the Before the hands-on lab setup guide manual before continuing to the lab exercises.
 
-## Exercise 1: Secure and Configure IoT Hub and Device Provisioning Service
+## Exercise 1: Secure and configure IoT Hub and Device Provisioning Service
 
 Duration: 15 minutes
 
