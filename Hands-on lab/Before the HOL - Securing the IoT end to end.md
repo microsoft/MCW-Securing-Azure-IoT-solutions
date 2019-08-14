@@ -1,7 +1,7 @@
 ![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
-Securing the IoT end to end
+Securing the IoT end-to-end
 </div>
 
 <div class="MCWHeader2">
@@ -26,7 +26,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
--   [Securing the IoT End to End before the hands on-lab setup guide](#securing-the-iot-end-to-end-before-the-hands-on-lab-setup-guide)
+-   [Securing the IoT end-to-end before the hands on-lab setup guide](#securing-the-iot-end-to-end-before-the-hands-on-lab-setup-guide)
     - [Requirements](#requirements)
     - [Before the hands-on lab](#before-the-hands-on-lab)
       - [Task 1: Download GitHub resources](#task-1-download-github-resources)
@@ -34,7 +34,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- /TOC -->
 
-# Securing the IoT End to End before the hands-on lab setup guide 
+# Securing the IoT end-to-end before the hands-on lab setup guide 
 
 ## Requirements
 
@@ -116,7 +116,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
        -  Azure Cosmos DB Account
 
-       -  Several virtual machanes and supported resources (oilwells-edgevm, oilwells-001, oilwells-002).
+       -  Several virtual machines and supported resources (oilwells-edgevm, oilwells-001, oilwells-002).
 
        -  Event Hubs namespace
        
