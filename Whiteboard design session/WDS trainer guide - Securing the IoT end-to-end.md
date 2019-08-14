@@ -394,7 +394,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure Trust Center  | <http://azure.microsoft.com/en-us/support/trust-center/>     |
 | Azure Sphere  | <https://docs.microsoft.com/en-us/azure-sphere/>     |
 
-# Securing the IoT end to end whiteboard design session trainer guide
+# Securing the IoT end-to-end whiteboard design session trainer guide
 
 ## Step 1: Review the customer case study
 
