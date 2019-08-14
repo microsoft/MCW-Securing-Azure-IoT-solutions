@@ -146,7 +146,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 ![Here you are enabling the Azure Security Center for IoT.](Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/ex1_image004.png "Enable Security Center settings")
 
-7.  Click **Save**
+7.  Click **Save**.
 
 ### Task 3: Enable Azure Audit logging
 
@@ -374,7 +374,7 @@ sudo ./tpm_device_provision
 
 >**Note**: In the real world all your devices should have hardware based TPMs.
 
-5.  Switch to the Azure Portal and navigate to the **oilwells-prov-[YOUR INIT]** Device Provisioning Service .
+5.  Switch to the Azure Portal and navigate to the **oilwells-prov-[YOUR INIT]** Device Provisioning Service.
 
 6.  Under **Settings**, click **Manage enrollments**.
 
