@@ -175,7 +175,7 @@ In this whiteboard design session, you will work with a group to design an end-t
 
 At the end of this session, you will be better able to design and recommend solutions that help organizations properly secure and monitor their IoT-based infrastructure.  
 
-This concepts covered here are targeted at an architectural design level versus simple stand alone actvities.
+The concepts covered here are targeted at an architectural design level versus simple stand-alone activities.
 
 ## Step 1: Review the customer case study 
 
@@ -195,11 +195,11 @@ Directions:  With all participants in the session, the facilitator/SME presents 
 
 ### Customer situation
 
-Contoso, Ltd. has major holdings in one of the world’s most important oil-producing regions. To overcome the challenges of monitoring and optimizing a vast number of widely dispersed field assets, Contoso, Ltd. is looking to streamline its operations with IoT solutions. They want to deploy IoT technologies to electronically collect data and use cloud based solutions to store and analyze it in order to gain new insights into well operations and future drilling possibilities. 
+Contoso, Ltd. has major holdings in one of the world’s most important oil-producing regions. To overcome the challenges of monitoring and optimizing a vast number of widely dispersed field assets, Contoso, Ltd. is looking to streamline its operations with IoT solutions. They want to deploy IoT technologies to electronically collect data and use cloud-based solutions to store and analyze it in order to gain new insights into well operations and future drilling possibilities. 
 
 Their environments are very tough environments in which to work. The climate is hot, harsh, and unforgiving, and oil wells are often spaced many miles apart, so field technicians can spend much of their day just driving from one to another. Cellular and radio reception is spotty at best, so collecting data about well conditions and performance typically involves manually writing down information. The technician must then make the long trek to the central office at the end of the day to upload the data for analysis. With such remote situations, a key concern for Contoso is not only how they manage these remote devices, but more broadly how they secure the complete solution that encompasses the physical device, the software on the device, the services processing the data in the cloud and the network connecting it all. 
 
-Contoso plans to tie in to existing sensors at the well head that monitor key system parameters like temperatures, pressures, and flow rates. They will deploy gateway devices route device data for processing, storage and analytics. Internal IT staff and engineers want to visualize the high-resolution data and deliver near real-time analyses. The company is placing a premium on flexibility and ease of use, with security as a fundamental. 
+Contoso plans to tie into existing sensors at the well head that monitor key system parameters like temperatures, pressures, and flow rates. They will deploy gateway devices route device data for processing, storage and analytics. Internal IT staff and engineers want to visualize the high-resolution data and deliver near real-time analyses. The company is placing a premium on flexibility and ease of use, with security as a fundamental. 
 
 In addition, they would also like see the solution yield benefits to their workers in the field. “The field technicians and lease operators already have tools on their phones that they use every day to see what a well is doing,” explains Miles Strom. “Our goal is to connect these tools to live data from the IoT sensors. So, instead of seeing low-resolution volumes or flow rates, they’ll see what is happening in real time. This way they can respond immediately to problems that lead to downtime or maintenance issues.”
 
@@ -394,7 +394,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure Trust Center  | <http://azure.microsoft.com/en-us/support/trust-center/>     |
 | Azure Sphere  | <https://docs.microsoft.com/en-us/azure-sphere/>     |
 
-# Security the IoT end to end whiteboard design session trainer guide
+# Securing the IoT end to end whiteboard design session trainer guide
 
 ## Step 1: Review the customer case study
 
@@ -478,11 +478,11 @@ Describe how you will utilize Azure security features to secure the various reso
 -   Utilizing Azure Access control (IAM) mechanisms you can set the permissions to access and modify the IoT Hub resource to the proper individuals.
 -   By implementing Shared Access Policies, you can create policies that grant permission to perform actions on the IoT Hub such as Registry read, Registry write, Service connect and Device connect.
 -   Using IP Filters, you can limit the devices that can connect to your IoT hub to a set of IP Addresses.
--   Enabling Diagnostic settings to send changes to a Log Analtyics workspace will enable to you fire alerts based on management plane based activites.
+-   Enabling Diagnostic settings to send changes to a Log Analytics workspace will enable to you fire alerts based on management plane activities.
 
 2.  How will you secure the IoT Provisioning Service?
 
--   Similar to an IoT Hub resource, you can utilize Azure Access Control (IAM) and a similar Shared Access Policies setup to acheive your desired permissions configuration
+-   Similar to an IoT Hub resource, you can utilize Azure Access Control (IAM) and a similar Shared Access Policies setup to achieve your desired permissions configuration
 -   You can also enable Diagnostic settings to log management plane changes
 
 *Device Security*
@@ -491,7 +491,7 @@ Describe how you will secure the following:
 
 1.  How will you secure the IoT Edge Devices?
 
--   Azure IoT Edge is inherintly secure on its own through the Azure IoT Edge security manager dameon.  However, any actor with access to the device as root or administrator can make changes to the device.  For this reason, you should ensure that the device utilizes the Azure IoT Security Agent to monitor for security events or configuration changes that could affect the ssecurity integrity of the IoT Edge device.
+-   Azure IoT Edge is inherently secure on its own through the Azure IoT Edge security manager daemon.  However, any actor with access to the device as root or administrator can make changes to the device.  For this reason, you should ensure that the device utilizes the Azure IoT Security Agent to monitor for security events or configuration changes that could affect the security integrity of the IoT Edge device.
 
 2.  How will you secure the IoT Devices?
 
@@ -516,7 +516,7 @@ Describe how you will use Azure features to ensure the following:
 
 4.  What tools would you setup to surface audit and compliance reporting to IT Executives?
 
--   You can utilize PowerBI to surface Log Analytics data into easy to read dashboards that are accessbile only to the property individuals.
+-   You can utilize Power BI to surface Log Analytics data into easy to read dashboards that are accessible only to the property individuals.
 
 ## Checklist of preferred objection handling
 
@@ -528,9 +528,9 @@ Describe how you will use Azure features to ensure the following:
 
 -   The Azure IoT Agents have been release with ANSI-C standards in mind.  The code is freely available on GitHub along with an entire SDK that will enable Contoso to easily re-compile the source for any target device.
 
-3.  Will they be able to monitor for specific events on some of their propriatary devices?
+3.  Will they be able to monitor for specific events on some of their proprietary devices?
 
--   Yes, they can monitor for custom events on their propriatary devices using the Azure IoT SDK to send message and events to their specific IoT Hub(s).
+-   Yes, they can monitor for custom events on their proprietary devices using the Azure IoT SDK to send message and events to their specific IoT Hub(s).
 
 4.  Can Azure support non-TPM hardware devices?
 
@@ -543,9 +543,9 @@ Describe how you will use Azure features to ensure the following:
 
 5.  Will the communications from a device to Azure be secure enough?
 
--   Absoultely, the Azure IoT SDKs come with support for several different protocols including the latest HTTPS and SSL features such as TLS and MTLS.  Devices can be authenticated using device specific certificates and the network can be whitelisted using IP schemes.
+-   Absolutely, the Azure IoT SDKs come with support for several different protocols including the latest HTTPS and SSL features such as TLS and MTLS.  Devices can be authenticated using device specific certificates and the network can be whitelisted using IP schemes.
 
--   Additionally, the [Azure IoT Security Model](https://aka.ms/iot-edge-security-manager) has been designed specifically to address security needs of any IoT Architecture plus adds the flexability to monitor for threats and motivations such as physical accessiblity of devices, IP and generated insights, actions based off insights and heterogenitiy in the silicon, languages and procedures.
+-   Additionally, the [Azure IoT Security Model](https://aka.ms/iot-edge-security-manager) has been designed specifically to address security needs of any IoT Architecture plus adds the flexibility to monitor for threats and motivations such as physical accessibility of devices, IP and generated insights, actions based off insights and heterogeneity in the silicon, languages and procedures.
 
 6.  Can an Azure logging solution handle the massive amount of events and alerts that will need to be ingested?
 
@@ -565,7 +565,7 @@ Describe how you will use Azure features to ensure the following:
 
  10.  Can Microsoft provide a more modern solution to support their IoT device upgrades?
 
- -  Yes, using Azure Sphere, the customer can upgrade their devices using new hardware designed with security and flexability in mind. 
+ -  Yes, using Azure Sphere, the customer can upgrade their devices using new hardware designed with security and flexibility in mind. 
  -  Reference [this Microsoft research paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/03/SevenPropertiesofHighlySecureDevices.pdf) for details of what makes devices secure
 
 ## Customer quote (to be read back to the attendees at the end)

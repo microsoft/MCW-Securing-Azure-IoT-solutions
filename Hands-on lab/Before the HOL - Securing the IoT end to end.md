@@ -54,11 +54,11 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 2.  Select **Clone or download**, then select **Download Zip**.
 
-    ![Clone or download and Download ZIP are highlighted in this screenshot of the cloud workshop GitHub repository.](images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/image3.png)
+    ![Clone or download and Download ZIP are highlighted in this screenshot of the cloud workshop GitHub repository.](images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/beforehol-image1.png "Download the zip file")
 
 3.  Extract the zip file to your local machine, be sure to keep note of where you have extracted the files. You should now see a set of folders:
 
-    ![A set of extracted folders and files are visible in File Explorer: .vs, AzureTemplate, Database, Scripts, WebApp, README.md.](images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/image4.png "Extract the zip file")
+    ![A set of extracted folders and files are visible in File Explorer: Hands On Lab, Media, Whiteboard design session, README.md., etc.](images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/beforehol-image2.png "Extract the zip file")
 
 ### Task 2: Deploy resources to Azure
 
@@ -78,7 +78,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 8.  In the resource group blade, select **Export template**, and then select **Deploy**.
 
-    ![Automation script is highlighted under Settings on the left side of the Azure portal, and Deploy is highlighted on the top-right side.](images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/image5.png "Select Deploy")
+    ![Automation script is highlighted under Settings on the left side of the Azure portal, and Deploy is highlighted on the top-right side.](images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/beforehol-image3.png "Select Deploy")
 
 9.  Select **Build your own template in the editor**.
 
@@ -102,11 +102,9 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     -  Select **Purchase**.
 
-    ![The above information is entered in the form, and I agree to the terms and conditions stated above and Purchase are selected and highlighted at the bottom.](../Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/beforehol-image1.png "Fill out the form")
+    ![The above information is entered in the form, and I agree to the terms and conditions stated above and Purchase are selected and highlighted at the bottom.](images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/beforehol-image4.png "Fill out the form")
 
 13. The deployment will take 15-25 minutes to complete. To view the progress, select the **Deployments** link, then select the **Microsoft.Template** deployment.
-
-    ![Deployments is highlighted under Settings on the left side of the Azure portal, and Microsoft.Template is highlighted under Deployment Name on the right side.](../Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/beforehol-image2.png "Select the Deployments link")
 
     -  As part of the deployment, you will see the following items created:
 
@@ -131,7 +129,5 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
        -  Time Series Insights environment
 
     >**Note**: Not all of these resources may be used in the current version of the hands-on labs.
-
-    ![Created items list This screenshot is a list of the items that were created, including the items listed above. ](Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/beforehol-image8.png)
 
 You should follow all steps provided *before* attending the hands-on lab.
