@@ -1,7 +1,7 @@
-![](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
-Securing the IoT end to end
+Securing the IoT end-to-end
 </div>
 
 <div class="MCWHeader2">
@@ -9,9 +9,8 @@ Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
-June 2019
+August 2019
 </div>
-
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
@@ -27,7 +26,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [Securing the IoT end to end whiteboard design session student guide](#securing-the-iot-end-to-end-whiteboard-design-session-student-guide)
+- [Securing the IoT end-to-end whiteboard design session student guide](#securing-the-iot-end-to-end-whiteboard-design-session-student-guide)
     - [Abstract and learning objectives](#abstract-and-learning-objectives)
     - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
         - [Customer situation](#customer-situation)
@@ -41,7 +40,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- /TOC -->
 
-# Securing the IoT end to end whiteboard design session student guide
+# Securing the IoT end-to-end whiteboard design session student guide
 
 ## Abstract and learning objectives 
 
@@ -49,7 +48,7 @@ In this whiteboard design session, you will work with a group to design an end-t
 
 At the end of this session, you will be better able to design and recommend solutions that help organizations properly secure and monitor their IoT-based infrastructure.
 
-The concepts covered here are targeted at an architectural design level versus simple stand alone activities.
+The concepts covered here are targeted at an architectural design level versus simple stand-alone activities.
 
 ## Step 1: Review the customer case study 
 
@@ -90,11 +89,11 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 4.  Ensure all events are surfaced in one place for simplicity.
 
-5.  Address the need to have auditing and monitoring across a wide range of device operating systems and processor architectures (Linux, x86, x64, etc).
+5.  Address the need to have auditing and monitoring across a wide range of device operating systems and processor architectures (Linux, x86, x64, etc.).
 
 6.  Automate the security agent provisioning rather than having to physically or remotely "touch" all the devices.
 
-7.  Ensure only the most secure protocols are implemented and used during any transmissions
+7.  Ensure only the most secure protocols are implemented and used during any transmissions.
 
 8.  Ensure that in the future it will be possible to have an enterprise-wide look at any vulnerabilities or malicious events, not just specifically focused the IoT infrastructure.
 
@@ -192,7 +191,7 @@ Describe how you will use Azure features to ensure the following:
 
 2.  How will you monitor and audit Azure resource changes?
 
-3.  Create custom alerts and execute remediation and investigation activities on detection?
+3.  How will you create custom alerts and execute remediation and investigation activities on detection?
 
 4.  What tools would you setup to surface audit and compliance reporting to IT Executives?
 
@@ -259,7 +258,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure IoT Device Provisioning Service   | https://docs.microsoft.com/en-us/azure/iot-dps/  |
 | Provisioning devices with vTPM   | https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-linux/  |
 | Provisioning devices with sTPM   | https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-windows/  |
-| Provisioning devices with dTPM (Rasberry PI)   | https://catalog.azureiotsolutions.com/details?title=OPTIGA-TPM-SLB-9670-Iridium-Board&source=all-devices-page/  |
+| Provisioning devices with dTPM (Raspberry PI)   | https://catalog.azureiotsolutions.com/details?title=OPTIGA-TPM-SLB-9670-Iridium-Board&source=all-devices-page/  |
 | Azure Security Center for IoT  | https://docs.microsoft.com/en-us/azure/asc-for-iot/overview  |
 | Azure IoT SDK  | https://github.com/Azure/azure-iot-sdks  |
 | Azure IoT Security Agent  | https://github.com/Azure/Azure-IoT-Security-Agent-C  |
