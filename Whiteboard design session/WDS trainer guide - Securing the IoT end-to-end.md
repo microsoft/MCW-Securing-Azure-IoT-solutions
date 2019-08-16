@@ -317,7 +317,7 @@ Describe how you will use Azure features to ensure the following:
 
 2.  How will you monitor and audit Azure resource changes?
 
-3.  How willyou create custom alerts and execute remediation and investigation activities on detection?
+3.  How will you create custom alerts and execute remediation and investigation activities on detection?
 
 4.  What tools would you setup to surface audit and compliance reporting to IT Executives?
 
