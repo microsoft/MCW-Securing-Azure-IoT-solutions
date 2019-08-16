@@ -566,7 +566,7 @@ Describe how you will use Azure features to ensure the following:
  10.  Can Microsoft provide a more modern solution to support their IoT device upgrades?
 
  -  Yes, using Azure Sphere, the customer can upgrade their devices using new hardware designed with security and flexibility in mind. 
- -  Reference [this Microsoft research paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/03/SevenPropertiesofHighlySecureDevices.pdf) for details of what makes devices secure
+ -  Reference [this Microsoft research paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/03/SevenPropertiesofHighlySecureDevices.pdf) for details of what makes devices secure.
 
 ## Customer quote (to be read back to the attendees at the end)
 
