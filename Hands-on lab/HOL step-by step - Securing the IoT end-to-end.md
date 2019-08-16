@@ -576,8 +576,6 @@ sudo journalctl -u ASCIoTAgent
 
 5.  You should see an error about the azureiotsecurity module not being registered.
 
-TODO
-
 ### Task 2: Install the IoT Hub Security Agent Module
 
 1.  Switch to the Azure Portal.
@@ -714,7 +712,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 3.  In the blade menu, in the **Security** section, click **Overview**, you will get a dashboard of potential security recommendations that very likely should be implemented.
 
-4.  Click **Recommendations**, you should see our attack items displaying:
+4.  Click **Recommendations**, you should see our attack items displayed.
 
 5.  Click the **Open Ports On Device** recommendation.  In the dialog, click the **To see which devices have this recommendation...** link.  This will navigate to the Log Analytics portal when you can drill deeper into the log data that caused the alert.
 
