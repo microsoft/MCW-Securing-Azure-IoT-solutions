@@ -90,7 +90,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 ## Solution architecture (Analytics)
 
-![The Analytics solution using Stream Analytics, Cosmos DB, Time-series and a hosted application in an App Server](../Media/solution-diagram-2.png "Analytics Solution")
+![The Analytics solution using Stream Analytics, Cosmos DB, Time-series and a hosted application in an App Server.](../Media/solution-diagram-2.png "Analytics Solution")
 
 ## Requirements
 
