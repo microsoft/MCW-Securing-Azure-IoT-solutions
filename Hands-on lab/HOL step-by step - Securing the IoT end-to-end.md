@@ -247,7 +247,7 @@ sudo apt-get install -y git cmake build-essential curl libcurl4-openssl-dev libs
 sudo apt-get install libcurl3
 sudo apt-get install auditd audispd-plugins
 
-reboot
+sudo reboot
 
 ```
 
@@ -262,7 +262,7 @@ sudo apt-get install -y git cmake libcurl4 build-essential curl libcurl4-openssl
 sudo apt-get install libcurl3 libcurl-openssl1.0-dev
 sudo apt-get install auditd audispd-plugins
 
-reboot
+sudo reboot
 
 ```
 
@@ -283,8 +283,8 @@ git submodule update --init
 If you are using a software-based simulator, then run the following command:
 
 ```PowerShell
-
 cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=ON .
+```
 
 Otherwise with a hardware based TPM, run the following:
 
@@ -292,7 +292,7 @@ Otherwise with a hardware based TPM, run the following:
 cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=OFF .
 ```
 
-To get a new registration and endorsement key, run the following:
+To setup the new registration and endorsement key tool, run the following:
 
 ```PowerShell
 cd provisioning_client/tools/tpm_device_provision
@@ -330,6 +330,11 @@ sudo tar -zxvf ibmtpm1332.tar.gz
 cd src
 sudo make
 
+cd ..
+sudo chown -R $USER ~/.
+
+cd src
+
 ./tpm_server &
 ```
 
@@ -338,12 +343,11 @@ sudo make
 2.  Run the following commands to start a TPM resource manager:
 
 ```PowerShell
-
 cd 
 
-sudo apt-get install autoconf
-sudo apt-get install libtool
-sudo apt-get install pkg-config
+sudo apt-get install -y autoconf
+sudo apt-get install -y libtool
+sudo apt-get install -y pkg-config
 
 sudo wget -c https://astuteinternet.dl.sourceforge.net/project/ibmtpm20tss/ibmtss1470.tar.gz
 
