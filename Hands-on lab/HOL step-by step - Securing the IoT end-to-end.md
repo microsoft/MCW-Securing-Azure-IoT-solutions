@@ -234,7 +234,9 @@ Synopsis: With the Azure resources in place, you can now start creating and prov
 
 ### Task 2: Update and install Azure IoT SDK prerequisites
 
-1.  Run the following commands, this could take up to 10 minutes to complete:
+1.  Run the following commands, this could take up to 10 minutes to complete.
+
+>NOTE:  Depending on your command line tool (cmd.exe, bash, PowerShell, etc), you may need to run each of these one at a time to avoid skipping any commands.
 
 -  For Ubuntu 16.04:
 
@@ -280,7 +282,7 @@ cd azure-iot-sdk-c
 git submodule update --init
 ```
 
-If you are using a software-based simulator, then run the following command:
+If you are using a software-based simulator (which would most likely be the case with an Azure hosted image which is the default for the ARM template), then run the following command:
 
 ```PowerShell
 cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=ON .
@@ -308,7 +310,7 @@ make
 sudo ./tpm_device_provision
 ```
 
->**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure template provisions an Ubuntu image that does not have a hardware TPM enabled.
+>**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Ubuntu image that does not have a hardware TPM enabled nor does it have a software TPM installed.
 
 ![This shows what happens with the device does not have a hardware or software TPM.](Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/ex2_image003.png "Failed TPM command")
 
@@ -325,15 +327,14 @@ cd
 
 sudo wget -c https://phoenixnap.dl.sourceforge.net/project/ibmswtpm2/ibmtpm1332.tar.gz
 
-sudo tar -zxvf ibmtpm1332.tar.gz 
-
-cd src
-sudo make
+sudo tar -zxvf ibmtpm1332.tar.gz
 
 cd ..
 sudo chown -R $USER ~/.
 
+cd
 cd src
+sudo make
 
 ./tpm_server &
 ```
@@ -352,6 +353,11 @@ sudo apt-get install -y pkg-config
 sudo wget -c https://astuteinternet.dl.sourceforge.net/project/ibmtpm20tss/ibmtss1470.tar.gz
 
 sudo tar -zxvf ibmtss1470.tar.gz 
+
+cd ..
+sudo chown -R $USER ~/.
+
+cd
 
 sudo autoreconf -i
 ./configure --prefix=${HOME}/local --disable-hwtpm
@@ -406,7 +412,7 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
 
 1.  Run the following command:
 
->**Note**: Change the ubuntu version "os_version" as appropriate (16.04 vs 18.04).  You can get your version by running "lsb_release -a".
+>**Note**: Change the ubuntu version "os_version" as appropriate (`16.04` vs `18.04`).  You can get your version by running "lsb_release -a".
 
 ```PowerShell
 cd
@@ -453,7 +459,7 @@ sudo apt-get install iotedge
 
 ![The IoT Edge device dialog with the copy link highlited for the the device primary key.](Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/ex2_image014.png "Copy the primary device key")
 
-9.  Run the following command to open a text editor:
+9.  Switch back to your ssh shell, run the following command to open a text editor:
 
 ```PowerShell
 sudo nano /etc/iotedge/config.yaml
@@ -471,7 +477,7 @@ sudo nano /etc/iotedge/config.yaml
 -  Symmetric Key Provisioning
 
     -  Comment out the manual provision settings, uncomment the **dps symmetric key** settings, then copy in the device primary symmetric key and Registration Id information.
-    -  Save the file.
+    -  Save the file, press **CTRL-X**, then **Y**, then **ENTER**
 
 -  TPM Provisioning
 

@@ -4,15 +4,15 @@
     "parameters": {
 		"alias": {
             "defaultValue": null,
-            "type": "String"
+            "type": "string"
         },
 		"username": {
             "defaultValue": "s2admin",
-            "type": "String"
+            "type": "string"
         },
 		"password": {
             "defaultValue": "S2@dmins2@dmin",
-            "type": "String"
+            "type": "string"
         }
     },
     "variables": {},
