@@ -2,6 +2,8 @@
 
 Contoso, Ltd. has major holdings in one of the world’s most important oil-producing regions. To overcome the challenges of monitoring and optimizing a vast number of widely dispersed field assets, Contoso, Ltd. is looking to streamline its operations with IoT solutions. They want to deploy IoT technologies to electronically collect data and use cloud-based solutions to store and analyze it in order to gain new insights into well operations and future drilling possibilities. 
 
+August 2019
+
 ## Target audience
 
 -	Cloud Solution Architect
@@ -41,3 +43,16 @@ In this hands-on lab, you will look at the process for implementing an oil and g
 - [MCW](https://github.com/Microsoft/MCW)
 - [Introducing Azure Security Center for IoT](https://docs.microsoft.com/en-us/azure/asc-for-iot/overview)
 - [Internet of Things (IoT) security architecture](https://docs.microsoft.com/en-us/azure/iot-fundamentals/iot-security-architecture) 
+
+## Help & Support
+
+We welcome feedback and comments from Microsoft SMEs & learning partners who deliver MCWs.  
+
+***Having trouble?***
+- First, verify you have followed all written lab instructions (including the Before the Hands-on lab document).
+- Next, submit an issue with a detailed description of the problem.
+- Please do not submit pull requests. Our authors will review open issues and submit pull requests, as needed, for approval.  
+
+If you are planning to present a workshop, *review and test the materials early*! We recommend at least two weeks prior.
+
+### Please allow 5 - 10 business days for review and resolution of issues.
