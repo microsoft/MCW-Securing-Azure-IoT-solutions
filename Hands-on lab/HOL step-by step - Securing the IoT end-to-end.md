@@ -552,12 +552,19 @@ git clone https://github.com/Azure/Azure-IoT-Security-Agent-C.git --recursive
 sudo apt-get install libcurl3 libcurl-openssl1.0-dev
 sudo apt-get install auditd audispd-plugins
 
+#create release folder
+cd Azure-IoT-Security-Agent-C
+sudo mkdir release
+cd release
+
+#download the relaese binaries
+sudo wget -c https://github.com/Azure/Azure-IoT-Security-Agent-C/releases/download/0.0.4/ubuntu-16.04-x64.tar.gz
+
 #extract the release binaries
-
-cd Azure-IoT-Security-Agent-C/release
-
 sudo tar -zxvf ubuntu-16.04-x64.tar.gz
-sudo cp -r agent/Install/. /var/ASCIoTAgent
+
+#copy to target folder
+sudo cp -r Install/. /var/ASCIoTAgent
 
 cd /var/ASCIoTAgent
 
