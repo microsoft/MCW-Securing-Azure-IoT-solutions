@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-November 2019
+August 2019
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -70,9 +70,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 4.  Type a resource group name, such as **iotsecurity-\[your initials or first name\]**.
 
-5.  Select a **Region**.
-
-> **Note** Note that some ARM template resources can only be deployed to specific regions.  See the latest available regions for Azure Security Center for IoT [here](https://docs.microsoft.com/en-us/azure/asc-for-iot/service-prerequisites)
+5.  For **Region**, you must select **(US) East US**.
 
 6.  Select **Review + Create**, then select **Create**.
 
@@ -94,9 +92,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     -  Resource group: Use an existing Resource group, or create a new one by entering a unique name, such as **iotsecurity-\[your initials or first name\]**.
 
-    -  If prompted for location: Select a **location** for the Resource group.
-
-    > **Note** See the latest available regions [here](https://docs.microsoft.com/en-us/azure/asc-for-iot/service-prerequisites).
+    -  If prompted for location: Select a **location** for the Resource group, this has to be **centralus**.
 
     -  Modify the **alias** to be something unique such as "\[your initials or first name\]".
 
@@ -124,7 +120,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
        -  Event Hubs namespace
        
-       -  IoT Hub.
+       -  IoT Hub (located in Central US region).
        
        -  IoT Provisioning Service
 

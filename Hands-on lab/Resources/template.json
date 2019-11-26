@@ -21,7 +21,7 @@
             "type": "Microsoft.TimeSeriesInsights/environments",
             "apiVersion": "2018-08-15-preview",
             "name": "[concat('oilwells-timeseries-', parameters('alias'))]",
-            "location": "eastus2",
+            "location": "eastus",
             "sku": {
                 "name": "S1",
                 "capacity": 1
@@ -67,7 +67,7 @@
             "type": "Microsoft.Devices/IotHubs",
             "apiVersion": "2018-04-01",
             "name": "[concat('oilwells-iothub-', parameters('alias'))]",
-            "location": "[resourceGroup().location]",
+            "location": "centralus",
             "sku": {
                 "name": "S1",
                 "tier": "Standard",
@@ -175,7 +175,7 @@
             "type": "Microsoft.DocumentDB/databaseAccounts",
             "apiVersion": "2015-04-08",
             "name": "[concat('oilwells-cosmos-', parameters('alias'))]",
-            "location": "[resourceGroup().location]",
+            "location": "Australia East",
             "tags": {
                 "defaultExperience": "Core (SQL)"
             },
@@ -212,7 +212,7 @@
             "type": "Microsoft.EventHub/namespaces",
             "apiVersion": "2018-01-01-preview",
             "name": "[concat('oilwells-eventsns-', parameters('alias'))]",
-            "location": "[resourceGroup().location]",
+            "location": "West US",
             "sku": {
                 "name": "Basic",
                 "tier": "Basic",
@@ -544,7 +544,7 @@
             "type": "Microsoft.StreamAnalytics/streamingjobs",
             "apiVersion": "2016-03-01",
             "name": "[concat('oilwells-analytics-', parameters('alias'))]",
-            "location": "[resourceGroup().location]",
+            "location": "West US",
             "properties": {
                 "sku": {
                     "name": "Standard"
@@ -561,7 +561,7 @@
             "type": "Microsoft.Web/serverfarms",
             "apiVersion": "2016-09-01",
             "name": "[concat('oilwells-appsvc-', parameters('alias'))]",
-            "location": "[resourceGroup().location]",
+            "location": "West US",
             "sku": {
                 "name": "P1v2",
                 "tier": "PremiumV2",
@@ -582,7 +582,7 @@
             "type": "Microsoft.EventHub/namespaces/AuthorizationRules",
             "apiVersion": "2017-04-01",
             "name": "[concat('oilwells-eventsns-', parameters('alias'), '/RootManageSharedAccessKey')]",
-            "location": "[resourceGroup().location]",
+            "location": "West US",
             "dependsOn": [
                 "[resourceId('Microsoft.EventHub/namespaces', concat('oilwells-eventsns-', parameters('alias')))]"
             ],
