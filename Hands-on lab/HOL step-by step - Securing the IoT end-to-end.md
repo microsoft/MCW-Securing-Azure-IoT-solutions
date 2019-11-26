@@ -283,7 +283,6 @@ cd azure-iot-sdk-c
 
 git submodule update --init
 ```
-
 > **Note** You can also open the git to see what the latest release tag is, but the remainder of the lab may not work properly based on a new release.
 
 If you are using a `software-based` simulator (which would most likely be the case with an Azure hosted image which is the default for the before the hands-on-lab ARM template), then run the following command:
@@ -313,7 +312,6 @@ make
 ```PowerShell
 sudo ./tpm_device_provision
 ```
-
 >**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Ubuntu image that does not have a hardware TPM enabled nor does it have a software TPM installed.
 
 ![This shows what happens with the device does not have a hardware or software TPM.](Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/ex2_image003.png "Failed TPM command")
@@ -570,6 +568,7 @@ sudo mkdir release
 cd release
 
 #download the release binaries
+
 sudo wget -c https://github.com/Azure/Azure-IoT-Security-Agent-C/releases/download/0.0.4/ubuntu-16.04-x64.tar.gz
 
 #extract the release binaries
