@@ -32,11 +32,14 @@ In this hands-on lab, you will look at the process for implementing an oil and g
 
 ## Azure services and related products
 
--	Azure Security Center (including ASC for IoT)
-- Log Analytics
+- Azure Cosmos DB
 - Azure IoT Provisioning Service
--	Azure IoT Edge
--	Azure IoT Hub
+- Azure IoT Edge
+- Azure IoT Hub
+- Azure Key Vault
+- Azure Security Center (including ASC for IoT)
+- Azure Stream Analytics
+- Log Analytics
 
 ## Related references
 
@@ -49,9 +52,10 @@ In this hands-on lab, you will look at the process for implementing an oil and g
 We welcome feedback and comments from Microsoft SMEs & learning partners who deliver MCWs.  
 
 ***Having trouble?***
+
 - First, verify you have followed all written lab instructions (including the Before the Hands-on lab document).
 - Next, submit an issue with a detailed description of the problem.
-- Do not submit pull requests. Our content authors will make all changes and submit pull requests for approval.   
+- Do not submit pull requests. Our content authors will make all changes and submit pull requests for approval.
 
 If you are planning to present a workshop, *review and test the materials early*! We recommend at least two weeks prior.
 
