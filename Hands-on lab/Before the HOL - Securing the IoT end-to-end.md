@@ -72,7 +72,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 5. Select a **Region**.
 
-    > **Note** Note that some ARM template resources can only be deployed to specific regions.  See the latest available regions for Azure Security Center for IoT [here](https://docs.microsoft.com/en-us/azure/asc-for-iot/service-prerequisites)
+    > **Note:** Some ARM template resources can only be deployed to specific regions.  See the latest available regions for Azure Security Center for IoT [here](https://docs.microsoft.com/en-us/azure/asc-for-iot/service-prerequisites)
 
 6. Select **Review + Create**, then select **Create**.
 
@@ -112,9 +112,9 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     - As part of the deployment, you will see the following items created:
 
-       - Azure Data Lake Storage account.
+       - Azure Data Lake Storage account
 
-       - Azure Stream Analytics job.
+       - Azure Stream Analytics job
 
        - App service plan
 
