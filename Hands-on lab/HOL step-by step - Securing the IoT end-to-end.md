@@ -160,7 +160,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 4. In the top menu, select **Logs**.
 
-    ![This screen shot highlight the activity log link and the logs link for navigating to the Azure Activity Logs.](Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/ex1_image005.png "Navigate to resource group Activity Logs")
+    ![This screenshot highlights the activity log link and the logs link for navigating to the Azure Activity Logs.](Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/ex1_image005.png "Navigate to resource group Activity Logs")
 
 5. In the top menu, select **+ Add**.
 
@@ -236,8 +236,9 @@ Synopsis: With the Azure resources in place, you can now start creating and prov
 
 1. Run the following commands, this could take up to 10 minutes to complete.
 
->NOTE:  Depending on your command line tool (cmd.exe, bash, PowerShell, etc.), you may need to run each line one at a time to avoid skipping any commands.
->NOTE:  The following commands may take 20-30 minutes to complete
+>**Note**:  Depending on your command line tool (cmd.exe, bash, PowerShell, etc.), you may need to run each line one at a time to avoid skipping any commands.
+
+>**Note**:  The following commands may take 20-30 minutes to complete.
 
 - For Ubuntu 16.04:
 
@@ -283,7 +284,7 @@ cd azure-iot-sdk-c
 git submodule update --init
 ```
 
-> **Note** You can also open the git to see what the latest release tag is, but the remainder of the lab may not work properly based on a new release.
+> **Note**: You can also open the git to see what the latest release tag is, but the remainder of the lab may not work properly based on a new release.
 
 If you are using a `software-based` simulator (which would most likely be the case with an Azure hosted image which is the default for the before the hands-on-lab ARM template), then run the following command:
 
@@ -320,6 +321,7 @@ sudo ./tpm_device_provision
 ### Task 5: Install a software TPM and Resource Manager and reattempt Device Enrollment
 
 >**Note**: If you have a hardware TPM in your device, you can skip to step 3.
+
 >**Note**: Devices such as a Raspberry PI do not come with a TPM chip.  You can however add a TPM chip to these devices such as [this Iridium Board](https://catalog.azureiotsolutions.com/details?title=OPTIGA-TPM-SLB-9670-Iridium-Board&source=all-devices-page/).
 
 1. Run the following commands to download, compile and start a software-based TPM server:
@@ -384,7 +386,7 @@ sudo ./tpm_device_provision
 
 4. Copy the device **Registration Id** and the **Endorsement Key**.
 
-    >**Note**: In the real world all your devices should have hardware-based TPMs.
+    >**Note**: In the real world, all your devices should have hardware-based TPMs.
 
 5. Switch to the Azure Portal and navigate to the **oilwells-prov-[YOUR INIT]** Device Provisioning Service.
 
@@ -477,13 +479,13 @@ sudo apt-get install iotedge
 
         - Using the device connection string you copied from above, paste it into the config.yaml file.
 
-        - Save the file, press **CTRL-X**, then **Y**, then **ENTER**
+        - Save the file, press **CTRL-X**, then **Y**, then **ENTER**.
 
     - Symmetric Key Provisioning
 
         - Comment out the manual provision settings, uncomment the **dps symmetric key** settings, then copy in the device primary symmetric key and Registration Id information.
 
-        - Save the file, press **CTRL-X**, then **Y**, then **ENTER**
+        - Save the file, press **CTRL-X**, then **Y**, then **ENTER**.
 
     - TPM Provisioning
 
@@ -493,7 +495,7 @@ sudo apt-get install iotedge
 
         - Although we are using a software TPM, when using a hardware TPM, you would need to give permissions to the hardware TPM to the iotedge service by running the following commands:
 
-        - Save the file, press **CTRL-X**, then **Y**, then **ENTER**
+        - Save the file, press **CTRL-X**, then **Y**, then **ENTER**.
 
         ```PowerShell
         tpm=$(sudo find /sys -name dev -print | fgrep tpm | sed 's/.\{4\}$//')
@@ -527,7 +529,7 @@ sudo apt-get install iotedge
     sudo systemctl status iotedge
     ```
 
-12. You should see the iotedge client status as **active (running)**.  Press **Ctrl-c** to exit the status message.
+12. You should see the iotedge client status as **active (running)**.  Press **Ctrl-C** to exit the status message.
 
     ![The Azure IoT Edge daemon shows a green active status.](Images/Hands-onlabstep-bystep-securitytheiotendtoendimages/media/ex2_image009.png "Successful service start")
 
@@ -692,7 +694,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 18. Select **Submit**.
 
-19. Switch back to your ssh session, then run the following command to start the security agent:
+19. Switch back to your SSH session, then run the following command to start the security agent:
 
     ```PowerShell
     sudo systemctl start ASCIoTAgent
@@ -747,7 +749,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 4. Under **Security**, select **Recommendations**, you should see our attack items displayed.
 
-    >**Note** It may take a couple minutes for them to be displayed
+    >**Note** It may take a couple minutes for them to be displayed.
 
 5. Select the **Open Ports On Device** recommendation.  In the dialog, select the **To see which devices have this recommendation...** link.  This will navigate to the Log Analytics portal when you can drill deeper into the log data that caused the alert.
 
