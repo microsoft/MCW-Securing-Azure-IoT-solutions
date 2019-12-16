@@ -86,11 +86,11 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 ## Solution architecture (High-level)
 
-![The proposed solution utilizing Azure Security Center for IoT and its agents to monitor and secure the IoT Devcies.  Log data is forwarded to Log Analytics where alerts and logic apps will execute to start investigation and remediation.](../Media/solution-diagram-1.png "Solution Architecture")
+![The proposed solution utilizing Azure Security Center for IoT and its agents to monitor and secure the IoT Devcies.  Log data is forwarded to Log Analytics where alerts and logic apps will execute to start investigation and remediation.](media/solution-diagram-1.png "Solution Architecture")
 
 ## Solution architecture (Analytics)
 
-![The Analytics solution using Stream Analytics, Cosmos DB, Time-series and a hosted application in an App Server.](../Media/solution-diagram-2.png "Analytics Solution")
+![The Analytics solution using Stream Analytics, Cosmos DB, Time-series and a hosted application in an App Server.](media/solution-diagram-2.png "Analytics Solution")
 
 ## Requirements
 
@@ -394,7 +394,7 @@ sudo ./tpm_device_provision
 
 7. Select **+Add Individual Enrollment**.
 
-    ![Managed Enrollements and Add individual enrollments are highlighted.](media/ex2_image006.png "Navigating to add an individual device enrollment")
+    ![Managed Enrollments and Add individual enrollments are highlighted.](media/ex2_image006.png "Navigating to add an individual device enrollment")
 
 8. For the **Mechanism**, select **TPM**.
 
@@ -800,7 +800,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 6. Select the condition, then for the **threshold value**, type **1**, select **Done**.
 
-    ![Alert signal logic dialog with the threadhold value set to 1.](media/ex6_image006.png "Set threshold value")
+    ![Alert signal logic dialog with the threshold value set to 1.](media/ex6_image006.png "Set threshold value")
 
 7. Select **Create action group**.
 
@@ -832,7 +832,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 18. For the **description**, type **The IoT Hub was modified**.
 
-    ![The final screen shot of a configued Alert rule](media/ex6_image010.png "Completed Create rule dialog")
+    ![The final screen shot of a configured Alert rule](media/ex6_image010.png "Completed Create rule dialog")
 
 19. Select **Create alert rule**.
 

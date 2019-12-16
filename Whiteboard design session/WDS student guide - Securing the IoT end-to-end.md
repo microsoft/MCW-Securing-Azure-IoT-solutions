@@ -79,7 +79,7 @@ In addition, they would also like see the solution yield benefits to their worke
 
 They have implemented a proof of concept solution for collecting and analyzing device telemetry using IoT Hub, but are interested in learning about any related services in Azure that would help them to secure such solutions. 
 
-### Customer needs 
+### Customer needs
 
 1.  Ensure that all IoT devices are properly registered and assigned a secure tamperproof identity.
 
@@ -99,7 +99,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 9.  Contoso is currently using older generic IoT devices but is considering upgrading those devices to something more secure and modern that will support future AI and Machine Learning activities.  They would like to know if Microsoft has anything that can help them.
 
-### Customer objections 
+### Customer objections
 
 1.  Contoso, Ltd staff are worried it may be impossible to manage the many thousands of IoT devices they have deployed around the world with any one product.
 
@@ -123,7 +123,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 ### Infographic for common scenarios
 
-![Envisioned situation](../media/envisioned-situation.png)
+![Envisioned situation](media/envisioned-situation.png)
 
 ## Step 2: Design a proof of concept solution
 

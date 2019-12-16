@@ -49,6 +49,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Wrap-up](#wrap-up-1)
   - [Preferred target audience](#preferred-target-audience)
   - [Preferred solution](#preferred-solution)
+    - [High-level architecture](#high-level-architecture)
   - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
   - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
 
@@ -248,7 +249,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 ### Infographic for common scenarios
 
-![Envisioned situation.](../media/envisioned-situation.png)
+![Envisioned situation.](media/envisioned-situation.png)
 
 ## Step 2: Design a proof of concept solution
 
@@ -433,24 +434,24 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 ## Wrap-up
 
--   Have the table participants reconvene with the larger session group to hear the facilitator/SME share the following preferred solution.
+- Have the table participants reconvene with the larger session group to hear the facilitator/SME share the following preferred solution.
 
-##  Preferred target audience
+## Preferred target audience
 
--  IoT Developers and Support
--  Cloud Architects
--  Infrastructure Managers
--  Network Engineers
+- IoT Developers and Support
+- Cloud Architects
+- Infrastructure Managers
+- Network Engineers
 
 ## Preferred solution
 
-*High-level architecture*
+### High-level architecture
 
 Without getting into the details (the following sections will address the details), diagram your initial vision for handling the top-level requirements.
 
 Briefly sketch-out and propose a high-level solution that meets the customer's business and technical needs and mitigates their objections. For this workshop, you may choose from the following technologies (you may not need all of them in the correct solution):
 
-![The proposed solution utilizing Azure Security Center for IoT and its agents to monitor and secure the IoT Devcies.  Log data is forwarded to Log Analytics where alerts and logic apps will execute to start investigation and remediation.](../media/solution-diagram-1.png "Solution Architecture")
+![The proposed solution utilizing Azure Security Center for IoT and its agents to monitor and secure the IoT Devcies.  Log data is forwarded to Log Analytics where alerts and logic apps will execute to start investigation and remediation.](media/solution-diagram-1.png "Solution Architecture")
 
 1.  IoT Hub and Provisioning Service
 
