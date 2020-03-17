@@ -57,6 +57,10 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 1: Review Azure Security for IoT log data](#task-1-review-azure-security-for-iot-log-data)
     - [Task 2: Create custom security alerts for device events](#task-2-create-custom-security-alerts-for-device-events)
     - [Task 3: Create custom security alerts for azure events](#task-3-create-custom-security-alerts-for-azure-events)
+  - [Exercise 7: Device Messaging and Time Series Insights](#exercise-7-device-messaging-and-time-series-insights)
+    - [Task 1: Setup Time Series Insights](#task-1-setup-time-series-insights)
+    - [Task 2: Send Security Messages](#task-2-send-security-messages)
+    - [Task 3: Review the Time Series Portal](#task-3-review-the-time-series-portal)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete resource group](#task-1-delete-resource-group)
 
@@ -841,6 +845,72 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 20. Make a change to your IoT Hub such as adding a user as an owner. You will receive an email alert after a few minutes notifying you of the change.
 
 ![A generated Alert email.](media/ex6_image024.png "An Alert Email is generated")
+
+## Exercise 7: Device Messaging and Time Series Insights
+
+Duration: 15 minutes
+
+This exercise will walk you through integrating Time Series Insights and then sending security log messages from a simulated device.
+
+### Task 1: Setup Time Series Insights
+
+1. Open the Azure Portal
+2. Select the **iotsecurity-\[your initials or first name\]** resource group.
+3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment
+
+    ![The Time Series Insights Azure resource is highlighted](media/ex7_image001.png "Browse to the Time Series Insights resource")
+
+4. Select **Event Sources**
+5. Select **+Add**
+
+    ![Event sources and the add link is highlighted](media/ex7_image002.png "Add a new Event Source")
+
+6. For the name, type **oilwells-iothub-\[your initials or first name\]**
+7. For the source, select **Iot Hub**
+8. Select your **oilwells-iothub-\[your initials or first name\]** IoT Hub
+9. Select **Create**
+10. Select **Data Access Policies**
+11. Select **+Add**
+12. Select your user account
+13. For the role, select **Reader** and **Contributor**
+14. Select **Ok**
+15. Select **Ok**
+
+### Task 2: Send Security Messages
+
+1. Open the **\Hands-on-lab\simulated-device\simulated-device.sln** project
+2. Open the **SimulatedDevice.cs** file
+
+    ![Solution explorer with the simulateddevice.cs file selected](media/ex7_image005.png "Open the SimulatedDevice.cs file")
+
+3. Update the device connection string with your **oilwells001** device
+
+    ![The connection string variable is highlighted](media/ex7_image006.png "Update the device connection string")
+
+4. Review the code, notice it is simply creating a set of random event messages, some of which are security oriented
+5. Run the program, press **F5**
+
+### Task 3: Review the Time Series Portal
+
+1. Switch to the Azure Portal
+2. Select the **iotsecurity-\[your initials or first name\]** resource group.
+3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment
+4. Select the **Go to Environment** link
+
+    ![Go to environment is hightlighted](media/ex7_image003.png "Open the Time Series Portal")
+
+5. You should see your Iot Hub as a data source
+6. Select a `from` and `to` date settings that fit to the window you ran the device security message simulation
+7. Select the **search** button
+
+   ![The FROM and TO date textboxes and the search button are highlighted.](media/ex7_image004.png "Set the time range and then select search")
+
+8. Select the **SPLIT BY** drop down, then select **SecurityAlert**
+9. In the filter, right-click the **Events/SecurityAlert/true** property, select **Show only this series**, you should now see all the custom message sent from the device(s) that were set to SecurityAlerts
+
+    ![The SecurityAlert SPLIT is highlighted and the true value is also highlighted.](media/ex7_image007.png "Filter for only security events")
+
+    ![A graph of security events is displayed.](media/ex7_image008.png "Review the security graph")
 
 ## After the hands-on lab
 

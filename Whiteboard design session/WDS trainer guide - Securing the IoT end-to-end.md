@@ -389,6 +389,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure IoT SDK  | https://github.com/Azure/azure-iot-sdks  |
 | Azure IoT Security Agent  | https://github.com/Azure/Azure-IoT-Security-Agent-C  |
 | Azure Sentinel   | <https://docs.microsoft.com/en-us/azure/sentinel/>   |
+| Azure Time Series Insights | <https://docs.microsoft.com/en-us/azure/time-series-insights/>
 | Azure Policy   | <https://azure.microsoft.com/en-us/services/azure-policy/>   |
 | Compliance Commitments   |  <http://azure.microsoft.com/en-us/support/trust-center/services/>  |
 | Azure Trust Center  | <http://azure.microsoft.com/en-us/support/trust-center/>     |
