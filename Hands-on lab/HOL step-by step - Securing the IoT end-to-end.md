@@ -226,11 +226,11 @@ Synopsis: With the Azure resources in place, you can now start creating and prov
 
 2. Select the **oilwells-edgevm-[YOUR INIT]**.
 
-3. Select **Connect**, then select **SSH**
+3. Select **Connect**, then select **SSH**.
 
     ![This image shows how to connect to your new IoT device.  The ssh command to connect to the machine is highlighted.](media/ex2_image001.png "Enable Security Center settings")
 
-4. Copy the SSH details, you can remove the **-i** parameter with the key path
+4. Copy the SSH details, you can remove the **-i** parameter with the key path.
 
 5. Open a Windows PowerShell window, paste the SSH details into the window.
 
@@ -284,7 +284,7 @@ sudo reboot
 
 1. Run the following commands:
 
-> **NOTE** You can find the latest release of the Azure IoT SDK [here](https://github.com/Azure/azure-iot-sdk-c/releases).  You can open the git to see what the latest release tag is, but the remainder of the lab may not work properly based on a new release.
+> **Note**: You can find the latest release of the Azure IoT SDK [here](https://github.com/Azure/azure-iot-sdk-c/releases).  You can open the git to see what the latest release tag is, but the remainder of the lab may not work properly based on a new release.
 
 ```PowerShell
 git clone https://github.com/Azure/iotedge --recursive
@@ -775,7 +775,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
     ![The create a custom alert rule dialog is displayed with the fields filled in.](media/ex6_image003.png "Create a custom alert rule")
 
-5. Select **Ok**.
+5. Select **OK**.
 
 6. Select **Save**.  In addition to the custom alerts you can create, you will also see default ones fire such as successful logins:
 
@@ -854,59 +854,79 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 ### Task 1: Setup Time Series Insights
 
-1. Open the Azure Portal
+1. Open the Azure Portal.
+
 2. Select the **iotsecurity-\[your initials or first name\]** resource group.
-3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment
+
+3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
 
     ![The Time Series Insights Azure resource is highlighted](media/ex7_image001.png "Browse to the Time Series Insights resource")
 
-4. Select **Event Sources**
-5. Select **+Add**
+4. Select **Event Sources**.
+
+5. Select **+Add**.
 
     ![Event sources and the add link is highlighted](media/ex7_image002.png "Add a new Event Source")
 
 6. For the name, type **oilwells-iothub-\[your initials or first name\]**
-7. For the source, select **Iot Hub**
-8. Select your **oilwells-iothub-\[your initials or first name\]** IoT Hub
-9. Select **Create**
-10. Select **Data Access Policies**
-11. Select **+Add**
-12. Select your user account
-13. For the role, select **Reader** and **Contributor**
-14. Select **Ok**
-15. Select **Ok**
+
+7. For the source, select **Iot Hub**.
+
+8. Select your **oilwells-iothub-\[your initials or first name\]** IoT Hub.
+
+9. Select **Create**.
+
+10. Select **Data Access Policies**.
+
+11. Select **+Add**.
+
+12. Select your user account.
+
+13. For the role, select **Reader** and **Contributor**.
+
+14. Select **OK**.
+
+15. Select **OK**.
 
 ### Task 2: Send Security Messages
 
-1. Open the **\Hands-on-lab\simulated-device\simulated-device.sln** project
-2. Open the **SimulatedDevice.cs** file
+1. Open the **\Hands-on-lab\simulated-device\simulated-device.sln** project.
+
+2. Open the **SimulatedDevice.cs** file.
 
     ![Solution explorer with the simulateddevice.cs file selected](media/ex7_image005.png "Open the SimulatedDevice.cs file")
 
-3. Update the device connection string with your **oilwells001** device
+3. Update the device connection string with your **oilwells001** device.
 
     ![The connection string variable is highlighted](media/ex7_image006.png "Update the device connection string")
 
-4. Review the code, notice it is simply creating a set of random event messages, some of which are security oriented
-5. Run the program, press **F5**
+4. Review the code, notice it is simply creating a set of random event messages, some of which are security oriented.
+
+5. Run the program, press **F5**.
 
 ### Task 3: Review the Time Series Portal
 
-1. Switch to the Azure Portal
+1. Switch to the Azure Portal.
+
 2. Select the **iotsecurity-\[your initials or first name\]** resource group.
-3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment
-4. Select the **Go to Environment** link
+
+3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
+
+4. Select the **Go to Environment** link.
 
     ![Go to environment is hightlighted](media/ex7_image003.png "Open the Time Series Portal")
 
-5. You should see your Iot Hub as a data source
-6. Select a `from` and `to` date settings that fit to the window you ran the device security message simulation
-7. Select the **search** button
+5. You should see your Iot Hub as a data source.
+
+6. Select a `from` and `to` date settings that fit to the window you ran the device security message simulation.
+
+7. Select the **search** button.
 
    ![The FROM and TO date textboxes and the search button are highlighted.](media/ex7_image004.png "Set the time range and then select search")
 
-8. Select the **SPLIT BY** drop down, then select **SecurityAlert**
-9. In the filter, right-click the **Events/SecurityAlert/true** property, select **Show only this series**, you should now see all the custom message sent from the device(s) that were set to SecurityAlerts
+8. Select the **SPLIT BY** drop down, then select **SecurityAlert**.
+
+9. In the filter, right-click the **Events/SecurityAlert/true** property, select **Show only this series**, you should now see all the custom message sent from the device(s) that were set to SecurityAlerts.
 
     ![The SecurityAlert SPLIT is highlighted and the true value is also highlighted.](media/ex7_image007.png "Filter for only security events")
 
