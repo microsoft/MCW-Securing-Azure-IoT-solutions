@@ -649,7 +649,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
     ![Screenshot showing the Add IoT Edge Module dialog.](media/ex2_image018.png "Set the name and Image URI")
 
-9. Click the **Container Create Options** tab, copy and paste the following:
+9. Select the **Container Create Options** tab, copy and paste the following:
 
     ```json
     {
