@@ -476,15 +476,15 @@ Describe how you will utilize Azure security features to secure the various reso
 
 1.  How will you secure the IoT Hub?
 
-  - Utilizing Azure Access control (IAM) mechanisms you can set the permissions to access and modify the IoT Hub resource to the proper individuals.
-  - By implementing Shared Access Policies, you can create policies that grant permission to perform actions on the IoT Hub such as Registry read, Registry write, Service connect, and Device connect
-  - Using IP Filters, you can limit the devices that can connect to your IoT hub to a set of IP Addresses.
-  - Enabling Diagnostic settings to send changes to a Log Analytics workspace will enable to you fire alerts based on management plane activities.
+    - Utilizing Azure Access control (IAM) mechanisms you can set the permissions to access and modify the IoT Hub resource to the proper individuals.
+    - By implementing Shared Access Policies, you can create policies that grant permission to perform actions on the IoT Hub such as Registry read, Registry write, Service connect, and Device connect
+    - Using IP Filters, you can limit the devices that can connect to your IoT hub to a set of IP Addresses.
+    - Enabling Diagnostic settings to send changes to a Log Analytics workspace will enable to you fire alerts based on management plane activities.
 
 2.  How will you secure the IoT Provisioning Service?
 
-  - Similar to an IoT Hub resource, you can utilize Azure Access Control (IAM) and a similar Shared Access Policies setup to achieve your desired permissions configuration.
-  - You can also enable Diagnostic settings to log management plane changes.
+    - Similar to an IoT Hub resource, you can utilize Azure Access Control (IAM) and a similar Shared Access Policies setup to achieve your desired permissions configuration.
+    - You can also enable Diagnostic settings to log management plane changes.
 
 *Device Security*
 
@@ -496,8 +496,8 @@ Describe how you will secure the following:
 
 2.  How will you secure the IoT Devices?
 
-  - Similar to an IoT Edge device, these devices should have the Azure IoT Security agent installed.  Devices should also utilize hardware based secure silicon features (such as TPM, eSE, Arm TrustZone and Intel SGX) to ensure that the device is not accessed physically and modified in any way.  
-  - All devices should have unique certificates to identify them to the IoT Edge devices and the IoT Hub.
+    - Similar to an IoT Edge device, these devices should have the Azure IoT Security agent installed.  Devices should also utilize hardware based secure silicon features (such as TPM, eSE, Arm TrustZone and Intel SGX) to ensure that the device is not accessed physically and modified in any way.  
+    - All devices should have unique certificates to identify them to the IoT Edge devices and the IoT Hub.
 
 *Ensuring auditing and compliance*
 
@@ -566,9 +566,8 @@ Describe how you will use Azure features to ensure the following:
 
 10.  Can Microsoft provide a more modern solution to support their IoT device upgrades?
 
-    Yes, using Azure Sphere, the customer can upgrade their devices using new hardware designed with security and flexibility in mind.
-    
-    Reference [this Microsoft research paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/03/SevenPropertiesofHighlySecureDevices.pdf) for details of what makes devices secure.
+   Yes, using Azure Sphere, the customer can upgrade their devices using new hardware designed with security and flexibility in mind.
+   Reference [this Microsoft research paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/03/SevenPropertiesofHighlySecureDevices.pdf) for details of what makes devices secure.
 
 ## Customer quote (to be read back to the attendees at the end)
 
