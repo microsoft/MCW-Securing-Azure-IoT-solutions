@@ -56,7 +56,7 @@ The concepts covered here are targeted at an architectural design level versus s
 
 Analyze your customer's needs.
 
-Time-frame: 15 minutes
+Timeframe: 15 minutes
 
 Directions: With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
 
