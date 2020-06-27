@@ -61,6 +61,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 3: Create custom security alerts for device events](#task-3-create-custom-security-alerts-for-device-events)
     - [Task 4: Create custom security alerts for azure events](#task-4-create-custom-security-alerts-for-azure-events)
     - [Task 5: Send a DirectMethod](#task-5-send-a-directmethod)
+    - [Task 5: Device Investigation with Logs](#task-5-device-investigation-with-logs)
   - [Exercise 7: Perform an IoT Hub Manual Failover](#exercise-7-perform-an-iot-hub-manual-failover)
     - [Task 1: Perform a manual failover](#task-1-perform-a-manual-failover)
   - [Exercise 8: Device Messaging and Time Series Insights](#exercise-8-device-messaging-and-time-series-insights)
@@ -1023,6 +1024,58 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
     sudo systemctl restart ASCIoTAgent
     sudo systemctl status ASCIoTAgent
     ```
+
+### Task 5: Device Investigation with Logs
+
+1. From the Azure Portal navigate back to your resource group, then select the **oilwells-logging-[YOUR INIT]** Log Analytics instance.
+
+2. In the blade menu, in the **General** section, select **Logs**.
+
+    ![Log Analytics blade with the Logs link highlighted.](media/ex6_image004.png "Navigated to Logs blade")
+
+3. In the query window, paste the following replacing the device id (`oilwells001`)and the hub name (`oilwells-iothub-[INIT]`) to find all security alerts for a device:
+
+    ```kusto
+    let device = "YOUR_DEVICE_ID";
+    let hub = "YOUR_HUB_NAME";
+    SecurityAlert
+    | where ExtendedProperties contains device and ResourceId contains tolower(hub)
+    | project TimeGenerated, AlertName, AlertSeverity, Description, ExtendedProperties
+    ```
+
+    ![The results from the Security Alerts query.](media/iothub-investigate-1.png "Run the query")
+
+4. Highlight the query, then select **Run**. Review the results.
+
+5. In the query window, paste the following replacing the device id (`oilwells001`)and the hub name (`oilwells-iothub-[INIT]`) to find all failed logins to a device:
+
+    ```kusto
+    let device = "YOUR_DEVICE_ID";
+    let hub = "YOUR_HUB_NAME";
+    SecurityIoTRawEvent
+    | where
+        DeviceId == device and AssociatedResourceId contains tolower(hub)
+        and RawEventName == "Login"
+        // filter out local, invalid and failed logins
+        and EventDetails contains "RemoteAddress"
+        and EventDetails !contains '"RemoteAddress":"127.0.0.1"'
+        and EventDetails !contains '"UserName":"(invalid user)"'
+        and EventDetails !contains '"UserName":"(unknown user)"'
+        //and EventDetails !contains '"Result":"Fail"'
+    | project
+        TimestampLocal=extractjson("$.TimestampLocal", EventDetails, typeof(datetime)),
+        UserName=extractjson("$.UserName", EventDetails, typeof(string)),
+        LoginHandler=extractjson("$.Executable", EventDetails, typeof(string)),
+        RemoteAddress=extractjson("$.RemoteAddress", EventDetails, typeof(string)),
+        Result=extractjson("$.Result", EventDetails, typeof(string))
+    | summarize CntLoginAttempts=count(), MinObservedTime=min(TimestampLocal), MaxObservedTime=max(TimestampLocal), CntIPAddress=dcount(RemoteAddress), IPAddress=makeset(RemoteAddress) by UserName, Result, LoginHandler
+    ```
+
+    ![The results from the User Access query.](media/iothub-investigate-2.png "Run the query")
+
+    > **Note** Are you suprised by the results? Having a device on the internet provides opportunity for bad actors to gain access to your device!
+
+6. Highlight the query, then select **Run**. Review the results.
 
 ## Exercise 7: Perform an IoT Hub Manual Failover
 
