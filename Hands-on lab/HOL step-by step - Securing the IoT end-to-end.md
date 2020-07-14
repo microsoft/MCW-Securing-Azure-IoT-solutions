@@ -31,6 +31,8 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Overview](#overview)
   - [Solution architecture (High-level)](#solution-architecture-high-level)
   - [Solution architecture (Analytics)](#solution-architecture-analytics)
+  - [Solution architecture (Data Processing)](#solution-architecture-data-processing)
+  - [Solution architecture (Azure Sphere)](#solution-architecture-azure-sphere)
   - [Requirements](#requirements)
   - [Before the hands-on lab](#before-the-hands-on-lab)
   - [Exercise 1: Secure and configure IoT Hub and Device Provisioning Service](#exercise-1-secure-and-configure-iot-hub-and-device-provisioning-service)
@@ -102,6 +104,16 @@ They have implemented a proof of concept solution for collecting and analyzing d
 ## Solution architecture (Analytics)
 
 ![The Analytics solution using Stream Analytics, Cosmos DB, Time-series and a hosted application in an App Server.](media/solution-diagram-2.png "Analytics Solution")
+
+## Solution architecture (Data Processing)
+
+![IoT Hub sending messages to Service Bus with applications listening for events.](media/solution-diagram-3.png "Processing Solution")
+
+## Solution architecture (Azure Sphere)
+
+![Azure Sphere device connecting brownfield devices for secure communications and no touch device updates.](media/solution-diagram-4.png "Azure Sphere Solution")
+
+> **Note** These labs focus solely on device security and do not explore analytics or data processing at depth. Stream Analytics and Service Bus are not presented in these labs. Additionally, you would need Azure Sphere hardware and connectivity to such devices in order to review full end to end (E2E) security components and topics such as highly secure remote upgrades. As such, you will not see these topics covered in these labs.
 
 ## Requirements
 
