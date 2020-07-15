@@ -26,14 +26,14 @@ In this whiteboard design session, you will look at the process for designing an
 
 At the end of this whiteboard design session, you will be better able to architect a comprehensive and secure oil and gas manufacturing IoT solution.
 
-### Hands-on lab 
+### Hands-on lab
 
 In this hands-on lab, you will look at the process for implementing an oil and gas manufacturing IoT solution that is secured end-to-end following best practices. You will learn how to monitor and manage the security of all components in the solution. 
 
 ## Azure services and related products
 
 - Azure Cosmos DB
-- Azure IoT Provisioning Service
+- Azure IoT Device Provisioning Service
 - Azure IoT Edge
 - Azure IoT Hub
 - Azure Key Vault
