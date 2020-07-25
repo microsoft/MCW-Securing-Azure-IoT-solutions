@@ -522,6 +522,8 @@ sudo apt-get install iotedge
 
         - Using the device connection string you copied from above, paste it into the config.yaml file.
 
+            ![The configuration file is displayed with the manual settings uncommented.](media/ex2_image008a.png "Configure TPM DPS Settings")
+
         - Save the file, press **CTRL-X**, then **Y**, then **Enter**.
 
     - Symmetric Key Provisioning
