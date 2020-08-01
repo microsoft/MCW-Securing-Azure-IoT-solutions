@@ -36,14 +36,14 @@
             "type": "Microsoft.DataLakeStore/accounts",
             "apiVersion": "2016-11-01",
             "name": "[concat('oilwellsadls', parameters('alias'))]",
-            "location": "[resourceGroup().location]",
+            "location": "eastus2",
             "properties": {}
         },
         {
             "type": "Microsoft.DataLakeAnalytics/accounts",
             "apiVersion": "2016-11-01",
             "name": "[concat('oilwellsdla', parameters('alias'))]",
-            "location": "[resourceGroup().location]",
+            "location": "eastus2",
             "properties": {
                 "defaultDataLakeStoreAccount": "[concat('oilwellsadls', parameters('alias'))]",
                 "dataLakeStoreAccounts":   [
