@@ -318,7 +318,7 @@ sudo reboot
 ```PowerShell
 git clone https://github.com/Azure/iotedge --recursive
 
-git clone -b LTS_06_2020_Ref01 https://github.com/Azure/azure-iot-sdk-c.git --recursive
+git clone -b LTS_07_2020_Ref01 https://github.com/Azure/azure-iot-sdk-c.git --recursive
 
 cd azure-iot-sdk-c
 
@@ -486,7 +486,7 @@ sudo apt-get install iotedge
 
 2. In the **Overview** blade, copy the **ID Scope**.
 
-    ![Device provisiong blade with the ID Scope highlighted.](media/ex2_image011.png "Copying the ID Scope")
+    ![Device provisioning blade with the ID Scope highlighted.](media/ex2_image011.png "Copying the ID Scope")
 
 3. Navigate back to the resource group and open the **oilwells-iothub-[YOUR INIT]** IoT Hub.  
 
@@ -504,7 +504,7 @@ sudo apt-get install iotedge
 
 8. Select the new **oilwells001** item, copy the primary key and primary device connection strings.
 
-    ![The IoT Edge device dialog with the copy link highlited for the the device primary key.](media/ex2_image014.png "Copy the primary device key")
+    ![The IoT Edge device dialog with the copy link highlighted for the the device primary key.](media/ex2_image014.png "Copy the primary device key")
 
 9. Switch back to your SSH shell, run the following command to open a text editor:
 
@@ -567,7 +567,7 @@ sudo apt-get install iotedge
         /bin/udevadm trigger $tpm
         ```
 
-11. After completing **one** of the above methods, run the following commands to restart the iotedge service:
+11. After completing **one** of the above methods (it is suggested you perform the manual device connection string path), run the following commands to restart the iotedge service:
 
     ```bash
     sudo systemctl restart iotedge
@@ -772,6 +772,8 @@ This exercise will have you install some "fake" processes and open some non-stan
     sudo ./trigger_events.sh --malicious
     ```
 
+    > **NOTE** Feel free to explore the trigger events scripts and its different options : https://github.com/Azure/Azure-IoT-Security/tree/master/trigger_events
+
 ### Task 2: Configure Azure Agent
 
 1. In the Azure Portal, browse to your **iotsecurity-INIT** resource group, then select the **Log Analytics Workspace**.
@@ -827,7 +829,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 3. Under **Automatic Device Management**, select **IoT Edge**.
 
-4. Select the **OilWells001** device.
+4. Select the **oilwells001** device.
 
 5. Select the **azureiotsecurty** module.
 
@@ -1013,7 +1015,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 2. Browse to the Iot Hub, then select **Iot Edge**.
 
-3. Select the **OilWells001** device.
+3. Select the **oilwells001** device.
 
 4. Select the **$edgeAgent** module.
 
