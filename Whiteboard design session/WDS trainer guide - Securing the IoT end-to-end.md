@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-March 2020
+June 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -63,25 +63,25 @@ Thank you for taking time to support the whiteboard design sessions as a trainer
 
 An amazing trainer:
 
--   Creates a safe environment in which learning can take place.
+- Creates a safe environment in which learning can take place.
 
--   Stimulates the participant's thinking.
+- Stimulates the participant's thinking.
 
--   Involves the participant in the learning process.
+- Involves the participant in the learning process.
 
--   Manages the learning process (on time, on topic, and adjusting to benefit participants).
+- Manages the learning process (on time, on topic, and adjusting to benefit participants).
 
--   Ensures individual participant accountability.
+- Ensures individual participant accountability.
 
--   Ties it all together for the participant.
+- Ties it all together for the participant.
 
--   Provides insight and experience to the learning process.
+- Provides insight and experience to the learning process.
 
--   Effectively leads the whiteboard design session discussion.
+- Effectively leads the whiteboard design session discussion.
 
--   Monitors quality and appropriateness of participant deliverables.
+- Monitors quality and appropriateness of participant deliverables.
 
--   Effectively leads the feedback process.
+- Effectively leads the feedback process.
 
 ## Whiteboard design session flow 
 
@@ -93,11 +93,11 @@ Each whiteboard design session uses the following flow:
 
 Analyze your customer's needs.
 
--   Customer's background, situation, needs and technical requirements
+- Customer's background, situation, needs and technical requirements
 
--   Current customer infrastructure and architecture
+- Current customer infrastructure and architecture
 
--   Potential issues, objectives and blockers
+- Potential issues, objectives and blockers
 
 **Step 2: Design a proof of concept solution (60 minutes)**
 
@@ -105,13 +105,13 @@ Analyze your customer's needs.
 
 Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
 
--   Determine your target customer audience.
+- Determine your target customer audience.
 
--   Determine customer's business needs to address your solution.
+- Determine customer's business needs to address your solution.
 
--   Design and diagram your solution.
+- Design and diagram your solution.
 
--   Prepare to present your solution.
+- Prepare to present your solution.
 
 **Step 3: Present the solution (30 minutes)**
 
@@ -119,29 +119,29 @@ Design a solution and prepare to present the solution to the target customer aud
 
 Present solution to your customer:
 
--   Present solution
+- Present solution
 
--   Respond to customer objections
+- Respond to customer objections
 
--   Receive feedback
+- Receive feedback
 
 **Wrap-up (15 minutes)**
 
--   Review preferred solution
+- Review preferred solution
 
 ## Before the whiteboard design session: How to prepare
 
 Before conducting your first whiteboard design session:
 
--   Read the Student guide (including the case study) and Trainer guide.
+- Read the Student guide (including the case study) and Trainer guide.
 
--   Become familiar with all key points and activities.
+- Become familiar with all key points and activities.
 
--   Plan the point you want to stress, which questions you want to drive, transitions, and be ready to answer questions.
+- Plan the point you want to stress, which questions you want to drive, transitions, and be ready to answer questions.
 
--   Prior to the whiteboard design session, discuss the case study to pick up more ideas.
+- Prior to the whiteboard design session, discuss the case study to pick up more ideas.
 
--   Make notes for later.
+- Make notes for later.
 
 ## During the whiteboard design session: Tips for an effective whiteboard design session
 
@@ -151,11 +151,11 @@ Before conducting your first whiteboard design session:
 
 When participants are doing activities, you can **look ahead to refresh your memory**.
 
--   **Adjust activity and whiteboard design session pace** as needed to allow time for presenting, feedback, and sharing.
+- **Adjust activity and whiteboard design session pace** as needed to allow time for presenting, feedback, and sharing.
 
--   **Add examples, points, and stories** from your own experience. Think about stories you can share that help you make your points clearly and effectively.
+- **Add examples, points, and stories** from your own experience. Think about stories you can share that help you make your points clearly and effectively.
 
--   **Consider creating a "parking lot"** to record issues or questions raised that are outside the scope of the whiteboard design session or can be answered later. Decide how you will address these issues, so you can acknowledge them without being derailed by them.
+- **Consider creating a "parking lot"** to record issues or questions raised that are outside the scope of the whiteboard design session or can be answered later. Decide how you will address these issues, so you can acknowledge them without being derailed by them.
 
 ***Have fun**! Encourage participants to have fun and share!*
 
@@ -299,7 +299,7 @@ Describe how you will utilize Azure security features to secure the various reso
 
 1.  How will you secure the IoT Hub?
 
-2.  How will you secure the IoT Provisioning Service?
+2.  How will you secure the IoT Device Provisioning Service?
 
 *Device Security*
 
@@ -359,7 +359,7 @@ Directions:
 
 7.  Tables switch roles and repeat Steps 2-6.
 
-##  Wrap-up 
+##  Wrap-up
 
 Timeframe: 15 minutes
 
@@ -399,39 +399,39 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 ## Step 1: Review the customer case study
 
--   Check in with your table participants to introduce yourself as the trainer.
+- Check in with your table participants to introduce yourself as the trainer.
 
--   Ask, "What questions do you have about the customer case study?"
+- Ask, "What questions do you have about the customer case study?"
 
--   Briefly review the steps and timeframes of the whiteboard design session.
+- Briefly review the steps and timeframes of the whiteboard design session.
 
--   Ready, set, go! Let the table participants begin.
+- Ready, set, go! Let the table participants begin.
 
 ## Step 2: Design a proof of concept solution
 
--   Check in with your tables to ensure that they are transitioning from step to step on time.
+- Check in with your tables to ensure that they are transitioning from step to step on time.
 
--   Provide some feedback on their responses to the business needs and design.
+- Provide some feedback on their responses to the business needs and design.
 
-    -   Try asking questions first that will lead the participants to discover the answers on their own.
+   - Try asking questions first that will lead the participants to discover the answers on their own.
 
--   Provide feedback for their responses to the customer's objections.
+- Provide feedback for their responses to the customer's objections.
 
-    -   Try asking questions first that will lead the participants to discover the answers on their own.
+   - Try asking questions first that will lead the participants to discover the answers on their own.
 
 ## Step 3: Present the solution
 
--   Determine which table will be paired with your table before Step 3 begins.
+- Determine which table will be paired with your table before Step 3 begins.
 
--   For the first round, assign one table as the presenting team and the other table as the customer.
+- For the first round, assign one table as the presenting team and the other table as the customer.
 
--   Have the presenting team present their solution to the customer team.
+- Have the presenting team present their solution to the customer team.
 
-    -   Have the customer team provide one objection for the presenting team to respond to.
+   - Have the customer team provide one objection for the presenting team to respond to.
 
-    -   The presentation, objections, and feedback should take no longer than 15 minutes.
+   - The presentation, objections, and feedback should take no longer than 15 minutes.
 
-    -   If needed, the trainer may also provide feedback.
+   - If needed, the trainer may also provide feedback.
 
 ## Wrap-up
 
@@ -452,36 +452,36 @@ Without getting into the details (the following sections will address the detail
 
 Briefly sketch-out and propose a high-level solution that meets the customer's business and technical needs and mitigates their objections. For this workshop, you may choose from the following technologies (you may not need all of them in the correct solution):
 
-![The proposed solution utilizing Azure Security Center for IoT and its agents to monitor and secure the IoT Devcies.  Log data is forwarded to Log Analytics where alerts and logic apps will execute to start investigation and remediation.](media/solution-diagram-1.png "Solution Architecture")
+![The proposed solution utilizing Azure Security Center for IoT and its agents to monitor and secure the IoT Devices.  Log data is forwarded to Log Analytics where alerts and logic apps will execute to start investigation and remediation.](media/solution-diagram-1.png "Solution Architecture")
 
-1.  IoT Hub and Provisioning Service
+1. IoT Hub and Provisioning Service
 
-2.  Azure Networks and Network Security Groups
+2. Azure Networks and Network Security Groups
 
-3.  Virtual Private Networks (Point to Point, Site to Site) and Express Route
+3. Virtual Private Networks (Point to Point, Site to Site) and Express Route
 
-4.  Azure Web Apps
+4. Azure Web Apps
 
-5.  Azure Log Analytics
+5. Azure Log Analytics
 
-6.  Azure Security Center
+6. Azure Security Center
 
-7.  Azure Sentinel
+7. Azure Sentinel
 
-8.  Azure Active Directory
+8. Azure Active Directory
 
 *Azure Security*
 
 Describe how you will utilize Azure security features to secure the various resources such as the following:
 
-1.  How will you secure the IoT Hub?
+1. How will you secure the IoT Hub?
 
     - Utilizing Azure Access control (IAM) mechanisms you can set the permissions to access and modify the IoT Hub resource to the proper individuals.
     - By implementing Shared Access Policies, you can create policies that grant permission to perform actions on the IoT Hub such as Registry read, Registry write, Service connect, and Device connect
     - Using IP Filters, you can limit the devices that can connect to your IoT hub to a set of IP Addresses.
     - Enabling Diagnostic settings to send changes to a Log Analytics workspace will enable to you fire alerts based on management plane activities.
 
-2.  How will you secure the IoT Provisioning Service?
+2. How will you secure the IoT Device Provisioning Service?
 
     - Similar to an IoT Hub resource, you can utilize Azure Access Control (IAM) and a similar Shared Access Policies setup to achieve your desired permissions configuration.
     - You can also enable Diagnostic settings to log management plane changes.
@@ -490,11 +490,11 @@ Describe how you will utilize Azure security features to secure the various reso
 
 Describe how you will secure the following:
 
-1.  How will you secure the IoT Edge Devices?
+1. How will you secure the IoT Edge Devices?
 
     Azure IoT Edge is inherently secure on its own through the Azure IoT Edge security manager daemon.  However, any actor with access to the device as root or administrator can make changes to the device.  For this reason, you should ensure that the device utilizes the Azure IoT Security Agent to monitor for security events or configuration changes that could affect the security integrity of the IoT Edge device.
 
-2.  How will you secure the IoT Devices?
+2. How will you secure the IoT Devices?
 
     - Similar to an IoT Edge device, these devices should have the Azure IoT Security agent installed.  Devices should also utilize hardware based secure silicon features (such as TPM, eSE, Arm TrustZone and Intel SGX) to ensure that the device is not accessed physically and modified in any way.  
     - All devices should have unique certificates to identify them to the IoT Edge devices and the IoT Hub.
@@ -503,68 +503,68 @@ Describe how you will secure the following:
 
 Describe how you will use Azure features to ensure the following:
 
-1.  How will you monitor and audit device access?
+1. How will you monitor and audit device access?
 
     Local device logs and security events can be sent to IoT Edge devices for storage, processing and possibly forwarding to the IoT Hub.  Most major logs should be sent to the IoT Hub where you will have Azure Security Center for IoT monitoring those events and firing alerts on abnormal activity.
 
-2.  How will you monitor and audit Azure resource changes?
+2. How will you monitor and audit Azure resource changes?
 
     By enabling Diagnostic Logging on all Azure resources, you can have those events logged into a Log Analytics workspace.
 
-3.  How will you create custom alerts and execute remediation and investigation activities on detection?
+3. How will you create custom alerts and execute remediation and investigation activities on detection?
 
     Since all data will be ingested into Log Analytics, you can build any number of custom alerts to notify the proper individuals or execute Playbooks that start remediation or investigative activities.
 
-4.  What tools would you setup to surface audit and compliance reporting to IT Executives?
+4. What tools would you setup to surface audit and compliance reporting to IT Executives?
 
     You can utilize Power BI to surface Log Analytics data into easy to read dashboards that are accessible only to the property individuals.
 
 ## Checklist of preferred objection handling
 
-1.  Contoso, Ltd staff are worried it may be impossible to manage the many thousands of IoT devices they have deployed around the world with any one product.
+1. Contoso, Ltd staff are worried it may be impossible to manage the many thousands of IoT devices they have deployed around the world with any one product.
 
     Utilizing the Azure IoT Hub Device Provisioning Service, Contoso can enable a zero-touch, just-in-time provisioning to specific IoT hubs without any human intervention.  The service scales to many millions of devices in a secure and scalable manner that will meet Contoso's needs.
 
-2.  Can Azure handle all the different types of operating systems and processor architectures of their devices?
+2. Can Azure handle all the different types of operating systems and processor architectures of their devices?
 
     The Azure IoT Agents have been released with ANSI-C standards in mind.  The code is freely available on GitHub along with an entire SDK that will enable Contoso to easily re-compile the source for any target device.
 
-3.  Will they be able to monitor for specific events on some of their proprietary devices?
+3. Will they be able to monitor for specific events on some of their proprietary devices?
 
     Yes, they can monitor for custom events on their proprietary devices using the Azure IoT SDK to send message and events to their specific IoT Hub(s).
 
-4.  Can Azure support non-TPM hardware devices?
+4. Can Azure support non-TPM hardware devices?
 
     Yes, you can recompile the source code to utilize simulated/software TPMs, however this is typically not a standard or accepted way of doing secure device management in production environments.
 
     You can reference the following resources:
-    -   [Using vTPM in Linux (virtual or vTPM is sit in for a real TPM)]( https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-linux)
+    - [Using vTPM in Linux (virtual or vTPM is sit in for a real TPM)]( https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-linux)
     -  [Using sTPM on Windows (software/simulated or sTPM is sit in for a recommended discrete/chip TPM)]( https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-windows)
     -  [Use dTPM on Linux using Raspberry Pi]( https://catalog.azureiotsolutions.com/details?title=OPTIGA-TPM-SLB-9670-Iridium-Board&source=all-devices-page)
 
-5.  Will the communications from a device to Azure be secure enough?
+5. Will the communications from a device to Azure be secure enough?
 
     Absolutely, the Azure IoT SDKs come with support for several different protocols including the latest HTTPS and SSL features such as TLS and MTLS.  Devices can be authenticated using device specific certificates and the network can be whitelisted using IP schemes.
 
     Additionally, the [Azure IoT Security Model](https://aka.ms/iot-edge-security-manager) has been designed specifically to address security needs of any IoT Architecture plus adds the flexibility to monitor for threats and motivations such as physical accessibility of devices, IP and generated insights, actions based off insights and heterogeneity in the silicon, languages and procedures.
 
-6.  Can an Azure logging solution handle the massive amount of events and alerts that will need to be ingested?
+6. Can an Azure logging solution handle the massive amount of events and alerts that will need to be ingested?
 
     Yes, at the lowest plan level, you can send 500MB of data to a Log Analytics workspace.  Standard and Premium plans have no limit on the amount of data uploaded even if it is terabytes per day.
 
-7.  Is it possible to assign role-based permissions based on their security objectives and policies to the IoT resources such as the Hub, Edge and individual devices? 
+7. Is it possible to assign role-based permissions based on their security objectives and policies to the IoT resources such as the Hub, Edge and individual devices?
 
     Yes, Azure IoT resources come with a management plane that gives you flexibility to allow various levels of permissions to target specific roles of your IoT Infrastructure.
 
-8.  Is the solution capable of being flexible in the types of reporting and alerts that can be generated based on custom logging event data?
+8. Is the solution capable of being flexible in the types of reporting and alerts that can be generated based on custom logging event data?
 
     Yes, you can choose to utilize the out of box alert templates, or create your own templates based on common Azure and Operating System events, or even your own custom events.
 
-9.  Will we be able to limit the messages and network traffic to specific network IP addresses/subnets for our devices?
- 
+9. Will we be able to limit the messages and network traffic to specific network IP addresses/subnets for our devices?
+
     Yes, you can enable IP Filtering in the IoT Hub to ensure that only messages that originate from specific IPs or subnet are allowed to flow through to the IoT Hub(s).
 
-10.  Can Microsoft provide a more modern solution to support their IoT device upgrades?
+10. Can Microsoft provide a more modern solution to support their IoT device upgrades?
 
    Yes, using Azure Sphere, the customer can upgrade their devices using new hardware designed with security and flexibility in mind.
    Reference [this Microsoft research paper](https://www.microsoft.com/en-us/research/wp-content/uploads/2017/03/SevenPropertiesofHighlySecureDevices.pdf) for details of what makes devices secure.

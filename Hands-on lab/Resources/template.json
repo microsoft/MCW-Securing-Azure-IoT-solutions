@@ -21,7 +21,7 @@
             "type": "Microsoft.TimeSeriesInsights/environments",
             "apiVersion": "2018-08-15-preview",
             "name": "[concat('oilwells-timeseries-', parameters('alias'))]",
-            "location": "eastus2",
+            "location": "[resourceGroup().location]",
             "sku": {
                 "name": "S1",
                 "capacity": 1
@@ -161,7 +161,7 @@
             "type": "Microsoft.Devices/provisioningServices",
             "apiVersion": "2017-11-15",
             "name": "[concat('oilwells-prov-', parameters('alias'))]",
-            "location": "eastus",
+            "location": "[resourceGroup().location]",
             "sku": {
                 "name": "S1",
                 "tier": "Standard",

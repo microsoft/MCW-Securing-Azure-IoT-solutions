@@ -2,7 +2,7 @@
 
 Contoso, Ltd. has major holdings in one of the world’s most important oil-producing regions. To overcome the challenges of monitoring and optimizing a vast number of widely dispersed field assets, Contoso, Ltd. is looking to streamline its operations with IoT solutions. They want to deploy IoT technologies to electronically collect data and use cloud-based solutions to store and analyze it in order to gain new insights into well operations and future drilling possibilities. 
 
-March 2020
+June 2020
 
 ## Target audience
 
@@ -26,14 +26,14 @@ In this whiteboard design session, you will look at the process for designing an
 
 At the end of this whiteboard design session, you will be better able to architect a comprehensive and secure oil and gas manufacturing IoT solution.
 
-### Hands-on lab 
+### Hands-on lab
 
 In this hands-on lab, you will look at the process for implementing an oil and gas manufacturing IoT solution that is secured end-to-end following best practices. You will learn how to monitor and manage the security of all components in the solution. 
 
 ## Azure services and related products
 
 - Azure Cosmos DB
-- Azure IoT Provisioning Service
+- Azure IoT Device Provisioning Service
 - Azure IoT Edge
 - Azure IoT Hub
 - Azure Key Vault
