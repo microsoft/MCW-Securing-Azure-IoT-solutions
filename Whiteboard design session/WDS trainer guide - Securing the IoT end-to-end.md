@@ -169,7 +169,7 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 #  Securing the IoT end-to-end whiteboard design session student guide
 
-## Abstract and learning objectives 
+## Abstract and learning objectives
 
 In this whiteboard design session, you will work with a group to design an end-to-end solution that leverages Microsoft Azure's IoT features, tools and resources to secure and monitor a set of IoT devices.
 
@@ -177,7 +177,7 @@ At the end of this session, you will be better able to design and recommend solu
 
 The concepts covered here are targeted at an architectural design level versus simple stand-alone activities.
 
-## Step 1: Review the customer case study 
+## Step 1: Review the customer case study
 
 **Outcome**
 
@@ -187,65 +187,65 @@ Timeframe: 15 minutes
 
 Directions:  With all participants in the session, the facilitator/SME presents an overview of the customer case study along with technical tips.
 
-1.  Meet your table participants and trainer.
+1. Meet your table participants and trainer.
 
-2.  Read all of the directions for steps 1-3 in the student guide.
+2. Read all of the directions for steps 1-3 in the student guide.
 
-3.  As a table team, review the following customer case study.
+3. As a table team, review the following customer case study.
 
 ### Customer situation
 
-Contoso, Ltd. has major holdings in one of the world’s most important oil-producing regions. To overcome the challenges of monitoring and optimizing a vast number of widely dispersed field assets, Contoso, Ltd. is looking to streamline its operations with IoT solutions. They want to deploy IoT technologies to electronically collect data and use cloud-based solutions to store and analyze it in order to gain new insights into well operations and future drilling possibilities. 
+Contoso, Ltd. has major holdings in one of the world’s most important oil-producing regions. To overcome the challenges of monitoring and optimizing a vast number of widely dispersed field assets, Contoso, Ltd. is looking to streamline its operations with IoT solutions. They want to deploy IoT technologies to electronically collect data and use cloud-based solutions to store and analyze it in order to gain new insights into well operations and future drilling possibilities.
 
-Their environments are very tough environments in which to work. The climate is hot, harsh, and unforgiving, and oil wells are often spaced many miles apart, so field technicians can spend much of their day just driving from one to another. Cellular and radio reception is spotty at best, so collecting data about well conditions and performance typically involves manually writing down information. The technician must then make the long trek to the central office at the end of the day to upload the data for analysis. With such remote situations, a key concern for Contoso is not only how they manage these remote devices, but more broadly how they secure the complete solution that encompasses the physical device, the software on the device, the services processing the data in the cloud and the network connecting it all. 
+Their environments are very tough environments in which to work. The climate is hot, harsh, and unforgiving, and oil wells are often spaced many miles apart, so field technicians can spend much of their day just driving from one to another. Cellular and radio reception is spotty at best, so collecting data about well conditions and performance typically involves manually writing down information. The technician must then make the long trek to the central office at the end of the day to upload the data for analysis. With such remote situations, a key concern for Contoso is not only how they manage these remote devices, but more broadly how they secure the complete solution that encompasses the physical device, the software on the device, the services processing the data in the cloud and the network connecting it all.
 
-Contoso plans to tie into existing sensors at the well head that monitor key system parameters like temperatures, pressures, and flow rates. They will deploy gateway devices route device data for processing, storage and analytics. Internal IT staff and engineers want to visualize the high-resolution data and deliver near real-time analyses. The company is placing a premium on flexibility and ease of use, with security as a fundamental. 
+Contoso plans to tie into existing sensors at the well head that monitor key system parameters like temperatures, pressures, and flow rates. They will deploy gateway devices route device data for processing, storage and analytics. Internal IT staff and engineers want to visualize the high-resolution data and deliver near real-time analyses. The company is placing a premium on flexibility and ease of use, with security as a fundamental.
 
 In addition, they would also like see the solution yield benefits to their workers in the field. “The field technicians and lease operators already have tools on their phones that they use every day to see what a well is doing,” explains Miles Strom. “Our goal is to connect these tools to live data from the IoT sensors. So, instead of seeing low-resolution volumes or flow rates, they’ll see what is happening in real time. This way they can respond immediately to problems that lead to downtime or maintenance issues.”
 
-They have implemented a proof of concept solution for collecting and analyzing device telemetry using IoT Hub, but are interested in learning about any related services in Azure that would help them to secure such solutions. 
+They have implemented a proof of concept solution for collecting and analyzing device telemetry using IoT Hub, but are interested in learning about any related services in Azure that would help them to secure such solutions.
 
-### Customer needs 
+### Customer needs
 
-1.  Ensure that all IoT devices are properly registered and assigned a secure tamperproof identity.
+1. Ensure that all IoT devices are properly registered and assigned a secure tamper-proof identity.
 
-2.  Ensure devices are operating within assigned policy standards and are not tampered with.
+2. Ensure devices are operating within assigned policy standards and are not tampered with.
 
-3.  Enable an alerting solution with little to no effort configuration that will notify and allow for remediation in the case of fault or malicious activity.
+3. Enable an alerting solution with little to no effort configuration that will notify and allow for remediation in the case of fault or malicious activity.
 
-4.  Ensure all events are surfaced in one place for simplicity.
+4. Ensure all events are surfaced in one place for simplicity.
 
-5.  Address the need to have auditing and monitoring across a wide range of device operating systems and processor architectures (Linux, x86, x64, etc.).
+5. Address the need to have auditing and monitoring across a wide range of device operating systems and processor architectures (Linux, x86, x64, etc.).
 
-6.  Automate the security agent provisioning rather than having to physically or remotely "touch" all the devices.
+6. Automate the security agent provisioning rather than having to physically or remotely "touch" all the devices.
 
-7.  Ensure only the most secure protocols are implemented and used during any transmissions
+7. Ensure only the most secure protocols are implemented and used during any transmissions
 
-8.  Ensure that in the future it will be possible to have an enterprise-wide look at any vulnerabilities or malicious events, not just specifically focused the IoT infrastructure.
+8. Ensure that in the future it will be possible to have an enterprise-wide look at any vulnerabilities or malicious events, not just specifically focused the IoT infrastructure.
 
-9.  Contoso is currently using older generic IoT devices but is considering upgrading those devices to something more secure and modern that will support future AI and Machine Learning activities.  They would like to know if Microsoft has anything that can help them.
+9. Contoso is currently using older generic IoT devices but is considering upgrading those devices to something more secure and modern that will support future AI and Machine Learning activities.  They would like to know if Microsoft has anything that can help them.
 
-### Customer objections 
+### Customer objections
 
-1.  Contoso, Ltd staff are worried it may be impossible to manage the many thousands of IoT devices they have deployed around the world with any one product.
+1. Contoso, Ltd staff are worried it may be impossible to manage the many thousands of IoT devices they have deployed around the world with any one product.
 
-2.  Can Azure handle all the different types of operating systems and processor architectures of their devices?
+2. Can Azure handle all the different types of operating systems and processor architectures of their devices?
 
-3.  Will they be able to monitor for specific events on some of their proprietary devices?
+3. Will they be able to monitor for specific events on some of their proprietary devices?
 
-4.  Can Azure support non-TPM hardware devices?
+4. Can Azure support non-TPM hardware devices?
 
-5.  Will the communications from a device to Azure be secure enough?
+5. Will the communications from a device to Azure be secure enough?
 
-6.  Can an Azure logging solution handle the massive amount of events and alerts that will need to be ingested?
+6. Can an Azure logging solution handle the massive amount of events and alerts that will need to be ingested?
 
-7.  Is it possible to assign role-based permissions based on their security objectives and policies to the IoT resources such as the Hub, Edge and individual devices? 
+7. Is it possible to assign role-based permissions based on their security objectives and policies to the IoT resources such as the Hub, Edge and individual devices?
 
-8.  Is the solution capable of being flexible in the types of reporting and alerts that can be generated based on custom logging event data?
+8. Is the solution capable of being flexible in the types of reporting and alerts that can be generated based on custom logging event data?
 
-9.  Will we be able to limit the messages and network traffic to specific network IP addresses/subnets for our devices?
+9. Will we be able to limit the messages and network traffic to specific network IP addresses/subnets for our devices?
 
-10.  Can Microsoft provide a more modern solution to support their IoT device upgrades?
+10. Can Microsoft provide a more modern solution to support their IoT device upgrades?
 
 ### Infographic for common scenarios
 
@@ -257,15 +257,15 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
 
-Timeframe: 60 minutes
+Time frame: 60 minutes
 
 **Business needs**
 
 Directions: With all participants at your table, answer the following questions and list the answers on a flip chart:
 
-1.  Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
+1. Who should you present this solution to? Who is your target customer audience? Who are the decision makers?
 
-2.  What customer business needs do you need to address with your solution?
+2. What customer business needs do you need to address with your solution?
 
 **Design**
 
@@ -277,59 +277,59 @@ Without getting into the details (the following sections will address the detail
 
 Briefly sketch-out and propose a high-level solution that meets the customer's business and technical needs and mitigates their objections. For this workshop, you may choose from the following technologies (you may not need all of them in the correct solution):
 
-1.  IoT Hub and Provisioning Service
+1. IoT Hub and Provisioning Service
 
-2.  Azure Networks and Network Security Groups
+2. Azure Networks and Network Security Groups
 
-3.  Virtual Private Networks (Point to Point, Site to Site) and Express Route
+3. Virtual Private Networks (Point to Point, Site to Site) and Express Route
 
-4.  Azure Web Apps
+4. Azure Web Apps
 
-5.  Azure Log Analytics
+5. Azure Log Analytics
 
-6.  Azure Security Center
+6. Azure Security Center
 
-7.  Azure Sentinel
+7. Azure Sentinel
 
-8.  Azure Active Directory
+8. Azure Active Directory
 
 *Azure Security*
 
 Describe how you will utilize Azure security features to secure the various resources such as the following:
 
-1.  How will you secure the IoT Hub?
+1. How will you secure the IoT Hub?
 
-2.  How will you secure the IoT Device Provisioning Service?
+2. How will you secure the IoT Device Provisioning Service?
 
 *Device Security*
 
 Describe how you will secure the following:
 
-1.  How will you secure the IoT Edge Devices?
+1. How will you secure the IoT Edge Devices?
 
-2.  How will you secure the IoT Devices?
+2. How will you secure the IoT Devices?
 
 *Ensuring auditing and compliance*
 
 Describe how you will use Azure features to ensure the following:
 
-1.  How will you monitor and audit device access?
+1. How will you monitor and audit device access?
 
-2.  How will you monitor and audit Azure resource changes?
+2. How will you monitor and audit Azure resource changes?
 
-3.  How will you create custom alerts and execute remediation and investigation activities on detection?
+3. How will you create custom alerts and execute remediation and investigation activities on detection?
 
-4.  What tools would you setup to surface audit and compliance reporting to IT Executives?
+4. What tools would you setup to surface audit and compliance reporting to IT Executives?
 
 **Prepare**
 
 Directions: With all participants at your table:
 
-1.  Identify any customer needs that are not addressed with the proposed solution.
+1. Identify any customer needs that are not addressed with the proposed solution.
 
-2.  Identify the benefits of your solution.
+2. Identify the benefits of your solution.
 
-3.  Determine how you will respond to the customer's objections.
+3. Determine how you will respond to the customer's objections.
 
 Prepare a 15-minute chalk-talk style presentation to the customer.
 
@@ -450,9 +450,9 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 Without getting into the details (the following sections will address the details), diagram your initial vision for handling the top-level requirements.
 
-Briefly sketch-out and propose a high-level solution that meets the customer's business and technical needs and mitigates their objections. For this workshop, you may choose from the following technologies (you may not need all of them in the correct solution):
+![The proposed solution shows IoT Device with IoT Edge connected to IoT Hub. The Iot Hub is then connected to Azure Stream Analytics and Azure Time Series.](media/solution-business.png "Solution Architecture")
 
-![The proposed solution utilizing Azure Security Center for IoT and its agents to monitor and secure the IoT Devices.  Log data is forwarded to Log Analytics where alerts and logic apps will execute to start investigation and remediation.](media/solution-diagram-1.png "Solution Architecture")
+Briefly sketch-out and propose a high-level solution that meets the customer's business and technical needs and mitigates their objections. For this workshop, you may choose from the following technologies (you may not need all of them in the correct solution):
 
 1. IoT Hub and Provisioning Service
 
@@ -470,7 +470,24 @@ Briefly sketch-out and propose a high-level solution that meets the customer's b
 
 8. Azure Active Directory
 
+*Device Security*
+
+![The proposed solution utilizing Azure Security Center for IoT and its agents to monitor and secure the IoT Devices.  Log data is forwarded to Log Analytics where alerts and logic apps will execute to start investigation and remediation.](media/solution-diagram-1.png "Solution Architecture")
+
+Describe how you will secure the following:
+
+1. How will you secure the IoT Edge Devices?
+
+    Azure IoT Edge is inherently secure on its own through the Azure IoT Edge security manager daemon.  However, any actor with access to the device as root or administrator can make changes to the device.  For this reason, you should ensure that the device utilizes the Azure IoT Security Agent to monitor for security events or configuration changes that could affect the security integrity of the IoT Edge device.
+
+2. How will you secure the IoT Devices?
+
+    - Similar to an IoT Edge device, these devices should have the Azure IoT Security agent installed.  Devices should also utilize hardware based secure silicon features (such as TPM, eSE, Arm TrustZone and Intel SGX) to ensure that the device is not accessed physically and modified in any way.  
+    - All devices should have unique certificates to identify them to the IoT Edge devices and the IoT Hub.
+
 *Azure Security*
+
+![Once the device has been configured to send data to Azure, Azure Security Center for IoT can scan the logs for common patterns and create notification alerts.](media/solution-security.png "Solution Architecture")
 
 Describe how you will utilize Azure security features to secure the various resources such as the following:
 
@@ -485,19 +502,6 @@ Describe how you will utilize Azure security features to secure the various reso
 
     - Similar to an IoT Hub resource, you can utilize Azure Access Control (IAM) and a similar Shared Access Policies setup to achieve your desired permissions configuration.
     - You can also enable Diagnostic settings to log management plane changes.
-
-*Device Security*
-
-Describe how you will secure the following:
-
-1. How will you secure the IoT Edge Devices?
-
-    Azure IoT Edge is inherently secure on its own through the Azure IoT Edge security manager daemon.  However, any actor with access to the device as root or administrator can make changes to the device.  For this reason, you should ensure that the device utilizes the Azure IoT Security Agent to monitor for security events or configuration changes that could affect the security integrity of the IoT Edge device.
-
-2. How will you secure the IoT Devices?
-
-    - Similar to an IoT Edge device, these devices should have the Azure IoT Security agent installed.  Devices should also utilize hardware based secure silicon features (such as TPM, eSE, Arm TrustZone and Intel SGX) to ensure that the device is not accessed physically and modified in any way.  
-    - All devices should have unique certificates to identify them to the IoT Edge devices and the IoT Hub.
 
 *Ensuring auditing and compliance*
 
@@ -518,6 +522,14 @@ Describe how you will use Azure features to ensure the following:
 4. What tools would you setup to surface audit and compliance reporting to IT Executives?
 
     You can utilize Power BI to surface Log Analytics data into easy to read dashboards that are accessible only to the property individuals.
+
+*Ensure secure Device updates*
+
+![An Azure Sphere guardian module can be placed with the IoT Devices to ensure a secure communication path has been created between the Azure Sphere Service Service for app and device updates.](media/solution-diagram-4.png "Solution Architecture")
+
+1. How will Contoso ensure they can push updates to the field in a secure manner?
+
+    Azure Sphere can be used to deploy Guardian modules that will allow for the secure updates of the devices over the internet.
 
 ## Checklist of preferred objection handling
 

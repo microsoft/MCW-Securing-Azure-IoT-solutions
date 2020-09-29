@@ -122,7 +122,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 ### Infographic for common scenarios
 
-![Envisioned situation](media/envisioned-situation.png)
+![Envisioned situation](media/commonscenerios.png)
 
 ## Step 2: Design a proof of concept solution
 
@@ -166,14 +166,6 @@ Briefly sketch-out and propose a high-level solution that meets the customer's b
 
 8. Azure Active Directory
 
-*Azure Security*
-
-Describe how you will utilize Azure security features to secure the various resources such as the following:
-
-1. How will you secure the IoT Hub?
-
-2. How will you secure the IoT Device Provisioning Service?
-
 *Device Security*
 
 Describe how you will secure the following:
@@ -181,6 +173,14 @@ Describe how you will secure the following:
 1. How will you secure the IoT Edge Devices?
 
 2. How will you secure the IoT Devices?
+
+*Azure Security*
+
+Describe how you will utilize Azure security features to secure the various resources such as the following:
+
+1. How will you secure the IoT Hub?
+
+2. How will you secure the IoT Device Provisioning Service?
 
 *Ensuring auditing and compliance*
 
@@ -193,6 +193,10 @@ Describe how you will use Azure features to ensure the following:
 3. How will you create custom alerts and execute remediation and investigation activities on detection?
 
 4. What tools would you setup to surface audit and compliance reporting to IT Executives?
+
+*Ensure secure Device updates*
+
+1. How will Contoso ensure they can push updates to the field in a secure manner?
 
 **Prepare**
 

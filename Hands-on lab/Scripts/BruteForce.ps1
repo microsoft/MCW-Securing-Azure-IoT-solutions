@@ -25,7 +25,7 @@ function InstallPutty()
 	
 	if (!$item)
 	{
-		$downloadNotePad = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.73-installer.msi";
+		$downloadNotePad = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.74-installer.msi";
 
         mkdir c:\temp -ea silentlycontinue 
 		
@@ -36,9 +36,10 @@ function InstallPutty()
 	}
 }
 
+#Note if this doesn't download putty, open a web browser to https://the.earth.li/~sgtatham/putty/0.74/w64/ and manually install it.
 InstallPutty
 
-$ip = "13.68.27.190";
+$ip = "40.75.22.48";
 $count = 500;
 
 SSHBruteForce $ip $count;
