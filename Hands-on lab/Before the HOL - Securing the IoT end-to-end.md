@@ -80,7 +80,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 8. In the resource group blade, select **+ Add**.  In the marketplace search box, type **Template Deployment** and then select **Template deployment (deploy using custom template**
 
-9. Select **Create**
+9. Select **Create**.
 
 10. Select **Build your own template in the editor**.
 
@@ -106,7 +106,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     - Select **Purchase**.
 
-    ![The above information is entered in the form, and I agree to the terms and conditions stated above and Purchase are selected and highlighted at the bottom.](media/beforehol-image4.png "Fill out the form")
+    ![The above information is entered in the form, and I agree to the terms and conditions stated above and Purchase are selected and highlighted at the bottom.](media/beforehol-image4.png "Terms and conditions form")
 
 14. The deployment will take 15-25 minutes to complete. To view the progress, select the **Deployments** link, then select the **Microsoft.Template** deployment.
 
