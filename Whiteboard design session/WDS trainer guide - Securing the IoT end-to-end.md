@@ -249,7 +249,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 ### Infographic for common scenarios
 
-![Envisioned situation.](media/envisioned-situation.png)
+![Envisioned situation](media/commonscenerios.png)
 
 ## Step 2: Design a proof of concept solution
 
