@@ -166,6 +166,14 @@ Briefly sketch-out and propose a high-level solution that meets the customer's b
 
 8. Azure Active Directory
 
+9. Azure Time Series Insights
+
+10. Azure Sphere
+
+11. Azure Stream Analytics
+
+12. Azure Service Bus
+
 *Device Security*
 
 Describe how you will secure the following:
@@ -174,6 +182,14 @@ Describe how you will secure the following:
 
 2. How will you secure the IoT Devices?
 
+3. How will you monitor and audit device access?
+
+4. How will you monitor and audit Azure resource changes?
+
+5. How will you create custom alerts and execute remediation and investigation activities on detection?
+
+6. What tools would you setup to surface audit and compliance reporting to IT Executives?
+
 *Azure Security*
 
 Describe how you will utilize Azure security features to secure the various resources such as the following:
@@ -181,18 +197,6 @@ Describe how you will utilize Azure security features to secure the various reso
 1. How will you secure the IoT Hub?
 
 2. How will you secure the IoT Device Provisioning Service?
-
-*Ensuring auditing and compliance*
-
-Describe how you will use Azure features to ensure the following:
-
-1. How will you monitor and audit device access?
-
-2. How will you monitor and audit Azure resource changes?
-
-3. How will you create custom alerts and execute remediation and investigation activities on detection?
-
-4. What tools would you setup to surface audit and compliance reporting to IT Executives?
 
 *Ensure secure Device updates*
 
@@ -238,7 +242,7 @@ Directions:
 
 ## Wrap-up
 
-Timeframe: 15 minutes
+Time frame: 15 minutes
 
 Directions: Tables reconvene with the larger group to hear the facilitator/SME share the preferred solution for the case study.
 
@@ -265,10 +269,14 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure Security Center for IoT  | https://docs.microsoft.com/en-us/azure/asc-for-iot/overview  |
 | Azure IoT SDK  | https://github.com/Azure/azure-iot-sdks  |
 | Azure IoT Security Agent  | https://github.com/Azure/Azure-IoT-Security-Agent-C  |
+| Azure IoT Hub Messaging | <https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-messages-d2c/>
+| Azure Service Bus | <https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview/>
 | Azure Sentinel   | <https://docs.microsoft.com/en-us/azure/sentinel/>   |
 | Azure Time Series Insights | <https://docs.microsoft.com/en-us/azure/time-series-insights/>
+| Azure Stream Analytics | <https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-introduction/>
+| Process real-time IoT data streams with Azure Stream Analytics | <https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-get-started-with-azure-stream-analytics-to-process-data-from-iot-devices/>
 | Azure Policy   | <https://azure.microsoft.com/en-us/services/azure-policy/>   |
 | Compliance Commitments   |  <http://azure.microsoft.com/en-us/support/trust-center/services/>  |
 | Azure Trust Center  | <http://azure.microsoft.com/en-us/support/trust-center/>     |
 | Azure Sphere  | <https://docs.microsoft.com/en-us/azure-sphere/>     |
-| Security Best Practices for IoT  | <https://docs.microsoft.com/en-us/azure/iot-fundamentals/iot-security-best-practices>     |
+| Security Best Practices for IoT  | <https://docs.microsoft.com/en-us/azure/iot-fundamentals/iot-security-best-practices>
