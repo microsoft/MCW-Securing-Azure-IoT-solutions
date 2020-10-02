@@ -177,7 +177,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 9. For the workspace, select **oilwells-logging-[YOUR INIT]**.
 
-    > **NOTE** You might have to toggle the **On** switch to select a workspace
+    > **Note**: You might have to toggle the **On** switch to select a workspace.
 
     ![Here you are enabling the Azure Security Center for IoT.](media/ex1_image004.png "Enable Security Center settings")
 
@@ -778,7 +778,7 @@ This exercise will have you install some "fake" processes and open some non-stan
     sudo ./trigger_events.sh --malicious
     ```
 
-    > **NOTE** Feel free to explore the trigger events scripts and its different options : https://github.com/Azure/Azure-IoT-Security/tree/master/trigger_events
+    > **Note**: Feel free to explore the trigger events scripts and its different options : https://github.com/Azure/Azure-IoT-Security/tree/master/trigger_events.
 
 ### Task 2: Configure Azure Agent
 
@@ -805,7 +805,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 
     ![A linux computer is now connected via the Azure Agent.](media/loganalytics-linuxconnected.png "The device is now connected to log analytics")
 
-> **NOTE** It may take a few minutes for the OMS logs to show up and a heartbeat to be registered in Log Analytics for the IoT linux machine.
+> **Note**: It may take a few minutes for the OMS logs to show up and a heartbeat to be registered in Log Analytics for the IoT Linux machine.
 
 ### Task 3: Perform brute force attack
 
@@ -817,7 +817,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 
 4. Press **F5** to run the script. The script will attempt to login to the iot device using the wrong credentials with the plink tool of Putty.
 
-    > **NOTE** If the putty version has changed, the script will need to be updated. Browse to https://the.earth.li/~sgtatham/putty/0.74/w64/ to find the latest version.
+    > **Note**: If the putty version has changed, the script will need to be updated. Browse to https://the.earth.li/~sgtatham/putty/0.74/w64/ to find the latest version.
 
 5. Eventually Azure Security Center will send an email warning of a brute force attack on your IoT Device.
 
