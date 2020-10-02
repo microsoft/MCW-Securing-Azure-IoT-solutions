@@ -171,9 +171,11 @@ When participants are doing activities, you can **look ahead to refresh your mem
 
 ## Abstract and learning objectives
 
-In this whiteboard design session, you will work with a group to design an end-to-end solution that leverages Microsoft Azure's IoT features, tools and resources to secure and monitor a set of IoT devices.
+In this whiteboard design session, you will look at the process for designing an oil and gas manufacturing IoT solution that is secured end-to-end following best practices.
 
-At the end of this session, you will be better able to design and recommend solutions that help organizations properly secure and monitor their IoT-based infrastructure.  
+You will learn how to monitor and manage the security of all components in the solution You will also provide Contoso guidance on defining life cycles for particular components so that they have a plan that begins with initial deployment, to expected maintenance, to planned end-of-life and ultimately through decommissioning of the device so that they can understand how Azure supports this. Additionally, you will perform some threat modeling to help Contoso think about how they might handle STRIDE threats (spoofing of user identity, tampering, repudiation, information disclosure, denial of service, elevation of privilege).
+
+At the end of this whiteboard design session, you will be better able to architect a comprehensive and secure oil and gas manufacturing IoT solution.
 
 The concepts covered here are targeted at an architectural design level versus simple stand-alone activities.
 
