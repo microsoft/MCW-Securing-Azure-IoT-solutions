@@ -14,7 +14,7 @@ June 2020
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
 
-Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property.
+Microsoft may have patents, patent applications, trademarks, copyrights, or other intellectual property rights covering subject matter in this document. Except as expressly provided in any written license agreement from Microsoft, the furnishing of this document does not give you any license to these patents, trademarks, copyrights, or other intellectual property. 
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
@@ -44,9 +44,11 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 ## Abstract and learning objectives
 
-In this whiteboard design session, you will work with a group to design an end-to-end solution that leverages Microsoft Azure's IoT features, tools and resources to secure and monitor a set of IoT devices.
+In this whiteboard design session, you will look at the process for designing an oil and gas manufacturing IoT solution that is secured end-to-end following best practices. 
 
-At the end of this session, you will be better able to design and recommend solutions that help organizations properly secure and monitor their IoT-based infrastructure.
+You will learn how to monitor and manage the security of all components in the solution You will also provide Contoso guidance on defining life cycles for particular components so that they have a plan that begins with initial deployment, to expected maintenance, to planned end-of-life and ultimately through decommissioning of the device so that they can understand how Azure supports this. Additionally, you will perform some threat modeling to help Contoso think about how they might handle STRIDE threats (spoofing of user identity, tampering, repudiation, information disclosure, denial of service, elevation of privilege).
+
+At the end of this whiteboard design session, you will be better able to architect a comprehensive and secure oil and gas manufacturing IoT solution.
 
 The concepts covered here are targeted at an architectural design level versus simple stand-alone activities.
 
@@ -122,7 +124,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 ### Infographic for common scenarios
 
-![Envisioned situation](media/envisioned-situation.png)
+![Screenshot of a sample Internet of Things workflow, which is broken into On-Premises and Azure services.](media/commonscenerios.png "Common scenario infographic")
 
 ## Step 2: Design a proof of concept solution
 
@@ -166,13 +168,13 @@ Briefly sketch-out and propose a high-level solution that meets the customer's b
 
 8. Azure Active Directory
 
-*Azure Security*
+9. Azure Time Series Insights
 
-Describe how you will utilize Azure security features to secure the various resources such as the following:
+10. Azure Sphere
 
-1. How will you secure the IoT Hub?
+11. Azure Stream Analytics
 
-2. How will you secure the IoT Device Provisioning Service?
+12. Azure Service Bus
 
 *Device Security*
 
@@ -182,17 +184,25 @@ Describe how you will secure the following:
 
 2. How will you secure the IoT Devices?
 
-*Ensuring auditing and compliance*
+3. How will you monitor and audit device access?
 
-Describe how you will use Azure features to ensure the following:
+4. How will you monitor and audit Azure resource changes?
 
-1. How will you monitor and audit device access?
+5. How will you create custom alerts and execute remediation and investigation activities on detection?
 
-2. How will you monitor and audit Azure resource changes?
+6. What tools would you setup to surface audit and compliance reporting to IT Executives?
 
-3. How will you create custom alerts and execute remediation and investigation activities on detection?
+*Azure Security*
 
-4. What tools would you setup to surface audit and compliance reporting to IT Executives?
+Describe how you will utilize Azure security features to secure the various resources such as the following:
+
+1. How will you secure the IoT Hub?
+
+2. How will you secure the IoT Device Provisioning Service?
+
+*Ensure secure Device updates*
+
+1. How will Contoso ensure they can push updates to the field in a secure manner?
 
 **Prepare**
 
@@ -261,10 +271,14 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure Security Center for IoT  | https://docs.microsoft.com/en-us/azure/asc-for-iot/overview  |
 | Azure IoT SDK  | https://github.com/Azure/azure-iot-sdks  |
 | Azure IoT Security Agent  | https://github.com/Azure/Azure-IoT-Security-Agent-C  |
+| Azure IoT Hub Messaging | <https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-messages-d2c/>
+| Azure Service Bus | <https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview/>
 | Azure Sentinel   | <https://docs.microsoft.com/en-us/azure/sentinel/>   |
 | Azure Time Series Insights | <https://docs.microsoft.com/en-us/azure/time-series-insights/>
+| Azure Stream Analytics | <https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-introduction/>
+| Process real-time IoT data streams with Azure Stream Analytics | <https://docs.microsoft.com/en-us/azure/stream-analytics/stream-analytics-get-started-with-azure-stream-analytics-to-process-data-from-iot-devices/>
 | Azure Policy   | <https://azure.microsoft.com/en-us/services/azure-policy/>   |
 | Compliance Commitments   |  <http://azure.microsoft.com/en-us/support/trust-center/services/>  |
 | Azure Trust Center  | <http://azure.microsoft.com/en-us/support/trust-center/>     |
 | Azure Sphere  | <https://docs.microsoft.com/en-us/azure-sphere/>     |
-| Security Best Practices for IoT  | <https://docs.microsoft.com/en-us/azure/iot-fundamentals/iot-security-best-practices>     |
+| Security Best Practices for IoT  | <https://docs.microsoft.com/en-us/azure/iot-fundamentals/iot-security-best-practices>

@@ -78,17 +78,17 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 7. Select **Refresh** to see your new resource group displayed and select it.
 
-8. In the resource group blade, select **Export template**, and then select **Deploy**.
+8. In the resource group blade, select **+ Add**.  In the marketplace search box, type **Template Deployment** and then select **Template deployment (deploy using custom template**
 
-    ![Automation script is highlighted under Settings on the left side of the Azure portal, and Deploy is highlighted on the top-right side.](media/beforehol-image3.png "Select Deploy")
+9. Select **Create**.
 
-9. Select **Build your own template in the editor**.
+10. Select **Build your own template in the editor**.
 
-10. In the extracted folder, open the **\\Hands-on lab\\Resources\\template.json**.
+11. In the extracted folder, open the **\\Hands-on lab\\Resources\\template.json**.
 
-11. Copy and paste it into the window.
+12. Copy and paste it into the window.
 
-12. Select **Save**, you will see the dialog with the input parameters. Fill out the form:
+13. Select **Save**, you will see the dialog with the input parameters. Fill out the form:
 
     - Subscription: Select your **subscription**.
 
@@ -106,9 +106,9 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     - Select **Purchase**.
 
-    ![The above information is entered in the form, and I agree to the terms and conditions stated above and Purchase are selected and highlighted at the bottom.](media/beforehol-image4.png "Fill out the form")
+    ![The above information is entered in the form, and I agree to the terms and conditions stated above and Purchase are selected and highlighted at the bottom.](media/beforehol-image4.png "Terms and conditions form")
 
-13. The deployment will take 15-25 minutes to complete. To view the progress, select the **Deployments** link, then select the **Microsoft.Template** deployment.
+14. The deployment will take 15-25 minutes to complete. To view the progress, select the **Deployments** link, then select the **Microsoft.Template** deployment.
 
     - As part of the deployment, you will see the following items created:
 

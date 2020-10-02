@@ -64,12 +64,12 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 4: Create custom security alerts for azure events](#task-4-create-custom-security-alerts-for-azure-events)
     - [Task 5: Send a DirectMethod](#task-5-send-a-directmethod)
     - [Task 6: Device Investigation with Logs](#task-6-device-investigation-with-logs)
-  - [Exercise 7: Perform an IoT Hub Manual Failover](#exercise-7-perform-an-iot-hub-manual-failover)
-    - [Task 1: Perform a manual failover](#task-1-perform-a-manual-failover)
-  - [Exercise 8: Device Messaging and Time Series Insights](#exercise-8-device-messaging-and-time-series-insights)
+  - [Exercise 7: Device Messaging and Time Series Insights](#exercise-7-device-messaging-and-time-series-insights)
     - [Task 1: Setup Time Series Insights](#task-1-setup-time-series-insights)
     - [Task 2: Send Security Messages](#task-2-send-security-messages)
     - [Task 3: Review the Time Series Portal](#task-3-review-the-time-series-portal)
+  - [Exercise 8: Perform an IoT Hub Manual Failover](#exercise-8-perform-an-iot-hub-manual-failover)
+    - [Task 1: Perform a manual failover](#task-1-perform-a-manual-failover)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete resource group](#task-1-delete-resource-group)
 
@@ -165,35 +165,39 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
     ![Screenshot with the Overview and "Secure your IoT Solution" highlighted.](media/ex1_image008.png "Enable Advanced Threat Protection")
 
-5. Refresh the Security Overview blade, then select **Settings**.
+5. Refresh the Security Overview page
+
+6. In the blade navigation, under **Security**, select **Settings**.
 
     ![Blade is refreshed and the Settings link is highlighted.](media/ex1_image009.png "Select Settings")
 
-6. In the settings, select **Data Collection**.
+7. In the settings, select **Data Collection**.
 
-7. Ensure **Enable** is selected.
+8. Ensure **Enable** is selected.
 
-8. For the workspace, select **oilwells-logging-[YOUR INIT]**.
+9. For the workspace, select **oilwells-logging-[YOUR INIT]**.
+
+    > **Note**: You might have to toggle the **On** switch to select a workspace.
 
     ![Here you are enabling the Azure Security Center for IoT.](media/ex1_image004.png "Enable Security Center settings")
 
-9. Select **Save**.
+10. Select **Save**. Wait for the operation to complete.
 
 ### Task 3: Enable Azure Audit logging
 
-1. Open your Azure Portal.
+1. Navigation back to your **iotsecurity-\[your initials or first name\]** resource group.
 
-2. Select your **iotsecurity-\[your initials or first name\]** resource group.
+2. In the blade menu, select **Activity Log**.
 
-3. In the blade menu, select **Activity Log**.
-
-4. In the top menu, select **Logs**.
+3. In the top menu, select **Logs**.
 
     ![This screenshot highlights the activity log link and the logs link for navigating to the Azure Activity Logs.](media/ex1_image005.png "Navigate to resource group Activity Logs")
 
-5. Select the **diagnostic settings** link.
+4. Select the **diagnostic settings** link.
 
-6. Select your lab subscription, then select the **Add diagnostic setting** link.
+5. Select your lab subscription
+
+6. then select the **Add diagnostic setting** link.
 
 7. For the name, type **iotsecuritylogging**.
 
@@ -251,15 +255,15 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 ### Task 1: Configure your devices
 
-1. Navigate to your Azure Resource Group.
+1. Navigate to your lab Azure Resource Group.
 
-2. Select the **oilwells-edgevm-[YOUR INIT]**.
+2. Select the **oilwells-edgevm-[YOUR INIT]** virtual machine.
 
 3. Select **Connect**, then select **SSH**.
 
     ![This image shows how to connect to your new IoT device.  The ssh command to connect to the machine is highlighted.](media/ex2_image001.png "Enable Security Center settings")
 
-4. Copy the SSH details, you can remove the **-i** parameter with the key path.
+4. Copy the SSH details, you can remove the **-i** parameter and the key path.
 
 5. Open a Windows PowerShell window, paste the SSH details into the window.
 
@@ -311,7 +315,9 @@ sudo reboot
 
 ### Task 3: Download and compile the Azure IoT SDK
 
-1. Run the following commands:
+1. Wait for the server to reboot and ssh back into it, the password is **S2@dmins2@dmin**.
+
+2. Run the following commands:
 
 > **Note**: You can find the latest release of the Azure IoT SDK [here](https://github.com/Azure/azure-iot-sdk-c/releases).  You can open the git to see what the latest release tag is, but the remainder of the lab may not work properly based on a new release.
 
@@ -567,7 +573,7 @@ sudo apt-get install iotedge
         /bin/udevadm trigger $tpm
         ```
 
-11. After completing **one** of the above methods (it is suggested you perform the manual device connection string path), run the following commands to restart the iotedge service:
+11. After completing **one** of the above methods (it is suggested you perform the manual device connection string path for simplicity), run the following commands to restart the iotedge service:
 
     ```bash
     sudo systemctl restart iotedge
@@ -654,7 +660,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
     sudo journalctl -u ASCIoTAgent
     ```
 
-5. You should see an error about the azureiotsecurity module not being registered.
+5. Scroll to the bottom of the logs, you should see an error about the azureiotsecurity module not being registered.
 
     ![An error is displayed about the ASC for IoT agent not being registered.](media/ex4_image011.png "Missing the ASC for IoT agent module")
 
@@ -772,11 +778,11 @@ This exercise will have you install some "fake" processes and open some non-stan
     sudo ./trigger_events.sh --malicious
     ```
 
-    > **NOTE** Feel free to explore the trigger events scripts and its different options : https://github.com/Azure/Azure-IoT-Security/tree/master/trigger_events
+    > **Note**: Feel free to explore the trigger events scripts and its different options : https://github.com/Azure/Azure-IoT-Security/tree/master/trigger_events.
 
 ### Task 2: Configure Azure Agent
 
-1. In the Azure Portal, browse to your **iotsecurity-INIT** resource group, then select the **Log Analytics Workspace**.
+1. In the Azure Portal, browse to your **iotsecurity-INIT** resource group, then select the **oilwells-logging-INIT** Log Analytics Workspace.
 
 2. In the blade, select **Agents Management**.
 
@@ -785,6 +791,8 @@ This exercise will have you install some "fake" processes and open some non-stan
 4. Run the following commands, be sure to replace the workspace tokens with the values you records above:
 
     ```bash
+    cd
+
     wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w <YOUR_WORKSPACE_ID> -s <YOUR_WORKSPACE_KEY>
 
     sudo /opt/microsoft/omsagent/bin/service_control restart <YOUR_WORKSPACE_ID>
@@ -793,9 +801,11 @@ This exercise will have you install some "fake" processes and open some non-stan
 
 5. Switch back to the Azure Portal.
 
-6. In the blade menu, select **Advanced Settings** and then select **Linux Servers**, you should see **1 LINUX COMPUTER CONNECTED**.
+6. In the blade menu, select **Agents Management** and then select **Linux Servers**, you should see **1 LINUX COMPUTER CONNECTED**.
 
     ![A linux computer is now connected via the Azure Agent.](media/loganalytics-linuxconnected.png "The device is now connected to log analytics")
+
+> **Note**: It may take a few minutes for the OMS logs to show up and a heartbeat to be registered in Log Analytics for the IoT Linux machine.
 
 ### Task 3: Perform brute force attack
 
@@ -806,6 +816,8 @@ This exercise will have you install some "fake" processes and open some non-stan
 3. Update the IP address for your IoT device.
 
 4. Press **F5** to run the script. The script will attempt to login to the iot device using the wrong credentials with the plink tool of Putty.
+
+    > **Note**: If the putty version has changed, the script will need to be updated. Browse to https://the.earth.li/~sgtatham/putty/0.74/w64/ to find the latest version.
 
 5. Eventually Azure Security Center will send an email warning of a brute force attack on your IoT Device.
 
@@ -860,10 +872,10 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 9. Switch to your putty session connected to the IoT Device, run the following commands:
 
     ```bash
-    sudo nano /home/users/oms_audit.xml
+    sudo nano /home/s2admin/oms_audit.xml
     ```
 
-10. Copy the `/scripts/oms_audits.xml` file content into the session window, then save it.
+10. Copy and paste the local `/scripts/oms_audits.xml` file content into the session window, then save it.
 
 ### Task 2: Review Azure Security for IoT log data
 
@@ -885,7 +897,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 ### Task 3: Create custom security alerts for device events
 
-1. From the **oilwells-iothub-[YOUR INIT]** IoT hub blade, in the **Security** section, select **Custom Alerts**.
+1. From the **oilwells-iothub-[YOUR INIT]** IoT hub blade, in the **Security** section, select **Settings**, then select **Custom Alerts**.
 
 2. Select the **default** security group.
 
@@ -934,47 +946,45 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 7. Select **Create**.
 
-    ![Screenshot with Create highlighted.](media/ex6_image007.png "Navigate to create an action group")
+8. Select the **Select action group** link, the select **Create action group**
 
-8. For the group name type **Email IoT Hub Admins**.
+9. Select the **iotsecurity-\[your initials or first name\]** resource group.
 
-9. For the short name type **Email**.
+10. For the action group name type **Email IoT Hub Admins**.
 
-10. Select the **iotsecurity-\[your initials or first name\]** resource group.
+11. For the display name type **Email**.
 
-11. For the action name, type **Email IoT Hub Admins**.
+12. Select **Next: Notifications**
 
-12. For the action type, select **Email/SMS/Push/Voice**.
+13. For the action type, select **Email/SMS/Push/Voice**.
 
-13. Check the **Email** checkbox, then type an email alias.
+14. For the action name, type **Email IoT Hub Admins**.
 
-    ![Adding an email action screenshot with the email checkbox highlighted.](media/ex6_image008.png "Add an email action")
-
-14. Select **OK**.
-
-    ![Final Add action group screenshot with all values filled in.](media/ex6_image009.png "Final Add action group step")
-
-15. Select **OK**.
+15. In the dialog that opens, check the **Email** checkbox, then type an email alias.
 
 16. Select **OK**.
 
-17. For the **Alert rule name**, type **IoT Hub Modified**.
+17. Select **Review + create**.
 
-18. For the **description**, type **The IoT Hub was modified**.
+18. Select **Create**.
+
+19. For the **Alert rule name**, type **IoT Hub Modified**.
+
+20. For the **description**, type **The IoT Hub was modified**.
 
     ![The final screen shot of a configured Alert rule](media/ex6_image010.png "Completed Create rule dialog")
 
-19. Select **Create alert rule**.
+21. Select **Create alert rule**.
 
-20. Make a change to your IoT Hub such as adding a user as an owner. You will receive an email alert after a few minutes notifying you of the change.
+22. Make a change to your IoT Hub such as adding a user as an owner. You will receive an email alert after a few minutes notifying you of the change.
 
     ![A generated Alert email.](media/ex6_image024.png "An Alert Email is generated")
 
-21. From the Azure Portal navigate back to your resource group, then select the **oilwells-logging-[YOUR INIT]** Log Analytics instance.
+23. From the Azure Portal navigate back to your resource group, then select the **oilwells-logging-[YOUR INIT]** Log Analytics instance.
 
-22. In the blade menu, in the **General** section, select **Logs**.
+24. In the blade menu, in the **General** section, select **Logs**.
 
-23. In the query window, paste the following:
+25. In the query window, paste the following:
 
     ```SQL
     AzureDiagnostics
@@ -989,31 +999,31 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
         - [500001 ServerError](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-troubleshoot-error-500xxx-internal-errors)
         - [500008 GenericTimeout](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-troubleshoot-error-500xxx-internal-errors)
 
-24. Select **Run**, you may not see any results.
+26. Select **Run**, you may not see any results.
 
-25. In the top navigation menu, select **New alert rule**.
+27. In the top navigation menu, select **New alert rule**.
 
-26. Select the condition, in the dialog, scroll to the **threshold value**, type **1**, select **Done**.
+28. Select the condition, in the dialog, scroll to the **threshold value**, type **1**, select **Done**.
 
     ![Alert signal logic dialog with the threshold value set to 1.](media/ex6_image006.png "Set threshold value")
 
-27. Select **Select action group**.
+29. Select **Select action group**.
 
-28. Select the **Email IoT Hub Admins** group, then select **Select**.
+30. Select the **Email IoT Hub Admins** group, then select **Select**.
 
-29. For the **Alert rule name**, type **Device is missing**.
+31. For the **Alert rule name**, type **Device is missing**.
 
-30. For the **description**, type **A device is missing**.
+32. For the **description**, type **A device is missing**.
 
     ![The final screen shot of a configured Alert rule.](media/ex6_image010.png "Completed Create rule dialog")
 
-31. Select **Create alert rule**.
+33. Select **Create alert rule**.
 
 ### Task 5: Send a DirectMethod
 
-1. Open the Azure Portal.
+1. In the Azure Portal, browse to the Iot Hub
 
-2. Browse to the Iot Hub, then select **Iot Edge**.
+2. Under **Automatic Device Management**, select **Iot Edge**.
 
 3. Select the **oilwells001** device.
 
@@ -1025,7 +1035,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 7. For the **Payload**, type **0**.
 
-8. Select **Invoke Method**, in the **Result** text area you should see the following:
+8. In the top navigation, select **Invoke Method**, in the **Result** text area you should see the following:
 
     ```json
     {"status":200,"payload":null}
@@ -1093,29 +1103,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 6. Highlight the query, then select **Run**. Review the results.
 
-## Exercise 7: Perform an IoT Hub Manual Failover
-
-Duration: 10 minutes
-
-This exercise will have you perform an IoT Hub failover to a different region.
-
-### Task 1: Perform a manual failover
-
-1. Open the Azure Portal.
-
-2. Browse to your IoT Hub.
-
-3. In the blade menu, in the **Settings** section, select **Failover**.
-
-4. In the top menu, select **Start Failover**.
-
-    ![Failover and Start Failover are highlighted.](media/iothub-failover.png "Start an IoT Hub Failover")
-
-5. Type your IoT Hub name, then select **Failover**.  It can take several minutes to failover the IoT Hub.
-
-    ![Failover success is displayed.](media/iothub-failoversuccess.png "The Failover is complete.")
-
-## Exercise 8: Device Messaging and Time Series Insights
+## Exercise 7: Device Messaging and Time Series Insights
 
 Duration: 15 minutes
 
@@ -1123,39 +1111,37 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 ### Task 1: Setup Time Series Insights
 
-1. Open the Azure Portal.
+1. Switch to the Azure Portal, select the **iotsecurity-\[your initials or first name\]** resource group.
 
-2. Select the **iotsecurity-\[your initials or first name\]** resource group.
-
-3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
+2. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
 
     ![The Time Series Insights Azure resource is highlighted.](media/ex7_image001.png "Browse to the Time Series Insights resource")
 
-4. Select **Event Sources**.
+3. Select **Event Sources**.
 
-5. Select **+Add**.
+4. Select **+Add**.
 
     ![Event sources and the add link is highlighted](media/ex7_image002.png "Add a new Event Source")
 
-6. For the name, type **oilwells-iothub-\[your initials or first name\]**.
+5. For the name, type **oilwells-iothub-\[your initials or first name\]**.
 
-7. For the source, select **Iot Hub**.
+6. For the source, select **Iot Hub**.
 
-8. Select your **oilwells-iothub-\[your initials or first name\]** IoT Hub.
+7. Select your **oilwells-iothub-\[your initials or first name\]** IoT Hub.
 
-9. Select **Create**.
+8. Select **Create**.
 
-10. Select **Data Access Policies**.
+9. In the blade menu, select **Data Access Policies**.
 
-11. Select **+Add**.
+10. Select **+Add**.
 
-12. Select your user account.
+11. Select your user account.
 
-13. For the role, select **Reader** and **Contributor**.
+12. For the role, select **Reader** and **Contributor**.
+
+13. Select **OK**.
 
 14. Select **OK**.
-
-15. Select **OK**.
 
 ### Task 2: Send Security Messages
 
@@ -1181,7 +1167,7 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
 
-4. Select the **Go to Environment** link.
+4. Select the **Go to TSI Explorer** link.
 
     ![Go to environment is hightlighted.](media/ex7_image003.png "Open the Time Series Portal")
 
@@ -1200,6 +1186,28 @@ This exercise will walk you through integrating Time Series Insights and then se
     ![The SecurityAlert SPLIT is highlighted and the true value is also highlighted.](media/ex7_image007.png "Filter for only security events")
 
     ![A graph of security events is displayed.](media/ex7_image008.png "Review the security graph")
+
+## Exercise 8: Perform an IoT Hub Manual Failover
+
+Duration: 10 minutes
+
+This exercise will have you perform an IoT Hub failover to a different region.
+
+### Task 1: Perform a manual failover
+
+1. Open the Azure Portal.
+
+2. Browse to your IoT Hub.
+
+3. In the blade menu, in the **Settings** section, select **Failover**.
+
+4. In the top menu, select **Start Failover**.
+
+    ![Failover and Start Failover are highlighted.](media/iothub-failover.png "Start an IoT Hub Failover")
+
+5. Type your IoT Hub name, then select **Failover**.  It can take several minutes to failover the IoT Hub.
+
+    ![Failover success is displayed.](media/iothub-failoversuccess.png "The Failover is complete.")
 
 ## After the hands-on lab
 
