@@ -467,7 +467,7 @@ Without getting into the details (the following sections will address the detail
 
 In the solution diagram above, note the following:
 
-- Iot Edge devices are placed in the field.
+- IoT Edge devices are placed in the field.
 - These devices communication back to the IoT Hub
 - IoT Hub sends data to other services such as Cosmos DB and Time Series Insights
 - Data is saved to Data Lake for analysis later by machine learning
@@ -489,8 +489,9 @@ Describe how you will secure the following:
 
 2. How will you secure the IoT Devices?
 
-    - Similar to an IoT Edge device, these devices should have the Azure IoT Security agent installed.  Devices should also utilize hardware based secure silicon features (such as TPM, eSE, Arm TrustZone and Intel SGX) to ensure that the device is not accessed physically and modified in any way.  
-    - All devices should have unique certificates to identify them to the IoT Edge devices and the IoT Hub.
+    Similar to an IoT Edge device, these devices should have the Azure IoT Security agent installed.  Devices should also utilize hardware based secure silicon features (such as TPM, eSE, Arm TrustZone and Intel SGX) to ensure that the device is not accessed physically and modified in any way.  
+    
+    All devices should have unique certificates to identify them to the IoT Edge devices and the IoT Hub.
 
 3. How will you monitor and audit device access?
 
