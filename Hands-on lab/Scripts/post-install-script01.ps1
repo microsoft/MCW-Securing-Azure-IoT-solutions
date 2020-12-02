@@ -309,9 +309,6 @@ reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v Hide
 
 wevtutil set-log Microsoft-Windows-TaskScheduler/Operational /enabled:true
 
-$scriptPath = "C:\LabFiles\MCW-Securing-the-IoT-end-to-end\hands-on lab\scripts\post-install-script02.ps1"
-CreateRebootTask "MCW Setup Script" $scriptPath
-
 #enable hyperv
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
@@ -327,6 +324,9 @@ Connect-AzAccount -Credential $cred | Out-Null
 cd "c:\labfiles";
 
 git clone https://github.com/givenscj/MCW-Securing-the-IoT-end-to-end
+
+$scriptPath = "C:\LabFiles\MCW-Securing-the-IoT-end-to-end\hands-on lab\scripts\post-install-script02.ps1"
+CreateRebootTask "MCW Setup Script" $scriptPath
 
 sleep 20
 

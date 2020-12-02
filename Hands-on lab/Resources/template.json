@@ -671,7 +671,7 @@
                     "autoUpgradeMinorVersion": true,
                     "settings": {
                         "fileUris": [
-                        "https://raw.githubusercontent.com/givenscj/mcw-securing-the-iot-end-to-end/master/hands-on lab/scripts/post-install-script01.ps1"
+                        "https://raw.githubusercontent.com/givenscj/MCW-Securing-the-IoT-end-to-end/master/Hands-on%20lab/Scripts/post-install-script01.ps1"
                         ]
                     },
                     "protectedSettings": {
