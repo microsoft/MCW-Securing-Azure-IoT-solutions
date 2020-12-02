@@ -41,7 +41,38 @@ function DownloadImage()
     #extract image
     #Expand-archive -path "c:\temp\ubuntu.zip" -destinationpath c:\VMs\Ubuntu2; #doesn't work with explorer zips
     7z e c:\temp\ubuntu.zip -oc:\vms *.* -r -spf
+}
 
+function MountImage()
+{
+    # VM creation
+    $vmName = "UBUSRV";
+    $vmNewDiskPath = "C:\VMs\UBUSRV\Virtual Hard Disks\UBUSRV.vhdx";
+    $vmNewDiskSize = 40GB;
+    $vmPath = "C:\VMs";
+    $vmGeneration = 2;
+    $vmBootDevice = "VHD";
+    $vmSwitchName = "Default Switch"; # To find existing switches run, Get-VMSwitch | ft
+    
+    $vmFirmwareEnableSecureBoot = "On"; # Turn off if you trust and/or image isn't supported.
+    $vmFirmwareSecureBootTemplate = "MicrosoftUEFICertificateAuthority";
+
+    $vmProcessorCount = 2;
+    $vmMemoryStartUpBytes = 1GB;
+    $vmMemoryMinimumBytes =  500MB;
+    $vmMemoryMaximumBytes =  3GB;
+    $vmDynamicMemoryEnabled = $true;
+
+    #New-VMSwitch -name $vmSwitchName  -NetAdapterName Ethernet -AllowManagementOS $true
+
+    New-VM -Name $vmName -BootDevice $vmBootDevice -VHDPath $vmNewDiskPath -Path $vmPath -Generation $vmGeneration -SwitchName $vmSwitchName
+    Set-VMFirmware $vmName -EnableSecureBoot $vmFirmwareEnableSecureBoot -SecureBootTemplate $vmFirmwareSecureBootTemplate
+    Set-VMProcessor $vmName -Count $vmProcessorCount
+    Set-VMMemory $vmName -DynamicMemoryEnabled $vmDynamicMemoryEnabled -MinimumBytes $vmMemoryMinimumBytes -StartupBytes $vmMemoryStartUpBytes -MaximumBytes $vmMemoryMaximumBytes
+}
+
+function ImportImage()
+{
     #import the image
     Import-VM -Path 'C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx'
 }
@@ -65,6 +96,8 @@ mkdir c:\VMs;
 
 DownloadImage;
 
+MountImage;
+
 #setup TPM
 $vmName = "ubusrv"
 $owner = New-HgsGuardian -Name "Guardian11" -GenerateCertificates
@@ -77,9 +110,6 @@ Enable-VMTPM -VM $vm
 
 #start it
 Start-VM $vmName;
-
-$securePassword = $password | ConvertTo-SecureString -AsPlainText -Force
-$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $userName, $SecurePassword
 
 Stop-Transcript
 

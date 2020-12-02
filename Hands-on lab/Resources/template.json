@@ -654,7 +654,7 @@
             "resources": [
                 {
                     "type": "Microsoft.Compute/virtualMachines/extensions",
-                    "name": "[concat(variables('vmName'),'/', 'winExtension')]",
+                    "name": "[concat('oilwells-server-', parameters('alias'),'/', 'winExtension')]",
                     "apiVersion": "2015-06-15",
                     "location": "[resourceGroup().location]",
                     "comments": "Script",
@@ -662,7 +662,7 @@
                     "displayName": "VM Extension"
                     },
                     "dependsOn": [
-                    "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
+                    "[concat('Microsoft.Compute/virtualMachines/', 'oilwells-server-', parameters('alias'))]"
                     ],
                     "properties": {
                     "publisher": "Microsoft.Compute",

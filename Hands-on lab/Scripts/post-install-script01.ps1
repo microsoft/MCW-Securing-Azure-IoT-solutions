@@ -315,11 +315,6 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 Install-WindowsFeature -Name Hyper-V -ComputerName localhost -IncludeManagementTools
 
 Uninstall-AzureRm
-
-$securePassword = $password | ConvertTo-SecureString -AsPlainText -Force
-$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $userName, $SecurePassword
-
-Connect-AzAccount -Credential $cred | Out-Null
          
 cd "c:\labfiles";
 
