@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-June 2020
+November 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -89,7 +89,7 @@ At the end of this lab you will have a better understanding of how the latest Az
 
 Contoso, Ltd. has major holdings in one of the world’s most important oil-producing regions. To overcome the challenges of monitoring and optimizing a vast number of widely dispersed field assets, Contoso, Ltd. is looking to streamline its operations with IoT solutions. They want to deploy IoT technologies to electronically collect data and use cloud-based solutions to store and analyze it in order to gain new insights into well operations and future drilling possibilities.
 
-Their environments are very tough environments in which to work. The climate is hot, harsh, and unforgiving, and oil wells are often spaced many miles apart, so field technicians can spend much of their day just driving from one to another. Cellular and radio reception is spotty at best, so collecting data about well conditions and performance typically involves manually writing down information. The technician must then make the long trek to the central office at the end of the day to upload the data for analysis. With such remote situations, a key concern for Contoso is not only how they manage these remote devices, but more broadly how they secure the complete solution that encompasses the physical device, the software on the device, the services processing the data in the cloud and the network connecting it all. 
+Their environments are very tough environments in which to work. The climate is hot, harsh, and unforgiving, and oil wells are often spaced many miles apart, so field technicians can spend much of their day just driving from one to another. Cellular and radio reception is spotty at best, so collecting data about well conditions and performance typically involves manually writing down information. The technician must then make the long trek to the central office at the end of the day to upload the data for analysis. With such remote situations, a key concern for Contoso is not only how they manage these remote devices, but more broadly how they secure the complete solution that encompasses the physical device, the software on the device, the services processing the data in the cloud and the network connecting it all.
 
 Contoso plans to tie in to existing sensors at the well head that monitor key system parameters like temperatures, pressures, and flow rates. They will deploy gateway devices to route device data for processing, storage and analytics. Internal IT staff and engineers want to visualize the high-resolution data and deliver near real-time analyses. The company is placing a premium on flexibility and ease of use, with security as a fundamental driver.
 
@@ -171,7 +171,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
     ![Blade is refreshed and the Settings link is highlighted.](media/ex1_image009.png "Select Settings")
 
-7. In the settings, select **Data Collection**.
+7. In the settings page, select **Data Collection**.
 
 8. Ensure **Enable** is selected.
 
@@ -286,32 +286,32 @@ With the Azure resources in place, you can now start creating and provisioning d
 - For Ubuntu 16.04:
 
 ```PowerShell
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
 sudo apt-get install -y git cmake build-essential curl libcurl4-openssl-dev libssl-dev uuid-dev
 
-sudo apt-get install libcurl3
-sudo apt-get install auditd audispd-plugins
+sudo apt-get install -y libcurl3
+sudo apt-get install -y auditd audispd-plugins
 
 sudo reboot
-
 ```
 
 - For Ubuntu 18.04:
 
 ```PowerShell
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
 sudo apt-get install -y git cmake libcurl4 build-essential curl libcurl4-openssl-dev libssl-dev uuid-dev
 
-sudo apt-get install libcurl3 libcurl-openssl1.0-dev
-sudo apt-get install auditd audispd-plugins
+sudo apt-get install -y libcurl4 libcurl4-openssl1.0-dev
+sudo apt-get install -y auditd audispd-plugins
 
 sudo reboot
-
 ```
+
+> **Note** Ubuntu 20.04 will not work with these labs.
 
 ### Task 3: Download and compile the Azure IoT SDK
 
@@ -365,7 +365,11 @@ sudo ./tpm_device_provision
 
 ### Task 5: Install a software TPM and Resource Manager and reattempt Device Enrollment
 
->**Note**: If you have a hardware TPM in your device, you can skip to step 3.
+>**Note**: If you have a hardware TPM in your device, you can skip to step 3, you can determine if you have a TPM device by running the following and observing if you get any results back.
+
+```bash
+dmesg | grep -i tpm
+```
 
 >**Note**: Devices such as a Raspberry PI do not come with a TPM chip.  You can however add a TPM chip to these devices such as [this Iridium Board](https://catalog.azureiotsolutions.com/details?title=OPTIGA-TPM-SLB-9670-Iridium-Board&source=all-devices-page/).
 
@@ -401,9 +405,9 @@ sudo ./tpm_device_provision
     sudo apt-get install -y libtool
     sudo apt-get install -y pkg-config
 
-    sudo wget -c https://astuteinternet.dl.sourceforge.net/project/ibmtpm20tss/ibmtss1470.tar.gz
+    sudo wget -c https://netactuate.dl.sourceforge.net/project/ibmtpm20tss/ibmtss1.5.0.tar.gz
 
-    sudo tar -zxvf ibmtss1470.tar.gz
+    sudo tar -zxvf ibmtss1.5.0.tar.gz
 
     cd ..
     sudo chown -R $USER ~/.
@@ -447,9 +451,9 @@ sudo ./tpm_device_provision
 
 8. For the **Mechanism**, select **TPM**.
 
-9. For the **IoT Hub Device ID**, type **oilwells001**.
+9. Enter your Endorsement Key and Registration Id, then select the **True** toggle for the IoT Edge Device setting.
 
-10. Enter your Endorsement Key and Registration Id, then select the **True** toggle for the IoT Edge Device setting.
+10. For the **IoT Hub Device ID**, type **oilwells001**.
 
     ![Add Enrollment dialog with the endorsement key and registration id populated.](media/ex2_image010.png "The Add Enrollment dialog")
 
@@ -480,10 +484,10 @@ sudo cp ./microsoft.gpg /etc/apt/trusted.gpg.d/
 
 sudo apt-get update
 
-sudo apt-get install moby-engine
-sudo apt-get install moby-cli
+sudo apt-get install -y moby-engine
+sudo apt-get install -y moby-cli
 
-sudo apt-get install iotedge
+sudo apt-get install -y iotedge
 ```
 
 ### Task 2: Configure the IoT Edge agent
@@ -534,7 +538,7 @@ sudo apt-get install iotedge
 
     - Symmetric Key Provisioning
 
-        - Comment out the manual provision settings, uncomment the **DPS symmetric key** settings, then copy in the device primary symmetric key and Registration Id information.
+        - Comment out the manual provision settings, uncomment the **DPS symmetric key** settings, then copy in the device primary symmetric key (you will have to change the device registration to this type) and Registration Id information.
 
         - Save the file, press **CTRL-X**, then **Y**, then **Enter**.
 
@@ -573,6 +577,18 @@ sudo apt-get install iotedge
         /bin/udevadm trigger $tpm
         ```
 
+        - Check that access has been applied:
+
+        ```bash
+        ls -l /dev/tpm0
+        ```
+
+        - You should see the following:
+
+        ```bash
+        crw-rw---- 1 root iotedge 10, 224 Jul 20 16:27 /dev/tpm0
+        ```
+
 11. After completing **one** of the above methods (it is suggested you perform the manual device connection string path for simplicity), run the following commands to restart the iotedge service:
 
     ```bash
@@ -606,15 +622,17 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 ### Task 1: Install the Security agent
 
-1. Run the following command:
+1. Run the following commands, be sure to replace the ubuntu version:
+
+    >**Note**: Change the ubuntu version "os_version" as appropriate (`16.04` vs `18.04`).  You can get your version by running `lsb_release -a`.
 
     ```PowerShell
     cd
 
     git clone https://github.com/Azure/Azure-IoT-Security-Agent-C.git --recursive
 
-    sudo apt-get install libcurl3 libcurl-openssl1.0-dev
-    sudo apt-get install auditd audispd-plugins
+    sudo apt-get install -y libcurl3 libcurl-openssl1.0-dev
+    sudo apt-get install -y auditd audispd-plugins
 
     #create release folder
     cd Azure-IoT-Security-Agent-C
@@ -623,10 +641,10 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
     #download the release binaries
 
-    sudo wget -c https://github.com/Azure/Azure-IoT-Security-Agent-C/releases/download/0.0.4/ubuntu-16.04-x64.tar.gz
+    sudo wget -c https://github.com/Azure/Azure-IoT-Security-Agent-C/releases/download/0.0.4/ubuntu-{os_version}-x64.tar.gz
 
     #extract the release binaries
-    sudo tar -zxvf ubuntu-16.04-x64.tar.gz
+    sudo tar -zxvf ubuntu-{os_version}-x64.tar.gz
 
     #copy to target folder
     sudo cp -r Install/. /var/ASCIoTAgent
@@ -759,7 +777,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 1. Run the following command:
 
     ```bash
-    sudo apt-get install netcat
+    sudo apt-get install -y netcat
     ```
 
 2. Download and execute the attack script:
@@ -980,7 +998,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
     ![A generated Alert email.](media/ex6_image024.png "An Alert Email is generated")
 
-23. From the Azure Portal navigate back to your resource group, then select the **oilwells-logging-[YOUR INIT]** Log Analytics instance.
+23. From the Azure Portal navigate back to your resource group, then select the **oilwells-logging-[YOUR INIT]** Log Analytics workspace instance.
 
 24. In the blade menu, in the **General** section, select **Logs**.
 
@@ -1117,7 +1135,7 @@ This exercise will walk you through integrating Time Series Insights and then se
 
     ![The Time Series Insights Azure resource is highlighted.](media/ex7_image001.png "Browse to the Time Series Insights resource")
 
-3. Select **Event Sources**.
+3. Under **Settings**, select **Event Sources**.
 
 4. Select **+Add**.
 
