@@ -645,6 +645,69 @@
         {
             "type": "Microsoft.Compute/virtualMachines",
             "apiVersion": "2018-10-01",
+			"name": "[concat('oilwells-edgevm-', parameters('alias'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-nic-', parameters('alias')))]",
+                "[resourceId('Microsoft.Storage/StorageAccounts', concat('oilwellsstorage', parameters('alias')))]"
+            ],
+            "plan": {
+                "name": "ubuntu_1604_edgeruntimeonly",
+                "product": "iot_edge_vm_ubuntu",
+                "publisher": "microsoft_iot_edge"
+            },
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B1ms"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "microsoft_iot_edge",
+                        "offer": "iot_edge_vm_ubuntu",
+                        "sku": "ubuntu_1604_edgeruntimeonly",
+                        "version": "1.0.1"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat('oilwells-edgevm-', parameters('alias'), '_OsDisk')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS"                            
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[concat('oilwells-edgevm-', parameters('alias'))]",
+                    "adminUsername": "s2admin",
+					"adminPassword": "S2@dmins2@dmin",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-nic-', parameters('alias')))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('https://', 'oilwellsstorage', parameters('alias'), '.blob.core.windows.net/')]"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2018-10-01",
 			"name": "[concat('oilwells-server-', parameters('alias'))]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
