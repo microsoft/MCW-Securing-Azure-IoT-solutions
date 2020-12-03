@@ -56,7 +56,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Exercise 5: Simulate IoT attacks](#exercise-5-simulate-iot-attacks)
     - [Task 1: Setup and execute attack scripts](#task-1-setup-and-execute-attack-scripts)
     - [Task 2: Configure Azure Agent](#task-2-configure-azure-agent)
-    - [Task 3: Perform brute force attack](#task-3-perform-brute-force-attack)
+    - [Task 3: Perform brute force attack (Optional)](#task-3-perform-brute-force-attack-optional)
   - [Exercise 6: Configure security and alerts](#exercise-6-configure-security-and-alerts)
     - [Task 1: Create IoT Baseline checks](#task-1-create-iot-baseline-checks)
     - [Task 2: Review Azure Security for IoT log data](#task-2-review-azure-security-for-iot-log-data)
@@ -137,7 +137,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 1. Open the Azure Portal.
 
-2. Select the **oilwells-prov-[YOUR INITS]** resource.
+2. Select the **oilwells-prov-[YOUR INITS]** device provisioning resource.
 
 3. In the Device Provisioning Service blade, under **Settings**, select **Linked IoT Hubs**.
 
@@ -257,31 +257,27 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 1. Navigate to your lab Azure Resource Group.
 
-2. Select the **oilwells-edgevm-[YOUR INIT]** virtual machine.
+2. Select the **oilwells-server-[YOUR INIT]** virtual machine.
 
-3. Select **Connect**, then select **SSH**.
+3. Select **Connect**, then select **RDP**.
 
-    ![This image shows how to connect to your new IoT device.  The ssh command to connect to the machine is highlighted.](media/ex2_image001.png "Enable Security Center settings")
+4. Login using `s2admin` and password `S2@dmins2dmin`
 
-4. Copy the SSH details, you can remove the **-i** parameter and the key path.
+5. Open the Hyper-V manager, select the `Ubuntu` image, start it if not started
 
-5. Open a Windows PowerShell window, paste the SSH details into the window.
-
-6. When prompted, type **yes** then press **Enter**.
-
-7. Copy the SSH details, press **Enter**.
-
-8. When prompted, enter the password **S2@dmins2@dmin**.  You should now be logged into the device.
-
-![A PowerShell window showing the results of the SSH Session Login.](media/ex2_image002.png "Enable Security Center settings")
+6. When the VM has started, enter the password **S2@dmins2@dmin**.  You should now be logged into the device.
 
 ### Task 2: Update and install Azure IoT SDK prerequisites
 
-1. Run the following commands, this could take up to 10 minutes to complete.
+1. In the Hyper-V Ubuntu guest, open a `terminal` session (select the bottom right icon, then scroll down to the terminal application or search for terminal).
 
-    > **Note**:  Depending on your command line tool (cmd.exe, bash, PowerShell, etc.), you may need to run each line one at a time to avoid skipping any commands. You are updating and upgrading as some required packages will requires these updates. You may find it easier to download and run these in a [Putty](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.73-installer.msi) session.
+2. Run the following commands, this could take up to 10 minutes to complete.
 
-    > **Note**:  The following commands may take 20-30 minutes to complete.
+    - Depending on your command line tool (cmd.exe, bash, PowerShell, etc.), you may need to run each line one at a time to avoid skipping any commands. You are updating and upgrading as some required packages will requires these updates. You may find it easier to download and run these in a [Putty](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.73-installer.msi) session.
+
+    - The following commands may take 20-30 minutes to complete.
+
+    > **Note**: You may want to open this github HOL document in the virtual machine to copy/paste the commands easier.
 
 - For Ubuntu 16.04:
 
@@ -331,7 +327,13 @@ cd azure-iot-sdk-c
 git submodule update --init
 ```
 
-If you are using a `software-based` simulator (which would most likely be the case with an Azure hosted image and is the default setup for the before the hands-on-lab ARM template), then run the following command:
+Determine if you have a hardware-based TPM by running the following and observing if you get any results back.
+
+```bash
+dmesg | grep -i tpm
+```
+
+If you are using a `software-based` simulator, then run the following command:
 
 ```PowerShell
 cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=ON .
@@ -359,7 +361,7 @@ make
 sudo ./tpm_device_provision
 ```
 
->**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Ubuntu image that does not have a hardware TPM enabled nor does it have a software TPM installed.
+>**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Ubuntu image that does not have a hardware TPM enabled nor does it have a software TPM installed.  However, the Windows 10 image does have the Gen2 image setup that allows nested virtualization with a virtual TPM installed.
 
 ![This shows what happens with the device does not have a hardware or software TPM.](media/ex2_image003.png "Failed TPM command")
 
@@ -437,7 +439,7 @@ dmesg | grep -i tpm
 
     ![With the software TPM running, a registration Id and endorsement key is generated.](media/ex2_image005.png "A running software TPM")
 
-4. Copy the device **Registration Id** and the **Endorsement Key**.
+4. Copy the device **Registration Id** and the **Endorsement Key**.  Note that you may want to do this in the virtual machine rather than typing all the information.
 
     >**Note**: In the real world, all your devices should have hardware-based TPMs.
 
@@ -577,13 +579,15 @@ sudo apt-get install -y iotedge
         /bin/udevadm trigger $tpm
         ```
 
+        - Reboot the device/machine
+        - Login and re-open the terminal
         - Check that access has been applied:
 
         ```bash
         ls -l /dev/tpm0
         ```
 
-        - You should see the following:
+        - You should see the following, ensure that `iotedge` is displayed:
 
         ```bash
         crw-rw---- 1 root iotedge 10, 224 Jul 20 16:27 /dev/tpm0
@@ -823,27 +827,37 @@ This exercise will have you install some "fake" processes and open some non-stan
 
     ![A linux computer is now connected via the Azure Agent.](media/loganalytics-linuxconnected.png "The device is now connected to log analytics")
 
-> **Note**: It may take a few minutes for the OMS logs to show up and a heartbeat to be registered in Log Analytics for the IoT Linux machine.
+7. Under **Workspace Data Sources**, select **Virtual Machines**.
 
-### Task 3: Perform brute force attack
+8. Select the **oilwells-edgevm-INIT**
 
-1. Open a new PowerShell ISE window.
+9. Select **Connect**
 
-2. Browse to the `BruteForce.ps1` script.
+    > **Note**: It may take a few minutes for the OMS logs to show up and a heartbeat to be registered in Log Analytics for the IoT Linux machine.
 
-3. Update the IP address for your IoT device.
+### Task 3: Perform brute force attack (Optional)
 
-4. Press **F5** to run the script. The script will attempt to login to the iot device using the wrong credentials with the plink tool of Putty.
+1. Repeat the above steps to add the **oilwells-edgevm-INIT** to the device provisioning service and the Iot Hub as **oilwells002**.
 
-    > **Note**: If the putty version has changed, the script will need to be updated. Browse to https://the.earth.li/~sgtatham/putty/0.74/w64/ to find the latest version.
+2. In the server virtual machine, open a new PowerShell ISE window.
 
-5. Eventually Azure Security Center will send an email warning of a brute force attack on your IoT Device.
+3. Browse to the `\Hands-on-lab\Scripts\BruteForce.ps1` script.
+
+4. Update the script with the IP address of the **oilwells-edgevm-INIT** device.  You can get the IP from the Azure Portal.
+
+5. Press **F5** to run the script. The script will attempt to login to the iot device using the wrong credentials with the plink tool of Putty.
+
+    > **Note**: If the putty version has changed, the script will need to be updated. Browse to [here](https://the.earth.li/~sgtatham/putty/0.74/w64/) to find the latest version.
+
+6. Eventually Azure Security Center will send an email warning of a brute force attack on your IoT Device.
 
     - Browse to the IoT Hub then under the Security section, select **Alerts**.
 
     - You should see the brute force alert displayed.
 
     ![The new brute force alert is displayed.](media/bruteforce-alert.png "Brute force alert displayed")
+
+    > **Note** We could not do this task on the device in the Windows 10 HyperV as it is not accessible to the HyperV host or from the internet.
 
 ## Exercise 6: Configure security and alerts
 
@@ -873,7 +887,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
             "value" : true
             },
             "baselineCustomChecksFilePath": {
-            "value" : "/home/s2admin/oms_audits.xml"
+            "value" : "/home/wsuser/oms_audits.xml"
             },
             "baselineCustomChecksFileHash": {
             "value" : "9026e50c728fe00edcc9d46f2cdb3346425931889730cbf970ccb368dfa2296e"
@@ -890,10 +904,10 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 9. Switch to your putty session connected to the IoT Device, run the following commands:
 
     ```bash
-    sudo nano /home/s2admin/oms_audit.xml
+    sudo nano /home/wsuser/oms_audit.xml
     ```
 
-10. Copy and paste the local `/scripts/oms_audits.xml` file content into the session window, then save it.
+10. Copy and paste the local `/scripts/oms_audits.xml` or [remote](../Hands-on%20lab/Scripts/oms_audits.xml) file content into the session window, then save it.
 
 ### Task 2: Review Azure Security for IoT log data
 
@@ -1165,7 +1179,7 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 1. Open the **\Hands-on-lab\simulated-device\simulated-device.sln** project.
 
-2. Open the **SimulatedDevice.cs** file.
+2. From Solution explorer, open the **SimulatedDevice.cs** file.
 
     ![Solution explorer with the simulateddevice.cs file selected.](media/ex7_image005.png "Open the SimulatedDevice.cs file")
 
@@ -1175,7 +1189,7 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 4. Review the code, notice it is simply creating a set of random event messages, some of which are security oriented.
 
-5. Run the program, press **F5**.
+5. Run the program, press **F5**.  Wait for this tool to run for 2-3 minutes.
 
 ### Task 3: Review the Time Series Portal
 
