@@ -13,20 +13,34 @@ Param (
   $azureSubscriptionID
 )
 
-function CreateRebootTask($name, $scriptPath)
+function CreateRebootTask($name, $scriptPath, $localPath)
 {
+  <#
+  $content = Get-content "$localPath\setup-task.ps1";
+  $content = $content.replace("{USERNAME}", $global:localusername)
+  $content = $content.replace("{PASSWORD}", $global:password)
+  $content = $content.replace("{SCRIPTPATH}", $scriptPath)
+  $content = $content.replace("{TASKNAME}", $name)
+  Set-Content "$localPath\setup-task.ps1" $content;
+
+  $credentials = New-Object System.Management.Automation.PSCredential -ArgumentList @($localusername,(ConvertTo-SecureString -String $password -AsPlainText -Force))
+  start-process "powershell.exe" -ArgumentList "-file $localPath\setup-task.ps1" -RunAs $credentials
+  #>
+
     $action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument " -file `"$scriptPath`""
     $trigger = New-ScheduledTaskTrigger -AtStartup
     $taskname = $name;
 
     write-host "Creating task with $global:localusername and $global:password";
     
+    #doesn't work with static user due to OS level priv :(
     $params = @{
       Action  = $action
       Trigger = $trigger
       TaskName = $taskname
-      User = $global:localusername
-      Password = $global:password
+      User = "System"
+      #User = $global:localusername
+      #Password = $global:password
   }
     
     if(Get-ScheduledTask -TaskName $params.TaskName -EA SilentlyContinue) { 
@@ -330,11 +344,11 @@ git clone https://github.com/givenscj/MCW-Securing-the-IoT-end-to-end
 #make sure to login at least once
 write-host "Logging in";
 $credentials = New-Object System.Management.Automation.PSCredential -ArgumentList @($localusername,(ConvertTo-SecureString -String $password -AsPlainText -Force))
-start-process "powershell.exe" -Credential $credentials
+start-process "powershell.exe" -Credential $credentials -RunAs
 
 write-host "Creating reboot task";
 $scriptPath = "C:\LabFiles\MCW-Securing-the-IoT-end-to-end\hands-on lab\scripts\post-install-script02.ps1"
-CreateRebootTask "MCW Setup Script" $scriptPath
+CreateRebootTask "MCW Setup Script" $scriptPath "C:\LabFiles\MCW-Securing-the-IoT-end-to-end\hands-on lab\scripts"
 
 sleep 20
 

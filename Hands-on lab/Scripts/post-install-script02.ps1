@@ -34,26 +34,34 @@ function FreshStart()
 
 function DownloadImage()
 {
-    $item = Get-Item "c:\temp\ubuntu.zip";
+    write-host "Checking for zip";
 
-    if ($item)
+    $item = Get-Item "c:\temp\ubuntu.zip" -ea silentlycontinue;
+
+    if (!$item)
     {
+        write-host "Downloading Ubuntu zip";
+
         #download the image...
         $url = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/UBUSRV.zip";
         Start-BitsTransfer -Source $url -DisplayName Notepad -Destination "c:\temp\ubuntu.zip"
     }
 
     #extract image
+    write-host "Extracting Ubuntu zip";
+
     #Expand-archive -path "c:\temp\ubuntu.zip" -destinationpath c:\VMs\Ubuntu2; #doesn't work with explorer zips
     7z e c:\temp\ubuntu.zip -oc:\vms *.* -r -spf
 }
 
 function MountImage()
 {
-    $vm = Get-VM $vmName
+    $vm = Get-VM $vmName -ea silentlycontinue
 
     if (!$vm)
     {
+        write-host "Creating VM";
+
         # VM creation
         $vmName = "UBUSRV";
         $vmNewDiskPath = "C:\VMs\UBUSRV\Virtual Hard Disks\UBUSRV.vhdx";
@@ -83,10 +91,12 @@ function MountImage()
 
 function ImportImage()
 {
-    $vm = Get-VM $vmName
+    $vm = Get-VM $vmName -ea silentlycontinue
 
     if (!$vm)
     {
+        write-host "Importing VM";
+
         #import the image
         Import-VM -Path 'C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx'
     }
@@ -106,8 +116,11 @@ $global:localusername = $username
 
 Uninstall-AzureRm
 
-mkdir c:\temp -ea silentycontinue;
-mkdir c:\VMs -ea silentycontinue;
+mkdir c:\temp -ea silentlycontinue;
+mkdir c:\VMs -ea silentlycontinue;
+
+#do a second time???
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
 
 DownloadImage;
 
@@ -115,12 +128,18 @@ MountImage;
 
 #setup TPM
 $vmName = "ubusrv"
-$owner = New-HgsGuardian -Name "Guardian11" -GenerateCertificates
+$owner = Get-HgsGuardian -Name "Guardian11"
+
+if (!$owner)
+{
+    $owner = New-HgsGuardian -Name "Guardian11" -GenerateCertificates
+}
+
 $kp = New-HgsKeyProtector -Owner $owner -AllowUntrustedRoot
 Set-VMKeyProtector -VMName $vmName -KeyProtector $kp.RawData
 
 #turn on TPM
-$vm = Get-VM $vmName
+$vm = Get-VM $vmName -ea silentlycontinue
 Enable-VMTPM -VM $vm
 
 #start it
