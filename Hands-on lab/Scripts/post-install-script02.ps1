@@ -34,9 +34,14 @@ function FreshStart()
 
 function DownloadImage()
 {
-    #download the image...
-    $url = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/UBUSRV.zip";
-    Start-BitsTransfer -Source $url -DisplayName Notepad -Destination "c:\temp\ubuntu.zip"
+    $item = Get-Item "c:\temp\ubuntu.zip";
+
+    if ($item)
+    {
+        #download the image...
+        $url = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/UBUSRV.zip";
+        Start-BitsTransfer -Source $url -DisplayName Notepad -Destination "c:\temp\ubuntu.zip"
+    }
 
     #extract image
     #Expand-archive -path "c:\temp\ubuntu.zip" -destinationpath c:\VMs\Ubuntu2; #doesn't work with explorer zips
@@ -45,36 +50,46 @@ function DownloadImage()
 
 function MountImage()
 {
-    # VM creation
-    $vmName = "UBUSRV";
-    $vmNewDiskPath = "C:\VMs\UBUSRV\Virtual Hard Disks\UBUSRV.vhdx";
-    $vmNewDiskSize = 40GB;
-    $vmPath = "C:\VMs";
-    $vmGeneration = 2;
-    $vmBootDevice = "VHD";
-    $vmSwitchName = "Default Switch"; # To find existing switches run, Get-VMSwitch | ft
-    
-    $vmFirmwareEnableSecureBoot = "On"; # Turn off if you trust and/or image isn't supported.
-    $vmFirmwareSecureBootTemplate = "MicrosoftUEFICertificateAuthority";
+    $vm = Get-VM $vmName
 
-    $vmProcessorCount = 2;
-    $vmMemoryStartUpBytes = 1GB;
-    $vmMemoryMinimumBytes =  500MB;
-    $vmMemoryMaximumBytes =  3GB;
-    $vmDynamicMemoryEnabled = $true;
+    if (!$vm)
+    {
+        # VM creation
+        $vmName = "UBUSRV";
+        $vmNewDiskPath = "C:\VMs\UBUSRV\Virtual Hard Disks\UBUSRV.vhdx";
+        $vmNewDiskSize = 40GB;
+        $vmPath = "C:\VMs";
+        $vmGeneration = 2;
+        $vmBootDevice = "VHD";
+        $vmSwitchName = "Default Switch"; # To find existing switches run, Get-VMSwitch | ft
+        
+        $vmFirmwareEnableSecureBoot = "On"; # Turn off if you trust and/or image isn't supported.
+        $vmFirmwareSecureBootTemplate = "MicrosoftUEFICertificateAuthority";
 
-    #New-VMSwitch -name $vmSwitchName  -NetAdapterName Ethernet -AllowManagementOS $true
+        $vmProcessorCount = 2;
+        $vmMemoryStartUpBytes = 1GB;
+        $vmMemoryMinimumBytes =  500MB;
+        $vmMemoryMaximumBytes =  3GB;
+        $vmDynamicMemoryEnabled = $true;
 
-    New-VM -Name $vmName -BootDevice $vmBootDevice -VHDPath $vmNewDiskPath -Path $vmPath -Generation $vmGeneration -SwitchName $vmSwitchName
-    Set-VMFirmware $vmName -EnableSecureBoot $vmFirmwareEnableSecureBoot -SecureBootTemplate $vmFirmwareSecureBootTemplate
-    Set-VMProcessor $vmName -Count $vmProcessorCount
-    Set-VMMemory $vmName -DynamicMemoryEnabled $vmDynamicMemoryEnabled -MinimumBytes $vmMemoryMinimumBytes -StartupBytes $vmMemoryStartUpBytes -MaximumBytes $vmMemoryMaximumBytes
+        #New-VMSwitch -name $vmSwitchName  -NetAdapterName Ethernet -AllowManagementOS $true
+
+        New-VM -Name $vmName -BootDevice $vmBootDevice -VHDPath $vmNewDiskPath -Path $vmPath -Generation $vmGeneration -SwitchName $vmSwitchName
+        Set-VMFirmware $vmName -EnableSecureBoot $vmFirmwareEnableSecureBoot -SecureBootTemplate $vmFirmwareSecureBootTemplate
+        Set-VMProcessor $vmName -Count $vmProcessorCount
+        Set-VMMemory $vmName -DynamicMemoryEnabled $vmDynamicMemoryEnabled -MinimumBytes $vmMemoryMinimumBytes -StartupBytes $vmMemoryStartUpBytes -MaximumBytes $vmMemoryMaximumBytes
+    }
 }
 
 function ImportImage()
 {
-    #import the image
-    Import-VM -Path 'C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx'
+    $vm = Get-VM $vmName
+
+    if (!$vm)
+    {
+        #import the image
+        Import-VM -Path 'C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx'
+    }
 }
 
 Start-Transcript -Path C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt -Append
@@ -91,8 +106,8 @@ $global:localusername = $username
 
 Uninstall-AzureRm
 
-mkdir c:\temp;
-mkdir c:\VMs;
+mkdir c:\temp -ea silentycontinue;
+mkdir c:\VMs -ea silentycontinue;
 
 DownloadImage;
 
@@ -110,6 +125,9 @@ Enable-VMTPM -VM $vm
 
 #start it
 Start-VM $vmName;
+
+#diable the task
+Disable-ScheduledTask -TaskName "MCW Setup"
 
 Stop-Transcript
 

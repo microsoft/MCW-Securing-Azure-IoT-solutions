@@ -15,7 +15,7 @@ Param (
 
 function CreateRebootTask($name, $scriptPath)
 {
-    $action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument "-NoProfile -WindowStyle Hidden -file $scriptPath"
+    $action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument " -file `"$scriptPath`""
     $trigger = New-ScheduledTaskTrigger -AtStartup
     $taskname = $name;
 
@@ -324,8 +324,15 @@ Uninstall-AzureRm
          
 cd "c:\labfiles";
 
+write-host "Downloading git repo";
 git clone https://github.com/givenscj/MCW-Securing-the-IoT-end-to-end
 
+#make sure to login at least once
+write-host "Logging in";
+$credentials = New-Object System.Management.Automation.PSCredential -ArgumentList @($localusername,(ConvertTo-SecureString -String $password -AsPlainText -Force))
+start-process "powershell.exe" -Credential $credentials
+
+write-host "Creating reboot task";
 $scriptPath = "C:\LabFiles\MCW-Securing-the-IoT-end-to-end\hands-on lab\scripts\post-install-script02.ps1"
 CreateRebootTask "MCW Setup Script" $scriptPath
 
