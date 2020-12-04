@@ -331,20 +331,12 @@ wevtutil set-log Microsoft-Windows-TaskScheduler/Operational /enabled:true
 write-host "Enable HyperV";
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
 
-#write-host "Enable HyperV";
-#Install-WindowsFeature -Name Hyper-V -ComputerName localhost -IncludeManagementTools
-
 Uninstall-AzureRm
          
 cd "c:\labfiles";
 
 write-host "Downloading git repo";
 git clone https://github.com/givenscj/MCW-Securing-the-IoT-end-to-end
-
-#make sure to login at least once
-write-host "Logging in";
-$credentials = New-Object System.Management.Automation.PSCredential -ArgumentList @($localusername,(ConvertTo-SecureString -String $password -AsPlainText -Force))
-start-process "powershell.exe" -Credential $credentials -RunAs
 
 write-host "Creating reboot task";
 $scriptPath = "C:\LabFiles\MCW-Securing-the-IoT-end-to-end\hands-on lab\scripts\post-install-script02.ps1"

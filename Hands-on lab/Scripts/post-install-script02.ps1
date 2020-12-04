@@ -5,7 +5,6 @@ function FreshStart()
     Start-BitsTransfer -Source $url -DisplayName Notepad -Destination "c:\temp\ubuntu.iso"
 
     # VM creation
-    $vmName = "UBUSRV";
     $vmNewDiskPath = "C:\VMs\UBUSRV.vhdx";
     $vmNewDiskSize = 40GB;
     $vmPath = "C:\VMs";
@@ -25,11 +24,11 @@ function FreshStart()
 
     #New-VMSwitch -name $vmSwitchName  -NetAdapterName Ethernet -AllowManagementOS $true
 
-    New-VM -Name $vmName -BootDevice $vmBootDevice -NewVHDPath $vmNewDiskPath -Path $vmPath -NewVHDSizeBytes $vmNewDiskSize -Generation $vmGeneration -SwitchName $vmSwitchName
-    Set-VMFirmware $vmName -EnableSecureBoot $vmFirmwareEnableSecureBoot -SecureBootTemplate $vmFirmwareSecureBootTemplate
-    Set-VMProcessor $vmName -Count $vmProcessorCount
-    Set-VMMemory $vmName -DynamicMemoryEnabled $vmDynamicMemoryEnabled -MinimumBytes $vmMemoryMinimumBytes -StartupBytes $vmMemoryStartUpBytes -MaximumBytes $vmMemoryMaximumBytes
-    Add-VMDvdDrive $vmName -Path $vmDvdDrivePath # To eject run Remove-VMDvdDrive $vmName
+    New-VM -Name $global:vmName -BootDevice $vmBootDevice -NewVHDPath $vmNewDiskPath -Path $vmPath -NewVHDSizeBytes $vmNewDiskSize -Generation $vmGeneration -SwitchName $vmSwitchName
+    Set-VMFirmware $global:vmName -EnableSecureBoot $vmFirmwareEnableSecureBoot -SecureBootTemplate $vmFirmwareSecureBootTemplate
+    Set-VMProcessor $global:vmName -Count $vmProcessorCount
+    Set-VMMemory $global:vmName -DynamicMemoryEnabled $vmDynamicMemoryEnabled -MinimumBytes $vmMemoryMinimumBytes -StartupBytes $vmMemoryStartUpBytes -MaximumBytes $vmMemoryMaximumBytes
+    Add-VMDvdDrive $global:vmName -Path $vmDvdDrivePath # To eject run Remove-VMDvdDrive $vmName
 }
 
 function DownloadImage()
@@ -47,16 +46,21 @@ function DownloadImage()
         Start-BitsTransfer -Source $url -DisplayName Notepad -Destination "c:\temp\ubuntu.zip"
     }
 
-    #extract image
-    write-host "Extracting Ubuntu zip";
+    $item = get-item "C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx"
 
-    #Expand-archive -path "c:\temp\ubuntu.zip" -destinationpath c:\VMs\Ubuntu2; #doesn't work with explorer zips
-    7z e c:\temp\ubuntu.zip -oc:\vms *.* -r -spf
+    if (!$item)
+    {
+        #extract image
+        write-host "Extracting Ubuntu zip";
+
+        #Expand-archive -path "c:\temp\ubuntu.zip" -destinationpath c:\VMs\Ubuntu2; #doesn't work with explorer zips
+        7z e c:\temp\ubuntu.zip -oc:\vms *.* -r -spf
+    }
 }
 
 function MountImage()
 {
-    $vm = Get-VM $vmName -ea silentlycontinue
+    $vm = Get-VM $global:vmName -ea silentlycontinue
 
     if (!$vm)
     {
@@ -91,7 +95,7 @@ function MountImage()
 
 function ImportImage()
 {
-    $vm = Get-VM $vmName -ea silentlycontinue
+    $vm = Get-VM $global:vmName -ea silentlycontinue
 
     if (!$vm)
     {
@@ -122,13 +126,14 @@ mkdir c:\VMs -ea silentlycontinue;
 #do a second time???
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
 
+$global:vmName = "ubusrv"
+
 DownloadImage;
 
 MountImage;
 
 #setup TPM
-$vmName = "ubusrv"
-$owner = Get-HgsGuardian -Name "Guardian11"
+$owner = Get-HgsGuardian -Name "Guardian11" -ea silentlycontinue
 
 if (!$owner)
 {
@@ -136,17 +141,17 @@ if (!$owner)
 }
 
 $kp = New-HgsKeyProtector -Owner $owner -AllowUntrustedRoot
-Set-VMKeyProtector -VMName $vmName -KeyProtector $kp.RawData
+Set-VMKeyProtector -VMName $global:vmName -KeyProtector $kp.RawData
 
 #turn on TPM
-$vm = Get-VM $vmName -ea silentlycontinue
+$vm = Get-VM $global:vmName -ea silentlycontinue
 Enable-VMTPM -VM $vm
 
 #start it
-Start-VM $vmName;
+Start-VM $global:vmName;
 
 #diable the task
-Disable-ScheduledTask -TaskName "MCW Setup"
+Disable-ScheduledTask -TaskName "MCW Setup Script"
 
 Stop-Transcript
 
