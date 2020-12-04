@@ -18,6 +18,8 @@ function CreateRebootTask($name, $scriptPath)
     $action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument "-NoProfile -WindowStyle Hidden -file $scriptPath"
     $trigger = New-ScheduledTaskTrigger -AtStartup
     $taskname = $name;
+
+    write-host "Creating task with $global:localusername and $global:password";
     
     $params = @{
       Action  = $action
@@ -305,14 +307,18 @@ InstallAzPowerShellModule
 
 InstallDockerDesktop
 
+write-host "Setting Hide file ext";
 reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced /v HideFileExt /t REG_DWORD /d 0 /f
 
+write-host "Enable task history";
 wevtutil set-log Microsoft-Windows-TaskScheduler/Operational /enabled:true
 
 #enable hyperv
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+write-host "Enable HyperV";
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
 
-Install-WindowsFeature -Name Hyper-V -ComputerName localhost -IncludeManagementTools
+#write-host "Enable HyperV";
+#Install-WindowsFeature -Name Hyper-V -ComputerName localhost -IncludeManagementTools
 
 Uninstall-AzureRm
          
