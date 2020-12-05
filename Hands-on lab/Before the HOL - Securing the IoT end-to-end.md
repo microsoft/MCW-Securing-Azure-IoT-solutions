@@ -44,7 +44,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 ## Before the hands-on lab
 
-Duration: 10 minutes
+Duration: 30 minutes
 
 Synopsis: In this exercise, you will set up your environment for use in the rest of the hands-on lab. You should follow all the steps provided in the Before the Hands-on Lab section to prepare your environment *before* attending the workshop.
 
@@ -112,7 +112,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     - As part of the deployment, you will see the following items created:
 
-       - Windows 10 (Gen2) virtual machine running HyperV with virtual TPM enabled Ubuntu image
+       - Windows 10 (Gen2) virtual machine running HyperV with virtual TPM-enabled Ubuntu image
 
        - Azure Data Lake Storage account
 

@@ -137,25 +137,27 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 1. Open the Azure Portal.
 
-2. Select the **oilwells-prov-[YOUR INITS]** device provisioning resource.
+2. Browse to your lab resource group
 
-3. In the Device Provisioning Service blade, under **Settings**, select **Linked IoT Hubs**.
+3. Select the **oilwells-prov-[YOUR INITS]** device provisioning resource.
 
-4. Select **+Add**.
+4. In the Device Provisioning Service blade, under **Settings**, select **Linked IoT Hubs**.
+
+5. Select **+Add**.
 
     ![Link the Device Provision Service to the IoT Hub.](media/ex1_image001.png "Linked IoT Hubs")
 
-5. Select the **oilwells-iothub-[YOUR INITS]** IoT hub.
+6. Select the **oilwells-iothub-[YOUR INITS]** IoT hub.
 
-6. Select the **iotowner** access policy.
+7. Select the **iotowner** access policy.
 
     ![Configure the link settings.](media/ex1_image002.png "Linked IoT Hubs")
 
-7. Select **Save**.
+8. Select **Save**.
 
 ### Task 2: Enable Azure Security Center for IoT
 
-1. Navigate to your resource group.
+1. Navigate back to your resource group.
 
 2. In the menu, select the **oilwells-iothub-[YOUR INITS]** IoT Hub.
 
@@ -165,7 +167,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
     ![Screenshot with the Overview and "Secure your IoT Solution" highlighted.](media/ex1_image008.png "Enable Advanced Threat Protection")
 
-5. Refresh the Security Overview page
+5. Refresh the Security Overview page, you should now see the **Threat prevention** and **Threat detection** KPIs.
 
 6. In the blade navigation, under **Security**, select **Settings**.
 
@@ -173,15 +175,15 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 7. In the settings page, select **Data Collection**.
 
-8. Ensure **Enable** is selected.
+8. Ensure **Enable Azure Defender for IoT** is selected.
 
-9. For the workspace, select **oilwells-logging-[YOUR INIT]**.
+9. Toggle the switch for the log analytics to **On**.
 
-    > **Note**: You might have to toggle the **On** switch to select a workspace.
+10. For the workspace, select **oilwells-logging-[YOUR INIT]**.
 
     ![Here you are enabling the Azure Security Center for IoT.](media/ex1_image004.png "Enable Security Center settings")
 
-10. Select **Save**. Wait for the operation to complete.
+11. Select **Save**. Wait for the operation to complete.
 
 ### Task 3: Enable Azure Audit logging
 
@@ -259,13 +261,17 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 2. Select the **oilwells-server-[YOUR INIT]** virtual machine.
 
-3. Select **Connect**, then select **RDP**.
+3. Select **Connect**, then select **RDP**, then select **Download RDP File**.
 
-4. Login using `s2admin` and password `S2@dmins2dmin`
+4. Open the downloaded rdp file, login using `s2admin` and password `S2@dmins2dmin`
 
-5. Open the Hyper-V manager, select the `Ubuntu` image, start it if not started
+5. If prompted, select **Accept** in the dialog.
 
-6. When the VM has started, enter the password **S2@dmins2@dmin**.  You should now be logged into the device.
+6. Open the Hyper-V manager mmc, select the **Server-[YOUR INIT}** then select the `Ubuntu` image, start it if not started
+
+7. When the VM has started, enter the password **S2@dmins2@dmin**.  You should now be logged into the device.
+
+8. If prompted to upgrade to **20.04**, select **Don't Upgrade**
 
 ### Task 2: Update and install Azure IoT SDK prerequisites
 
@@ -273,11 +279,13 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 2. Run the following commands, this could take up to 10 minutes to complete.
 
-    - Depending on your command line tool (cmd.exe, bash, PowerShell, etc.), you may need to run each line one at a time to avoid skipping any commands. You are updating and upgrading as some required packages will requires these updates. You may find it easier to download and run these in a [Putty](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.73-installer.msi) session.
+    - Depending on your hosting environment and command line tool (cmd.exe, bash, PowerShell, etc.), you may need to run each line one at a time to avoid skipping any commands. You are updating and upgrading as some required packages will requires these updates.
+
+    - Again, depending on your hosting environment, you may find it easier to download and run these in a [Putty](https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.73-installer.msi) session.
 
     - The following commands may take 20-30 minutes to complete.
 
-    > **Note**: You may want to open this github HOL document in the virtual machine to copy/paste the commands easier.
+    > **Note**: You may want to open the MCW Github HOL document in the virtual machine to copy/paste the commands easier.
 
 - For Ubuntu 16.04:
 
@@ -543,6 +551,46 @@ sudo apt-get install -y iotedge
         - Comment out the manual provision settings, uncomment the **DPS symmetric key** settings, then copy in the device primary symmetric key (you will have to change the device registration to this type) and Registration Id information.
 
         - Save the file, press **CTRL-X**, then **Y**, then **Enter**.
+
+    - Certificate Provisioning
+
+        - You will need to generate a test CA certificate and then device certificates
+
+        - On the `server-INIT` virtual machine, open a PowerShell  window, run the following.  Be sure to replace the IoT Hub name:
+
+            ```PowerShell
+
+            #https://github.com/Azure/azure-iot-sdk-c/blob/master/tools/CACertificates/CACertificateOverview.md
+
+            #https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-x509ca-overview#sign-devices-into-the-certificate-chain-of-trust
+
+            mkdir "c:\certs" -ea silentlycontinue
+
+            cd "c:\certs"
+
+            . "C:\LabFiles\azure-iot-sdk-c\tools\CACertificates\ca-certs.ps1"
+
+            Test-CACertsPrerequisites
+
+            #create the CA
+            New-CACertsCertChain "rsa"
+
+            $secPassword = ConvertTo-SecureString -String "S2@dmins2@dmin" -AsPlainText -Force;
+
+            #create the device certs (oilwells001, oilwells002)
+            New-CACertsEdgeDevice "oilwells001" -certPassword $secpassword
+
+            Write-CACertsCertificatesForEdgeDevice "oilwells001"
+
+            New-CACertsDevice "oilwells002" -certPassword $secpassword
+
+            Write-CACertsCertificatesToEnvironment "oilwells002" {myIotHubName}
+
+            New-CACertsDevice "oilwells003" -certPassword $secpassword
+
+            Write-CACertsCertificatesToEnvironment "oilwells003" {myIotHubName}
+            #>
+            ```
 
     - TPM Provisioning
 

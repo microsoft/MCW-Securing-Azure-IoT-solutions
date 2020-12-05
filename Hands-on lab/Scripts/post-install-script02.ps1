@@ -42,7 +42,7 @@ function DownloadImage()
         write-host "Downloading Ubuntu zip";
 
         #download the image...
-        $url = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/UBUSRV.zip";
+        $url = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/UBUSRV_Updates.zip";
         Start-BitsTransfer -Source $url -DisplayName Notepad -Destination "c:\temp\ubuntu.zip"
     }
 

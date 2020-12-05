@@ -51,6 +51,34 @@ function CreateRebootTask($name, $scriptPath, $localPath)
     }
 }
 
+function CreateCertificates()
+{
+  mkdir "c:\certs" -ea silentlycontinue
+
+  cd "c:\certs"
+
+  . "C:\LabFiles\azure-iot-sdk-c\tools\CACertificates\ca-certs.ps1"
+
+  Test-CACertsPrerequisites
+
+  #create the CA
+  New-CACertsCertChain "ecc"
+
+  <#
+  $secPassword = ConvertTo-SecureString -String $password -AsPlainText -Force;
+
+  #create the device certs (oilwells001, oilwells002)
+  New-CACertsDevice "oilwells001" -certPassword $secpassword
+  New-CACertsDevice "oilwells002" -certPassword $secpassword
+  New-CACertsDevice "oilwells003" -certPassword $secpassword
+  #>
+}
+
+function InstallOpenSSL()
+{
+  choco install openssl --ignoredetectedreboot
+}
+
 function Install7Zip()
 {
   choco install 7zip.install
@@ -311,6 +339,8 @@ InstallChocolaty;
 
 Install7Zip;
 
+InstallOpenSSL;
+
 InstallPutty;
 
 InstallAzureCli;
@@ -335,8 +365,11 @@ Uninstall-AzureRm
          
 cd "c:\labfiles";
 
-write-host "Downloading git repo";
+write-host "Downloading MCW git repo";
 git clone https://github.com/givenscj/MCW-Securing-the-IoT-end-to-end
+
+write-host "Downloading Azure IoT SDK Repo"
+git clone https://github.com/Azure/azure-iot-sdk-c
 
 write-host "Creating reboot task";
 $scriptPath = "C:\LabFiles\MCW-Securing-the-IoT-end-to-end\hands-on lab\scripts\post-install-script02.ps1"
