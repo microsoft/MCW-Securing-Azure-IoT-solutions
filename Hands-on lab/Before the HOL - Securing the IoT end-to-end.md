@@ -108,9 +108,11 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     ![The above information is entered in the form, and I agree to the terms and conditions stated above and Purchase are selected and highlighted at the bottom.](media/beforehol-image4.png "Terms and conditions form")
 
-14. The deployment will take 15-25 minutes to complete. To view the progress, select the **Deployments** link, then select the **Microsoft.Template** deployment.
+14. The deployment will take 25-35 minutes to complete. To view the progress, select the **Deployments** link, then select the **Microsoft.Template** deployment.
 
     - As part of the deployment, you will see the following items created:
+
+       - Windows 10 (Gen2) virtual machine running HyperV with virtual TPM enabled Ubuntu image
 
        - Azure Data Lake Storage account
 
@@ -120,7 +122,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
        - Azure Cosmos DB Account
 
-       - Several virtual machines and supported resources (oilwells-edgevm, oilwells-001, oilwells-002)
+       - Several virtual machines and supported resources (oilwells-server-INIT, oilwells-edgevm-INIT)
 
        - Event Hubs namespace
 
