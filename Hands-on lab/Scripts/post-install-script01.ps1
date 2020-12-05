@@ -62,7 +62,7 @@ function CreateCertificates()
   Test-CACertsPrerequisites
 
   #create the CA
-  New-CACertsCertChain "ecc"
+  New-CACertsCertChain "rsa"
 
   <#
   $secPassword = ConvertTo-SecureString -String $password -AsPlainText -Force;
