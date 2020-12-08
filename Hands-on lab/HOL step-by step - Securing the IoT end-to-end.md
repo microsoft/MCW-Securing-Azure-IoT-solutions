@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-November 2020
+December 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -275,7 +275,7 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 ### Task 2: Update and install Azure IoT SDK prerequisites
 
-1. In the Hyper-V Ubuntu guest, open a `terminal` session (select the bottom right icon, then scroll down to the terminal application or search for terminal).
+1. In the Hyper-V Ubuntu guest, open a `terminal` session. You should see a link in the right-hand favorites bar (you can also select the bottom right icon, then scroll down to the terminal application or search for terminal).
 
 2. Run the following commands, this could take up to 10 minutes to complete.
 
@@ -285,35 +285,35 @@ With the Azure resources in place, you can now start creating and provisioning d
 
     - The following commands may take 20-30 minutes to complete.
 
-    > **Note**: You may want to open the MCW Github HOL document in the virtual machine to copy/paste the commands easier.
+    > **Note**: You may want to open the MCW Github HOL (https://microsoftcloudworkshop.com) document in the virtual machine to copy/paste the commands easier.
+
+- For Ubuntu 18.04 (Lab default):
+
+    ```PowerShell
+    sudo apt-get -y update
+    sudo apt-get -y upgrade
+
+    sudo apt-get install -y git cmake build-essential curl
+
+    sudo apt-get install -y libcurl4 libcurl4-openssl-dev libssl-dev uuid-dev
+    sudo apt-get install -y auditd audispd-plugins
+
+    sudo reboot
+    ```
 
 - For Ubuntu 16.04:
 
-```PowerShell
-sudo apt-get -y update
-sudo apt-get -y upgrade
+    ```PowerShell
+    sudo apt-get -y update
+    sudo apt-get -y upgrade
 
-sudo apt-get install -y git cmake build-essential curl libcurl4-openssl-dev libssl-dev uuid-dev
+    sudo apt-get install -y git cmake build-essential curl libcurl4-openssl-dev libssl-dev uuid-dev
 
-sudo apt-get install -y libcurl3
-sudo apt-get install -y auditd audispd-plugins
+    sudo apt-get install -y libcurl3
+    sudo apt-get install -y auditd audispd-plugins
 
-sudo reboot
-```
-
-- For Ubuntu 18.04:
-
-```PowerShell
-sudo apt-get -y update
-sudo apt-get -y upgrade
-
-sudo apt-get install -y git cmake libcurl4 build-essential curl libcurl4-openssl-dev libssl-dev uuid-dev
-
-sudo apt-get install -y libcurl4 libcurl4-openssl1.0-dev
-sudo apt-get install -y auditd audispd-plugins
-
-sudo reboot
-```
+    sudo reboot
+    ```
 
 > **Note** Ubuntu 20.04 will not work with these labs.
 
@@ -341,16 +341,20 @@ Determine if you have a hardware-based TPM by running the following and observin
 dmesg | grep -i tpm
 ```
 
-If you are using a `software-based` simulator, then run the following command:
+For these labs, you should see the Microsoft Virtual TPM displayed:
 
-```PowerShell
-cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=ON .
-```
+![The Virtual TPM from HyperV.](media/virtual-tpm.png "The Virtual TPM texy is highlighted.")
 
-Otherwise with a `hardware-based` TPM, run the following:
+If you are using a `hardware-based` simulator, then run the following command:
 
 ```PowerShell
 cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=OFF .
+```
+
+Otherwise with a `software-based` TPM, run the following:
+
+```PowerShell
+cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=ON .
 ```
 
 Whether software or hardware, setup the new registration and endorsement key tool by running the following:
@@ -369,13 +373,13 @@ make
 sudo ./tpm_device_provision
 ```
 
->**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Ubuntu image that does not have a hardware TPM enabled nor does it have a software TPM installed.  However, the Windows 10 image does have the Gen2 image setup that allows nested virtualization with a virtual TPM installed.
+>**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Azure VM Ubuntu image that does not have a hardware TPM enabled nor does it have a software TPM installed.  However, the Windows 10 `server` image does have a Gen2 image setup that allows nested virtualization with a Hyper-V Virtual TPM installed.
 
 ![This shows what happens with the device does not have a hardware or software TPM.](media/ex2_image003.png "Failed TPM command")
 
 ### Task 5: Install a software TPM and Resource Manager and reattempt Device Enrollment
 
->**Note**: If you have a hardware TPM in your device, you can skip to step 3, you can determine if you have a TPM device by running the following and observing if you get any results back.
+>**Note**: If you have a hardware TPM in your device, you can skip to step 3, again you can determine if you have a TPM device by running the following and observing if you get any results back.
 
 ```bash
 dmesg | grep -i tpm
@@ -437,7 +441,7 @@ dmesg | grep -i tpm
 
     > **Note**: Press Enter after the tss commands to type more commands.
 
-3. With your software TPM running, attempt to provision again using the following commands:
+3. With your hardware or software TPM running, attempt to provision again using the following commands:
 
     ```PowerShell
     cd
