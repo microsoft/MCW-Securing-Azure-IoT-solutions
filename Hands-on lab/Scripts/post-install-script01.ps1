@@ -15,18 +15,6 @@ Param (
 
 function CreateRebootTask($name, $scriptPath, $localPath)
 {
-  <#
-  $content = Get-content "$localPath\setup-task.ps1";
-  $content = $content.replace("{USERNAME}", $global:localusername)
-  $content = $content.replace("{PASSWORD}", $global:password)
-  $content = $content.replace("{SCRIPTPATH}", $scriptPath)
-  $content = $content.replace("{TASKNAME}", $name)
-  Set-Content "$localPath\setup-task.ps1" $content;
-
-  $credentials = New-Object System.Management.Automation.PSCredential -ArgumentList @($localusername,(ConvertTo-SecureString -String $password -AsPlainText -Force))
-  start-process "powershell.exe" -ArgumentList "-file $localPath\setup-task.ps1" -RunAs $credentials
-  #>
-
     $action = New-ScheduledTaskAction -Execute 'Powershell.exe' -Argument " -file `"$scriptPath`""
     $trigger = New-ScheduledTaskTrigger -AtStartup
     $taskname = $name;
@@ -39,8 +27,6 @@ function CreateRebootTask($name, $scriptPath, $localPath)
       Trigger = $trigger
       TaskName = $taskname
       User = "System"
-      #User = $global:localusername
-      #Password = $global:password
   }
     
     if(Get-ScheduledTask -TaskName $params.TaskName -EA SilentlyContinue) { 
@@ -235,15 +221,6 @@ function InstallDockerDesktop()
     choco install docker-desktop --pre --ignoredetectedreboot
 
     Add-LocalGroupMember -Group "docker-users" -Member $localusername;
-
-    #enable kubernets mode
-    <#
-    $file = "C:\Users\adminfabmedical\AppData\Roaming\Docker\settings.json";
-    $data = get-content $file -raw;
-    $json = ConvertFrom-Json $data;
-    $json.kubernetesEnabled = $true;
-    set-content $file $json;
-    #>
 }
 
 #Disable-InternetExplorerESC
@@ -331,11 +308,11 @@ DisableInternetExplorerESC
 
 EnableIEFileDownload
 
+InstallChocolaty;
+
 InstallNotepadPP;
 
 InstallGit;
-
-InstallChocolaty;
 
 Install7Zip;
 
@@ -366,7 +343,7 @@ Uninstall-AzureRm
 cd "c:\labfiles";
 
 write-host "Downloading MCW git repo";
-git clone https://github.com/givenscj/MCW-Securing-the-IoT-end-to-end
+git clone https://github.com/Microsoft/MCW-Securing-the-IoT-end-to-end
 
 write-host "Downloading Azure IoT SDK Repo"
 git clone https://github.com/Azure/azure-iot-sdk-c
