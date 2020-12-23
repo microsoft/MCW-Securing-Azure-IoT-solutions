@@ -50,7 +50,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 ### Task 1: Download GitHub resources
 
-1. Open a browser window to the cloud workshop GitHub repository (<https://github.com/Microsoft/MCW-Securing-the-IoT-End-to-End>).
+1. Open a browser window to the cloud workshop GitHub repository (<https://github.com/Microsoft/MCW-Securing-Azure-IoT-solutions>).
 
 2. Select **Clone or download**, then select **Download Zip**.
 
@@ -112,7 +112,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     - As part of the deployment, you will see the following items created:
 
-       - Windows 10 (Gen2) virtual machine running HyperV with virtual TPM-enabled Ubuntu image
+       - Windows 10 (Gen2) virtual machine running HyperV with virtual TPM-enabled Ubuntu image.
 
        - Azure Data Lake Storage account
 
