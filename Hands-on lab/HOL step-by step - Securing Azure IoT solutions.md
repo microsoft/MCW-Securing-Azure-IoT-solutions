@@ -83,7 +83,7 @@ In this hands-on-lab, you will implement an IoT solution that utilizes the lates
 
 Once deployed and configured, you will simulate various events from the devices that will then generate specific alerts in the Azure Security Center for IoT.  You can then use these alerts to diagnosis issues with your devices and execute commands to remediate those issues.
 
-At the end of this lab you will have a better understanding of how the latest Azure Security features work with IoT environments as well as how to install, configure and troubleshoot issues.
+At the end of this lab, you will have a better understanding of how the latest Azure Security features work with IoT environments as well as how to install, configure and troubleshoot issues.
 
 ## Overview
 
@@ -91,11 +91,11 @@ Contoso, Ltd. has major holdings in one of the world’s most important oil-prod
 
 Their environments are very tough environments in which to work. The climate is hot, harsh, and unforgiving, and oil wells are often spaced many miles apart, so field technicians can spend much of their day just driving from one to another. Cellular and radio reception is spotty at best, so collecting data about well conditions and performance typically involves manually writing down information. The technician must then make the long trek to the central office at the end of the day to upload the data for analysis. With such remote situations, a key concern for Contoso is not only how they manage these remote devices, but more broadly how they secure the complete solution that encompasses the physical device, the software on the device, the services processing the data in the cloud and the network connecting it all.
 
-Contoso plans to tie in to existing sensors at the well head that monitor key system parameters like temperatures, pressures, and flow rates. They will deploy gateway devices to route device data for processing, storage and analytics. Internal IT staff and engineers want to visualize the high-resolution data and deliver near real-time analyses. The company is placing a premium on flexibility and ease of use, with security as a fundamental driver.
+Contoso plans to tie into existing sensors at the well head that monitor key system parameters like temperatures, pressures, and flow rates. They will deploy gateway devices to route device data for processing, storage and analytics. Internal IT staff and engineers want to visualize the high-resolution data and deliver near real-time analyses. The company is placing a premium on flexibility and ease of use, with security as a fundamental driver.
 
 In addition, they would also like the solution to yield benefits to their workers in the field. “The field technicians and lease operators already have tools on their phones that they use every day to see what a well is doing,” explains Miles Strom. “Our goal is to connect these tools to live data from the IoT sensors. So, instead of seeing low-resolution volumes or flow rates, they’ll see what is happening in real time. This way they can respond immediately to problems that lead to downtime or maintenance issues.”
 
-They have implemented a proof of concept solution for collecting and analyzing device telemetry using IoT Hub, but are interested in learning about any related services in Azure that would help them to secure such solutions.
+They have implemented a proof-of-concept solution for collecting and analyzing device telemetry using IoT Hub, but are interested in learning about any related services in Azure that would help them to secure such solutions.
 
 ## Solution architecture (High-level)
 
@@ -137,7 +137,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 1. Open the Azure Portal.
 
-2. Browse to your lab resource group
+2. Browse to your lab resource group.
 
 3. Select the **oilwells-prov-[YOUR INITS]** device provisioning resource.
 
@@ -197,7 +197,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 4. Select the **diagnostic settings** link.
 
-5. Select your lab subscription
+5. Select your lab subscription.
 
 6. then select the **Add diagnostic setting** link.
 
@@ -263,15 +263,15 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 3. Select **Connect**, then select **RDP**, then select **Download RDP File**.
 
-4. Open the downloaded rdp file, login using `s2admin` and password `S2@dmins2dmin`
+4. Open the downloaded rdp file, login using `s2admin` and password `S2@dmins2dmin`.
 
 5. If prompted, select **Accept** in the dialog.
 
-6. Open the Hyper-V manager mmc, select the **Server-[YOUR INIT}** then select the `Ubuntu` image, start it if not started
+6. Open the Hyper-V manager mmc, select the **Server-[YOUR INIT}** then select the `Ubuntu` image, start it if not started.
 
 7. When the VM has started, enter the password **S2@dmins2@dmin**.  You should now be logged into the device.
 
-8. If prompted to upgrade to **20.04**, select **Don't Upgrade**
+8. If prompted to upgrade to **20.04**, select **Don't Upgrade**.
 
 ### Task 2: Update and install Azure IoT SDK prerequisites
 
@@ -285,7 +285,7 @@ With the Azure resources in place, you can now start creating and provisioning d
 
     - The following commands may take 20-30 minutes to complete.
 
-    > **Note**: You may want to open the MCW Github HOL (https://microsoftcloudworkshop.com) document in the virtual machine to copy/paste the commands easier.
+    > **Note**: You may want to open the MCW GitHub HOL (https://microsoftcloudworkshop.com) document in the virtual machine to copy/paste the commands easier.
 
 - For Ubuntu 18.04 (Lab default):
 
@@ -558,7 +558,7 @@ sudo apt-get install -y iotedge
 
     - Certificate Provisioning
 
-        - You will need to generate a test CA certificate and then device certificates
+        - You will need to generate a test CA certificate and then device certificates.
 
         - On the `server-INIT` virtual machine, open a PowerShell  window, run the following.  Be sure to replace the IoT Hub name:
 
@@ -631,8 +631,8 @@ sudo apt-get install -y iotedge
         /bin/udevadm trigger $tpm
         ```
 
-        - Reboot the device/machine
-        - Login and re-open the terminal
+        - Reboot the device/machine.
+        - Login and re-open the terminal.
         - Check that access has been applied:
 
         ```bash
@@ -881,7 +881,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 
 7. Under **Workspace Data Sources**, select **Virtual Machines**.
 
-8. Select the **oilwells-edgevm-INIT**
+8. Select the **oilwells-edgevm-INIT**.
 
 9. Select **Connect**
 
@@ -1030,7 +1030,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 7. Select **Create**.
 
-8. Select the **Select action group** link, the select **Create action group**
+8. Select the **Select action group** link, the select **Create action group**.
 
 9. Select the **iotsecurity-\[your initials or first name\]** resource group.
 
@@ -1105,7 +1105,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 ### Task 5: Send a DirectMethod
 
-1. In the Azure Portal, browse to the Iot Hub
+1. In the Azure Portal, browse to the Iot Hub.
 
 2. Under **Automatic Device Management**, select **Iot Edge**.
 
