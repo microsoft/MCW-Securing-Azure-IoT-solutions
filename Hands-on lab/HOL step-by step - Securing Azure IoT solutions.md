@@ -883,7 +883,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 
 8. Select the **oilwells-edgevm-INIT**.
 
-9. Select **Connect**
+9. Select **Connect**.
 
     > **Note**: It may take a few minutes for the OMS logs to show up and a heartbeat to be registered in Log Analytics for the IoT Linux machine.
 
@@ -1038,7 +1038,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 11. For the display name type **Email**.
 
-12. Select **Next: Notifications**
+12. Select **Next: Notifications**.
 
 13. For the action type, select **Email/SMS/Push/Voice**.
 
