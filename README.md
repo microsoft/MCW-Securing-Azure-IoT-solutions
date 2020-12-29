@@ -16,19 +16,19 @@ December 2020
 
 ### Workshop
 
-In this workshop, you will look at the process for designing and implementing an oil and gas manufacturing IoT solution that is secured end-to-end following best practices.
+In this workshop, you will look at the process for designing and implementing an oil and gas manufacturing IoT solution that is secured following best practices.
 
 At the end of this workshop, you will be better able to architect a comprehensive and secure oil and gas manufacturing IoT solution.
 
 ### Whiteboard design session
 
-In this whiteboard design session, you will look at the process for designing an oil and gas manufacturing IoT solution that is secured end-to-end following best practices. You will learn how to monitor and manage the security of all components in the solution You will also provide Contoso guidance on defining life cycles for particular components so that they have a plan that begins with initial deployment, to expected maintenance, to planned end-of-life and ultimately through decommissioning of the device so that they can understand how Azure supports this. Additionally, you will perform some threat modeling to help Contoso think about how they might handle STRIDE threats (spoofing of user identity, tampering, repudiation, information disclosure, denial of service, elevation of privilege).  
+In this whiteboard design session, you will look at the process for designing an oil and gas manufacturing IoT solution that is secured following best practices. You will learn how to monitor and manage the security of all components in the solution You will also provide Contoso guidance on defining life cycles for particular components so that they have a plan that begins with initial deployment, to expected maintenance, to planned end-of-life and ultimately through decommissioning of the device so that they can understand how Azure supports this. Additionally, you will perform some threat modeling to help Contoso think about how they might handle STRIDE threats (spoofing of user identity, tampering, repudiation, information disclosure, denial of service, elevation of privilege).  
 
 At the end of this whiteboard design session, you will be better able to architect a comprehensive and secure oil and gas manufacturing IoT solution.
 
 ### Hands-on lab
 
-In this hands-on lab, you will look at the process for implementing an oil and gas manufacturing IoT solution that is secured end-to-end following best practices. You will learn how to monitor and manage the security of all components in the solution.
+In this hands-on lab, you will look at the process for implementing an oil and gas manufacturing IoT solution that is secured following best practices. You will learn how to monitor and manage the security of all components in the solution.
 
 ## Azure services and related products
 
