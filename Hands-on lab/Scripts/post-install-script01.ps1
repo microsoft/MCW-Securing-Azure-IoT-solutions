@@ -343,14 +343,14 @@ Uninstall-AzureRm
 cd "c:\labfiles";
 
 write-host "Downloading MCW git repo";
-git clone https://github.com/Microsoft/MCW-Securing-the-IoT-end-to-end
+git clone https://github.com/Microsoft/MCW-Securing-Azure-IoT-solutions
 
 write-host "Downloading Azure IoT SDK Repo"
 git clone https://github.com/Azure/azure-iot-sdk-c
 
 write-host "Creating reboot task";
-$scriptPath = "C:\LabFiles\MCW-Securing-the-IoT-end-to-end\hands-on lab\scripts\post-install-script02.ps1"
-CreateRebootTask "MCW Setup Script" $scriptPath "C:\LabFiles\MCW-Securing-the-IoT-end-to-end\hands-on lab\scripts"
+$scriptPath = "C:\LabFiles\MCW-Securing-Azure-IoT-solutions\hands-on lab\scripts\post-install-script02.ps1"
+CreateRebootTask "MCW Setup Script" $scriptPath "C:\LabFiles\MCW-Securing-Azure-IoT-solutions\hands-on lab\scripts"
 
 sleep 20
 
