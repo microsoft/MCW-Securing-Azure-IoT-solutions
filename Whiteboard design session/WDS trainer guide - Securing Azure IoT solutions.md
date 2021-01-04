@@ -385,7 +385,6 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure IoT Edge Security Manager  |  https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-security-manager|
 | Azure IoT Edge Security Model  | <https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-security-manager/>     |
 | Azure IoT Edge Security Model (Video)  | <https://channel9.msdn.com/Shows/Internet-of-Things-Show/Azure-IoT-Edge-Security-Model/>     |
-| Azure IoT Edge Security Model (Presentation)  | <https://github.com/solliancenet/MCW-Securing-the-IoT-end-to-end/files/3394626/AzureIoTEdge_Security.pptx/>     |
 | Azure IoT Edge As Gateway  |  <https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-as-gateway/>|
 | Azure IoT Edge (Transparent Gateway)  |  <https://docs.microsoft.com/en-us/azure/iot-edge/how-to-create-transparent-gateway/>|
 | Azure IoT Edge (Authenticate downstream device)  |  <https://docs.microsoft.com/en-us/azure/iot-edge/how-to-authenticate-downstream-device/>|
