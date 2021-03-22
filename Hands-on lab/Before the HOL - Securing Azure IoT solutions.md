@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-December 2020
+March 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,7 +18,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2020 Microsoft Corporation. All rights reserved.
+© 2021 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -26,7 +26,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [Securing Azure IoT solutions before the hands-on lab setup guide](#securing-the-iot-end-to-end-before-the-hands-on-lab-setup-guide)
+- [Securing Azure IoT solutions before the hands-on lab setup guide](#securing-azure-iot-solutions-before-the-hands-on-lab-setup-guide)
   - [Requirements](#requirements)
   - [Before the hands-on lab](#before-the-hands-on-lab)
     - [Task 1: Download GitHub resources](#task-1-download-github-resources)
@@ -78,7 +78,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 7. Select **Refresh** to see your new resource group displayed and select it.
 
-8. In the resource group blade, select **+ Add**.  In the marketplace search box, type **Template Deployment** and then select **Template deployment (deploy using custom template**
+8. In the resource group blade, select **+ Add**.  In the marketplace search box, type **Template Deployment** and then select **Template deployment (deploy using custom template)**
 
 9. Select **Create**.
 
@@ -102,11 +102,9 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     - Review the remaining parameters, but if you change anything, be sure to note it for future reference throughout the lab.
 
-    - Check the **I agree to the terms and conditions stated above** checkbox.
+    - Select **Review + Create**
 
-    - Select **Purchase**.
-
-    ![The above information is entered in the form, and I agree to the terms and conditions stated above and Purchase are selected and highlighted at the bottom.](media/beforehol-image4.png "Terms and conditions form")
+    - Select **Create**.
 
 14. The deployment will take 25-35 minutes to complete. To view the progress, select the **Deployments** link, then select the **Microsoft.Template** deployment.
 
