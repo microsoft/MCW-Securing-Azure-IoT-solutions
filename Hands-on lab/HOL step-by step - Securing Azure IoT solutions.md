@@ -167,7 +167,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
     ![Screenshot with the Overview and "Secure your IoT Solution" highlighted.](media/ex1_image008.png "Enable Advanced Threat Protection")
 
-5. Press **F5** and refresh the Security Overview page of your Iot Hub, you should now see the **Threat prevention** and **Threat detection** KPIs.
+5. Press **F5** and refresh the Security Overview page of your IoT Hub, you should now see the **Threat prevention** and **Threat detection** KPIs.
 
 6. In the blade navigation, under **Security**, select **Settings**.
 
@@ -269,9 +269,9 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 6. Open the Hyper-V manager mmc, select the **Server-[YOUR INIT}** then select the `Ubuntu` image, start it if not started.
 
-    > **Note** If you do not see Hyper-V installed yet, the image is still being configured.  The VM will eventually reboot and you will need to login again to see the pre-configured Ubuntu image.  You can find a status of the configuration in the `C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt` file.
+    > **Note**: If you do not see Hyper-V installed yet, the image is still being configured.  The VM will eventually reboot, and you will need to login again to see the pre-configured Ubuntu image.  You can find a status of the configuration in the `C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt` file.
 
-    > **Note** If the image does not display, you can manually execute the **MCW Setup Task** in the Task Scheduler, if for some reason that script will not download, you can manually download the Ubuntu image and install it into the Virtual Machine by executing the `\Hands-On lab\Scripts\post-install-script02.ps1` PowerShell script in the server image.
+    > **Note**: If the image does not display, you can manually execute the **MCW Setup Task** in the Task Scheduler, if for some reason that script will not download, you can manually download the Ubuntu image and install it into the Virtual Machine by executing the `\Hands-On lab\Scripts\post-install-script02.ps1` PowerShell script in the server image.
 
 7. When the Hyper-V guest VM has started, right-click it and select **Connect**
 
@@ -321,11 +321,11 @@ With the Azure resources in place, you can now start creating and provisioning d
     sudo reboot
     ```
 
-> **Note** Ubuntu 20.04 will not work with these labs.
+> **Note**: Ubuntu 20.04 will not work with these labs.
 
 ### Task 3: Download and compile the Azure IoT SDK
 
-1. Wait for the server to reboot and ssh back into it, the password is **S2@dmins2@dmin**.
+1. Wait for the server to reboot and SSH back into it, the password is **S2@dmins2@dmin**.
 
 2. Run the following commands:
 
@@ -379,7 +379,7 @@ make
 sudo ./tpm_device_provision
 ```
 
->**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Azure VM Ubuntu image that does not have a hardware TPM enabled nor does it have a software TPM installed.  However, the Windows 10 `server` image does have a Gen2 image setup that allows nested virtualization with a Hyper-V Virtual TPM installed.
+>**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Azure VM Ubuntu image that does not have a hardware TPM enabled, nor does it have a software TPM installed.  However, the Windows 10 `server` image does have a Gen2 image setup that allows nested virtualization with a Hyper-V Virtual TPM installed.
 
 ![This shows what happens with the device does not have a hardware or software TPM.](media/ex2_image003.png "Failed TPM command")
 
@@ -921,7 +921,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 
     ![The new brute force alert is displayed.](media/bruteforce-alert.png "Brute force alert displayed")
 
-    > **Note** We could not do this task on the device in the Windows 10 HyperV as it is not accessible to the HyperV host or from the internet.
+    > **Note**: We could not do this task on the device in the Windows 10 HyperV as it is not accessible to the HyperV host or from the internet.
 
 ## Exercise 6: Configure security and alerts
 
