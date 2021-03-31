@@ -617,7 +617,7 @@ Each of the remote devices has a guardian module that performs secure communicat
 
 5. Will the communications from a device to Azure be secure enough?
 
-    Absolutely, the Azure IoT SDKs come with support for several different protocols including the latest HTTPS and SSL features such as TLS and MTLS.  Devices can be authenticated using device specific certificates and the network can be whitelisted using IP schemes.
+    Absolutely, the Azure IoT SDKs come with support for several different protocols including the latest HTTPS and SSL features such as TLS and MTLS.  Devices can be authenticated using device specific certificates and the network can be allowed using IP schemes.
 
     Additionally, the [Azure IoT Security Model](https://aka.ms/iot-edge-security-manager) has been designed specifically to address security needs of any IoT Architecture plus adds the flexibility to monitor for threats and motivations such as physical accessibility of devices, IP and generated insights, actions based off insights and heterogeneity in the silicon, languages and procedures.
 
