@@ -72,8 +72,6 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
 5. Select a **Region**.
 
-    > **Note:** Some ARM template resources can only be deployed to specific regions.  See the latest available regions for Azure Security Center for IoT [here](https://docs.microsoft.com/en-us/azure/asc-for-iot/service-prerequisites).
-
 6. Select **Review + Create**, then select **Create**.
 
 7. Select **Refresh** to see your new resource group displayed and select it.
@@ -95,8 +93,6 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
     - Resource group: Use an existing Resource group, or create a new one by entering a unique name, such as **iotsecurity-\[your initials or first name\]**.
 
     - If prompted for location: Select a **location** for the Resource group.
-
-    > **Note** See the latest available regions [here](https://docs.microsoft.com/en-us/azure/asc-for-iot/service-prerequisites).
 
     - Modify the **alias** to be something unique such as "\[your initials or first name\]".
 
