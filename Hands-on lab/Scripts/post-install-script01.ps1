@@ -103,9 +103,11 @@ function InstallGit()
 {
   write-host "Installing Git";
 
+  #choco install git.install
+
   #download and install git...		
   $output = "$env:TEMP\git.exe";
-  Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.27.0.windows.1/Git-2.27.0-64-bit.exe -OutFile $output; 
+  Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.27.0.windows.1/Git-2.27.0-64-bit.exe -OutFile $output -UseBasicParsing; 
 
   $productPath = "$env:TEMP";
   $productExec = "git.exe"	

@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-December 2020
+March 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -18,7 +18,7 @@ Microsoft may have patents, patent applications, trademarks, copyrights, or othe
 
 The names of manufacturers, products, or URLs are provided for informational purposes only and Microsoft makes no representations and warranties, either expressed, implied, or statutory, regarding these manufacturers or the use of the products with any Microsoft technologies. The inclusion of a manufacturer or product does not imply endorsement of Microsoft of the manufacturer or product. Links may be provided to third party sites. Such sites are not under the control of Microsoft and Microsoft is not responsible for the contents of any linked site or any link contained in a linked site, or any changes or updates to such sites. Microsoft is not responsible for webcasting or any other form of transmission received from any linked site. Microsoft is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement of Microsoft of the site or the products contained therein.
 
-© 2020 Microsoft Corporation. All rights reserved.
+© 2021 Microsoft Corporation. All rights reserved.
 
 Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/Usage/General.aspx> are trademarks of the Microsoft group of companies. All other trademarks are property of their respective owners.
 
@@ -153,7 +153,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
     ![Configure the link settings.](media/ex1_image002.png "Linked IoT Hubs")
 
-8. Select **Save**.
+8. Select **Save**, your IoT Hub and Provisioning Service will now be linked.
 
 ### Task 2: Enable Azure Security Center for IoT
 
@@ -167,13 +167,13 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
     ![Screenshot with the Overview and "Secure your IoT Solution" highlighted.](media/ex1_image008.png "Enable Advanced Threat Protection")
 
-5. Refresh the Security Overview page, you should now see the **Threat prevention** and **Threat detection** KPIs.
+5. Press **F5** and refresh the Security Overview page of your IoT Hub, you should now see the **Threat prevention** and **Threat detection** KPIs.
 
 6. In the blade navigation, under **Security**, select **Settings**.
 
     ![Blade is refreshed and the Settings link is highlighted.](media/ex1_image009.png "Select Settings")
 
-7. In the settings page, select **Data Collection**.
+7. On the settings page, select the **Data Collection** link.
 
 8. Ensure **Enable Azure Defender for IoT** is selected.
 
@@ -263,15 +263,21 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 3. Select **Connect**, then select **RDP**, then select **Download RDP File**.
 
-4. Open the downloaded rdp file, login using `s2admin` and password `S2@dmins2dmin`.
+4. Open the downloaded rdp file, login using `s2admin` and password `S2@dmins2@dmin`.
 
 5. If prompted, select **Accept** in the dialog.
 
 6. Open the Hyper-V manager mmc, select the **Server-[YOUR INIT}** then select the `Ubuntu` image, start it if not started.
 
-7. When the VM has started, enter the password **S2@dmins2@dmin**.  You should now be logged into the device.
+    > **Note**: If you do not see Hyper-V installed yet, the image is still being configured.  The VM will eventually reboot, and you will need to login again to see the pre-configured Ubuntu image.  You can find a status of the configuration in the `C:\WindowsAzure\Logs\CloudLabsCustomScriptExtension.txt` file.
 
-8. If prompted to upgrade to **20.04**, select **Don't Upgrade**.
+    > **Note**: If the image does not display, you can manually execute the **MCW Setup Task** in the Task Scheduler, if for some reason that script will not download, you can manually download the Ubuntu image and install it into the Virtual Machine by executing the `\Hands-On lab\Scripts\post-install-script02.ps1` PowerShell script in the server image.
+
+7. When the Hyper-V guest VM has started, right-click it and select **Connect**
+
+8. If prompted, enter the password **S2@dmins2@dmin**.  You should now be logged into the device.
+
+9. If prompted to upgrade to **20.04**, select **Don't Upgrade**.
 
 ### Task 2: Update and install Azure IoT SDK prerequisites
 
@@ -285,9 +291,9 @@ With the Azure resources in place, you can now start creating and provisioning d
 
     - The following commands may take 20-30 minutes to complete.
 
-    > **Note**: You may want to open the MCW GitHub HOL (https://microsoftcloudworkshop.com) document in the virtual machine to copy/paste the commands easier.
+    > **Note**: You may want to open the [MCW GitHub HOL](https://github.com/microsoft/MCW-Securing-Azure-IoT-solutions/blob/master/Hands-on%20lab/HOL%20step-by%20step%20-%20Securing%20Azure%20IoT%20solutions.md) document in the virtual machine to copy/paste the commands easier.
 
-- For Ubuntu 18.04 (Lab default):
+- For Ubuntu 18.04 (Lab default), note that you may need to reboot during some of the steps:
 
     ```PowerShell
     sudo apt-get -y update
@@ -315,15 +321,15 @@ With the Azure resources in place, you can now start creating and provisioning d
     sudo reboot
     ```
 
-> **Note** Ubuntu 20.04 will not work with these labs.
+> **Note**: Ubuntu 20.04 will not work with these labs.
 
 ### Task 3: Download and compile the Azure IoT SDK
 
-1. Wait for the server to reboot and ssh back into it, the password is **S2@dmins2@dmin**.
+1. Wait for the server to reboot and SSH back into it, the password is **S2@dmins2@dmin**.
 
 2. Run the following commands:
 
-> **Note**: You can find the latest release of the Azure IoT SDK [here](https://github.com/Azure/azure-iot-sdk-c/releases).  You can open the git to see what the latest release tag is, but the remainder of the lab may not work properly based on a new release.
+> **Note**: You can find the latest release of the Azure IoT SDK [here](https://github.com/Azure/azure-iot-sdk-c/releases).  You can open the git to see what the latest release tag is (we reference `LTS_07_2020` below), but be aware the remainder of the lab may not work properly based on a new release.
 
 ```PowerShell
 git clone https://github.com/Azure/iotedge --recursive
@@ -341,11 +347,11 @@ Determine if you have a hardware-based TPM by running the following and observin
 dmesg | grep -i tpm
 ```
 
-For these labs, you should see the Microsoft Virtual TPM displayed:
+For these labs, because we are using the latest Azure Windows 10 images and VM Compute, you should see the Microsoft Virtual TPM displayed:
 
 ![The Virtual TPM from HyperV.](media/virtual-tpm.png "The Virtual TPM texy is highlighted.")
 
-If you are using a `hardware-based` simulator, then run the following command:
+If you are using a `hardware-based` simulator (which is the case with the pre-configured lab environment), then run the following command:
 
 ```PowerShell
 cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=OFF .
@@ -373,13 +379,13 @@ make
 sudo ./tpm_device_provision
 ```
 
->**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Azure VM Ubuntu image that does not have a hardware TPM enabled nor does it have a software TPM installed.  However, the Windows 10 `server` image does have a Gen2 image setup that allows nested virtualization with a Hyper-V Virtual TPM installed.
+>**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Azure VM Ubuntu image that does not have a hardware TPM enabled, nor does it have a software TPM installed.  However, the Windows 10 `server` image does have a Gen2 image setup that allows nested virtualization with a Hyper-V Virtual TPM installed.
 
 ![This shows what happens with the device does not have a hardware or software TPM.](media/ex2_image003.png "Failed TPM command")
 
 ### Task 5: Install a software TPM and Resource Manager and reattempt Device Enrollment
 
->**Note**: If you have a hardware TPM in your device, you can skip to step 3, again you can determine if you have a TPM device by running the following and observing if you get any results back.
+>**Note**: If you have a hardware TPM in your device the previous command would have succeeded and you can skip to step 4, again you can determine if you have a TPM device by running the following and observing if you get any results back.
 
 ```bash
 dmesg | grep -i tpm
@@ -465,13 +471,15 @@ dmesg | grep -i tpm
 
 8. For the **Mechanism**, select **TPM**.
 
-9. Enter your Endorsement Key and Registration Id, then select the **True** toggle for the IoT Edge Device setting.
+9. Enter your Endorsement Key and Registration Id
 
 10. For the **IoT Hub Device ID**, type **oilwells001**.
 
     ![Add Enrollment dialog with the endorsement key and registration id populated.](media/ex2_image010.png "The Add Enrollment dialog")
 
-11. Select **Save**.
+11. Select the **True** toggle for the IoT Edge Device setting.
+
+12. Select **Save**.
 
 ## Exercise 3: Install and configure IoT Edge
 
@@ -481,7 +489,7 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
 
 ### Task 1: Install IoT Edge
 
-1. Switch back to your device SSH window, run the following command:
+1. Switch back to your device terminal window, run the following command:
 
 >**Note**: Change the ubuntu version "os_version" as appropriate (`16.04` vs `18.04`).  You can get your version by running `lsb_release -a`.
 
@@ -530,7 +538,7 @@ sudo apt-get install -y iotedge
 
     ![The IoT Edge device dialog with the copy link highlighted for the the device primary key.](media/ex2_image014.png "Copy the primary device key")
 
-9. Switch back to your SSH shell, run the following command to open a text editor:
+9. Switch back to your terminal window or SSH shell, run the following command to open a text editor:
 
     ```PowerShell
     sudo nano /etc/iotedge/config.yaml
@@ -538,7 +546,7 @@ sudo apt-get install -y iotedge
 
 10. There are several ways to register your device with the provisioning service.  This includes manually with a device connection string, TPM registration, and symmetric key.  
 
-    The simplest provisioning method is "manual" with a device connection string.  Each way is presented below, you need **only pick one**.  Note that TPM registration requires a software or hardware TPM:
+    The simplest provisioning method is "manual" with a device connection string.  Each way is presented below, you need **only pick one**.  Note that TPM registration requires a software or hardware TPM.
 
     >**Note**: YAML file structure formats are very specific.  Be sure that the leading lines have "tabs" that are made up of only 2 space characters.
 
@@ -618,7 +626,7 @@ sudo apt-get install -y iotedge
         sudo nano /etc/udev/rules.d/tpmaccess.rules
         ```
 
-        - Copy the following into the file:
+        - Copy the following into the file and then save the file:
 
         ```PowerShell
         # allow iotedge access to tpm0
@@ -639,13 +647,13 @@ sudo apt-get install -y iotedge
         ls -l /dev/tpm0
         ```
 
-        - You should see the following, ensure that `iotedge` is displayed:
+        - You should see something similar to the following, ensure that `iotedge` is displayed:
 
         ```bash
         crw-rw---- 1 root iotedge 10, 224 Jul 20 16:27 /dev/tpm0
         ```
 
-11. After completing **one** of the above methods (it is suggested you perform the manual device connection string path for simplicity), run the following commands to restart the iotedge service:
+11. After completing **one** of the above methods, run the following commands to restart the iotedge service:
 
     ```bash
     sudo systemctl restart iotedge
@@ -662,7 +670,7 @@ sudo apt-get install -y iotedge
     sudo journalctl -u iotedge
     ```
 
-13. After the above configurations, the IoT Edge modules will be downloaded and created in docker containers. You can review the docker images by running:
+13. After the above configurations, the IoT Edge modules will be downloaded and created in docker containers. You can review the docker images by running (it may take a few minutes for them to initialize on first start):
 
     ```PowerShell
     sudo docker ps
@@ -719,7 +727,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
     > **Note**: The Device Id is case-sensitive.
 
-2. Copy the primary key for the device from the Azure Portal and copy it into the file.
+2. Copy the primary key for the device from the IoT Hub in the Azure Portal and paste it into the file.
 
 3. Run the following command to start the security agent:
 
@@ -761,7 +769,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 8. For the Image URI, type:
 
     ```text
-    mcr.microsoft.com/ascforiot/azureiotsecurity:0.0.3
+    mcr.microsoft.com/ascforiot/azureiotsecurity:latest
     ```
 
     ![Screenshot showing the Add IoT Edge Module dialog.](media/ex2_image018.png "Set the name and Image URI")
@@ -799,7 +807,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 12. Select **Runtime settings**.
 
-13. In the **Edge Hub** section, change the image name to **mcr.microsoft.com/ascforiot/edgehub:1.0.9-preview**, then select **Save**.
+13. In the **Edge Hub** section, change the image name to **mcr.microsoft.com/ascforiot/edgehub:latest**, then select **Save**.
 
 14. Select **Next: Routes>**.
 
@@ -811,7 +819,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 17. Select **Create**.
 
-18. Switch back to your SSH session, then run the following command to start the security agent:
+18. Switch back to your terminal\SSH session, then run the following command to start the security agent:
 
     ```PowerShell
     sudo systemctl start ASCIoTAgent
@@ -889,7 +897,11 @@ This exercise will have you install some "fake" processes and open some non-stan
 
 ### Task 3: Perform brute force attack (Optional)
 
-1. Repeat the above steps to add the **oilwells-edgevm-INIT** to the device provisioning service and the Iot Hub as **oilwells002**.
+1. Repeat the above steps you have learned to add the **oilwells-edgevm-INIT** to the device provisioning service and the Iot Hub as **oilwells002**.  This would include most of the tasks in Exercise 2:
+
+   - Install all the necessary SDK pre-reqs
+   - Install the Azure IoT SDK
+   - Register the device using one of the provisioning methods (connection string, symmetric key, TPM, certificate, etc)
 
 2. In the server virtual machine, open a new PowerShell ISE window.
 
@@ -909,7 +921,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 
     ![The new brute force alert is displayed.](media/bruteforce-alert.png "Brute force alert displayed")
 
-    > **Note** We could not do this task on the device in the Windows 10 HyperV as it is not accessible to the HyperV host or from the internet.
+    > **Note**: We could not do this task on the device in the Windows 10 HyperV as it is not accessible to the HyperV host or from the internet.
 
 ## Exercise 6: Configure security and alerts
 
@@ -919,7 +931,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 ### Task 1: Create IoT Baseline checks
 
-1. Switch to the Azure Portal and your resource group.
+1. Switch to the Azure Portal and your lab resource group.
 
 2. Select the **oilwells-iothub-[YOUR INIT]** IoT hub.
 
@@ -953,7 +965,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 8. Select **Save**.
 
-9. Switch to your putty session connected to the IoT Device, run the following commands:
+9. Switch to your terminal/SSH/putty session connected to the IoT Device, run the following commands:
 
     ```bash
     sudo nano /home/wsuser/oms_audit.xml
@@ -985,8 +997,6 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 2. Select the **default** security group.
 
-    ![The Custom Alerts and default security group links are highlighted.](media/ex6_image001.png "Navigate to the default security group")
-
 3. Select **Create custom alert rule**.
 
     ![Add a custom alert is highlighted.](media/ex6_image002.png "Select Add a custom alert")
@@ -1005,7 +1015,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 1. From the Azure Portal navigate back to your resource group, then select the **oilwells-logging-[YOUR INIT]** Log Analytics instance.
 
-2. In the blade menu, in the **General** section, select **Logs**.
+2. In the blade menu, in the **General** section, select **Logs**. If displayed, select **Get Started**, then dismiss the **Queries** dialog window.
 
     ![Log Analytics blade with the Logs link highlighted.](media/ex6_image004.png "Navigated to Logs blade")
 
@@ -1022,53 +1032,51 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
     ![Query window with the query text populated and the Run link highlighted.](media/ex6_image005.png "Run the query")
 
-5. In the top navigation menu, select **New alert rule**.
+5. In the top navigation menu, select **+New alert rule**.
 
 6. Select the condition, in the dialog, scroll to the **threshold value**, type **1**, select **Done**.
 
     ![Alert signal logic dialog with the threshold value set to 1.](media/ex6_image006.png "Set threshold value")
 
-7. Select **Create**.
+7. Select the **Add action groups** link, then select **Create action group**.
 
-8. Select the **Select action group** link, the select **Create action group**.
+8. Select the **iotsecurity-\[your initials or first name\]** resource group.
 
-9. Select the **iotsecurity-\[your initials or first name\]** resource group.
+9. For the action group name type **Email IoT Hub Admins**.
 
-10. For the action group name type **Email IoT Hub Admins**.
+10. For the display name type **Email**.
 
-11. For the display name type **Email**.
+11. Select **Next: Notifications**.
 
-12. Select **Next: Notifications**.
+12. For the action type, select **Email/SMS Message/Push/Voice**.
 
-13. For the action type, select **Email/SMS/Push/Voice**.
+13. For the action name, type **Email IoT Hub Admins**.
 
-14. For the action name, type **Email IoT Hub Admins**.
+14. In the dialog that opens, check the **Email** checkbox, then type an email alias.
 
-15. In the dialog that opens, check the **Email** checkbox, then type an email alias.
+15. Select **OK**.
 
-16. Select **OK**.
+16. Select **Review + create**.
 
-17. Select **Review + create**.
+17. Select **Create**.
 
-18. Select **Create**.
+18. For the **Alert rule name**, type **IoT Hub Modified**.
 
-19. For the **Alert rule name**, type **IoT Hub Modified**.
-
-20. For the **description**, type **The IoT Hub was modified**.
+19. For the **description**, type **The IoT Hub was modified**.
 
     ![The final screen shot of a configured Alert rule](media/ex6_image010.png "Completed Create rule dialog")
 
-21. Select **Create alert rule**.
+20. Select **Create alert rule**.
 
-22. Make a change to your IoT Hub such as adding a user as an owner. You will receive an email alert after a few minutes notifying you of the change.
+21. Make a change to your IoT Hub such as adding a user as an owner. You will receive an email alert after a few minutes notifying you of the change.
 
     ![A generated Alert email.](media/ex6_image024.png "An Alert Email is generated")
 
-23. From the Azure Portal navigate back to your resource group, then select the **oilwells-logging-[YOUR INIT]** Log Analytics workspace instance.
+22. From the Azure Portal navigate back to your resource group, then select the **oilwells-logging-[YOUR INIT]** Log Analytics workspace instance.
 
-24. In the blade menu, in the **General** section, select **Logs**.
+23. In the blade menu, in the **General** section, select **Logs**.
 
-25. In the query window, paste the following:
+24. In the query window, paste the following:
 
     ```SQL
     AzureDiagnostics
@@ -1083,25 +1091,25 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
         - [500001 ServerError](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-troubleshoot-error-500xxx-internal-errors)
         - [500008 GenericTimeout](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-troubleshoot-error-500xxx-internal-errors)
 
-26. Select **Run**, you may not see any results.
+25. Select **Run**, you may not see any results.
 
-27. In the top navigation menu, select **New alert rule**.
+26. In the top navigation menu, select **New alert rule**.
 
-28. Select the condition, in the dialog, scroll to the **threshold value**, type **1**, select **Done**.
+27. Select the condition, in the dialog, scroll to the **threshold value**, type **1**, select **Done**.
 
     ![Alert signal logic dialog with the threshold value set to 1.](media/ex6_image006.png "Set threshold value")
 
-29. Select **Select action group**.
+28. Select **Select action group**.
 
-30. Select the **Email IoT Hub Admins** group, then select **Select**.
+29. Select the **Email IoT Hub Admins** group, then select **Select**.
 
-31. For the **Alert rule name**, type **Device is missing**.
+30. For the **Alert rule name**, type **Device is missing**.
 
-32. For the **description**, type **A device is missing**.
+31. For the **description**, type **A device is missing**.
 
     ![The final screen shot of a configured Alert rule.](media/ex6_image010.png "Completed Create rule dialog")
 
-33. Select **Create alert rule**.
+32. Select **Create alert rule**.
 
 ### Task 5: Send a DirectMethod
 
@@ -1213,19 +1221,23 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 7. Select your **oilwells-iothub-\[your initials or first name\]** IoT Hub.
 
-8. Select **Create**.
+8. For the IoT hub policy name, select **iothubowner**
 
-9. In the blade menu, select **Data Access Policies**.
+9. For the IoT hub consumer group, select **$default**
 
-10. Select **+Add**.
+10. Select **Save**.
 
-11. Select your user account.
+11. In the blade menu, select **Data Access Policies**.
 
-12. For the role, select **Reader** and **Contributor**.
+12. Select **+Add**.
 
-13. Select **OK**.
+13. Select **Select user**, then search for your user account.
 
-14. Select **OK**.
+14. For the role, select **Reader** and **Contributor**.
+
+15. Select **OK**.
+
+16. Select **OK**.
 
 ### Task 2: Send Security Messages
 
@@ -1251,21 +1263,19 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
 
-4. Select the **Go to TSI Explorer** link.
+4. Select the **Go to TSI Explorer** link, close any dialogs.
 
     ![Go to environment is hightlighted.](media/ex7_image003.png "Open the Time Series Portal")
 
-5. You should see your Iot Hub as a data source.
+5. Select **Add new query**
 
-6. Select a `from` and `to` date settings that fit to the window you ran the device security message simulation.
-
-7. Select the **search** button.
+6. Select a `from` and `to` date settings that fit to the window you ran the device security message simulation, select **Save**
 
    ![The FROM and TO date textboxes and the search button are highlighted.](media/ex7_image004.png "Set the time range and then select search")
 
-8. Select the **SPLIT BY** drop down, then select **SecurityAlert**.
+7. Select the **SPLIT BY** drop down, then select **SecurityAlert**.
 
-9. In the filter, right-click the **Events/SecurityAlert/true** property, select **Show only this series**, you should now see all the custom message sent from the device(s) that were set to SecurityAlerts.
+8. In the filter, right-click the **Events/SecurityAlert/true** property, select **Show only this series**, you should now see all the custom message sent from the device(s) that were set to SecurityAlerts.
 
     ![The SecurityAlert SPLIT is highlighted and the true value is also highlighted.](media/ex7_image007.png "Filter for only security events")
 

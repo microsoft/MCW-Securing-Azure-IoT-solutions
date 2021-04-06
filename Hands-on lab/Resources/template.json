@@ -651,21 +651,16 @@
                 "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-nic-', parameters('alias')))]",
                 "[resourceId('Microsoft.Storage/StorageAccounts', concat('oilwellsstorage', parameters('alias')))]"
             ],
-            "plan": {
-                "name": "ubuntu_1604_edgeruntimeonly",
-                "product": "iot_edge_vm_ubuntu",
-                "publisher": "microsoft_iot_edge"
-            },
             "properties": {
                 "hardwareProfile": {
                     "vmSize": "Standard_B1ms"
                 },
                 "storageProfile": {
                     "imageReference": {
-                        "publisher": "microsoft_iot_edge",
-                        "offer": "iot_edge_vm_ubuntu",
-                        "sku": "ubuntu_1604_edgeruntimeonly",
-                        "version": "1.0.1"
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
                     },
                     "osDisk": {
                         "osType": "Linux",
@@ -681,8 +676,8 @@
                 },
                 "osProfile": {
                     "computerName": "[concat('oilwells-edgevm-', parameters('alias'))]",
-                    "adminUsername": "s2admin",
-					"adminPassword": "S2@dmins2@dmin",
+                    "adminUsername": "[parameters('username')]",
+					"adminPassword": "[parameters('password')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": false,
                         "provisionVMAgent": true
