@@ -4,7 +4,9 @@
     "parameters": {
 		"alias": {
             "defaultValue": null,
-            "type": "string"
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 9
         },
 		"username": {
             "defaultValue": "s2admin",
@@ -198,15 +200,8 @@
                 },
                 "locations": [
                     {
-                        "locationName": "Australia East",
-                        "provisioningState": "Succeeded",
+                        "locationName": "[resourceGroup().location]",
                         "failoverPriority": 0,
-                        "isZoneRedundant": false
-                    },
-                    {
-                        "locationName": "Australia Southeast",
-                        "provisioningState": "Succeeded",
-                        "failoverPriority": 1,
                         "isZoneRedundant": false
                     }
                 ],
