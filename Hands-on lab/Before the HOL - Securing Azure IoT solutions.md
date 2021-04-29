@@ -96,6 +96,8 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     - Modify the **alias** to be something unique such as "\[your initials or first name\]".
 
+    > **Note**: Keep your alias to less than 9 characters.
+
     - Review the remaining parameters, but if you change anything, be sure to note it for future reference throughout the lab.
 
     - Select **Review + Create**

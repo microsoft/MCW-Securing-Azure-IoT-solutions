@@ -47,7 +47,7 @@ function DownloadImage()
         Start-BitsTransfer -Source $url -DisplayName Notepad -Destination "c:\temp\ubuntu.zip"
     }
 
-    $item = get-item "C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx"
+    $item = get-item "C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx" -ErrorAction SilentlyContinue
 
     if (!$item)
     {
