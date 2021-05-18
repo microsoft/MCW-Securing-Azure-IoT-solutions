@@ -62,11 +62,15 @@ function CreateCertificates()
 
 function InstallOpenSSL()
 {
+  write-host "Installing OpenSSL";
+
   choco install openssl --ignoredetectedreboot
 }
 
 function Install7Zip()
 {
+  write-host "Installing 7zip";
+
   choco install 7zip.install
 
   $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
@@ -81,7 +85,8 @@ function InstallPutty()
 	
 	if (!$item)
 	{
-		$downloadNotePad = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.74-installer.msi";
+    <# OLD WAY 
+		$downloadNotePad = "https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.75-installer.msi";
 
         mkdir c:\temp -ea silentlycontinue 
 		
@@ -89,7 +94,13 @@ function InstallPutty()
 		Start-BitsTransfer -Source $DownloadNotePad -DisplayName Notepad -Destination "c:\temp\putty.msi"
         
         msiexec.exe /I c:\temp\Putty.msi /quiet
+        #>
+
+    choco install putty
+
+    $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
 	}
+  
 }
 
 function InstallPorter()
@@ -103,8 +114,9 @@ function InstallGit()
 {
   write-host "Installing Git";
 
-  #choco install git.install
+  choco install git
 
+  <#
   #download and install git...		
   mkdir "c:\temp" -ea silentlycontinue
   $output = "C:\temp\git.exe";
@@ -114,6 +126,7 @@ function InstallGit()
   $productExec = "git.exe"	
   $argList = "/SILENT"
   start-process "$productPath\$productExec" -ArgumentList $argList -wait
+  #>
 
 }
 
@@ -147,7 +160,7 @@ function InstallFiddler()
 
   InstallChocolaty;
 
-  choco install fiddler --ignoredetectedreboot
+  choco install fiddler --ignoredetectedreboot --force
 }
 
 function InstallDocker()
@@ -250,6 +263,8 @@ function EnableIEFileDownload
 #Create InstallAzPowerShellModule
 function InstallAzPowerShellModule
 {
+  write-host "Installing Az PowerShell";
+
   Install-PackageProvider NuGet -Force
   Set-PSRepository PSGallery -InstallationPolicy Trusted
   Install-Module Az -Repository PSGallery -Force -AllowClobber
