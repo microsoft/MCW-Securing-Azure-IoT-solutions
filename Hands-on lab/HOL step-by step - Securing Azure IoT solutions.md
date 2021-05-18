@@ -1,4 +1,4 @@
-![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/master/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
+![Microsoft Cloud Workshops](https://github.com/Microsoft/MCW-Template-Cloud-Workshop/raw/main/Media/ms-cloud-workshop.png "Microsoft Cloud Workshops")
 
 <div class="MCWHeader1">
 Securing Azure IoT solutions
@@ -125,7 +125,7 @@ They have implemented a proof-of-concept solution for collecting and analyzing d
 
 Refer to the Before the hands-on lab setup guide manual before continuing to the lab exercises.
 
-> **Note** As part of the deployment, both ports 3389 and 22 will be open on the Network Security Group.  It is advisable that you modify the NSG settings to only allow your internet IP to connect to those ports.
+> **Note**: As part of the deployment, both ports 3389 and 22 will be open on the Network Security Group.  It is advisable that you modify the NSG settings to only allow your internet IP to connect to those ports.
 
 ## Exercise 1: Secure and configure IoT Hub and Device Provisioning Service
 
