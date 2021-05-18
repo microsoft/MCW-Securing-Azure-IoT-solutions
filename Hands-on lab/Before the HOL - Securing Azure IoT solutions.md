@@ -132,4 +132,6 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     >**Note**: Not all of these resources may be used in the current version of the hands-on labs.
 
+15. As part of the deployment, both ports 3389 and 22 will be open on the Network Security Group.  It is advisable that you modify the NSG settings to only allow your internet IP to connect to those ports.
+
 You should follow all steps provided *before* attending the hands-on lab.
