@@ -56,7 +56,12 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 2: Install the IoT Hub Security Agent Module](#task-2-install-the-iot-hub-security-agent-module)
   - [Exercise 5: Microsoft Defender for Endpoint (Linux)](#exercise-5-microsoft-defender-for-endpoint-linux)
     - [Task 1: Install the Microsoft Defender for Endpoint Agent](#task-1-install-the-microsoft-defender-for-endpoint-agent)
-  - [Exercise 5: Simulate IoT attacks](#exercise-5-simulate-iot-attacks)
+  - [Exercise 5: Setup Device to Edge Device Communication](#exercise-5-setup-device-to-edge-device-communication)
+    - [Task 1: Create Device Certificates](#task-1-create-device-certificates)
+    - [Task 2: Upload and Verify Root CA to IoT Hub](#task-2-upload-and-verify-root-ca-to-iot-hub)
+    - [Task 3: Setup Edge Device](#task-3-setup-edge-device)
+    - [Task 4: Setup Device](#task-4-setup-device)
+  - [Exercise 6: Simulate IoT attacks](#exercise-6-simulate-iot-attacks)
     - [Task 1: Setup and execute attack scripts](#task-1-setup-and-execute-attack-scripts)
     - [Task 2: Configure Azure Agent](#task-2-configure-azure-agent)
     - [Task 3: Perform brute force attack](#task-3-perform-brute-force-attack)
@@ -70,7 +75,9 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Exercise 7: Azure Sentinel Hunting](#exercise-7-azure-sentinel-hunting)
     - [Task 1: Azure Sentinel Configuration](#task-1-azure-sentinel-configuration)
     - [Task 2: Create Linux Hybrid Worker](#task-2-create-linux-hybrid-worker)
-    - [Task 3: Remediation with Runbooks](#task-3-remediation-with-runbooks)
+    - [Task 3: Create a Logic App](#task-3-create-a-logic-app)
+    - [Task 4: Configure an Alert / Incident](#task-4-configure-an-alert--incident)
+    - [Task 6: Configure an Alert / Incident](#task-6-configure-an-alert--incident)
   - [Exercise 8: Device Messaging and Time Series Insights](#exercise-8-device-messaging-and-time-series-insights)
     - [Task 1: Setup Time Series Insights](#task-1-setup-time-series-insights)
     - [Task 2: Send Security Messages](#task-2-send-security-messages)
@@ -686,7 +693,7 @@ sudo apt-get install -y iotedge
     > **Note**: If you do not see **active (running)**, then run the following command to see diagnostics logs that may help you troubleshoot the issue:
 
     ```PowerShell
-    sudo journalctl -u iotedge
+    sudo journalctl -u iotedge -e
     ```
 
     - Additionally, you can run the following command to get an idea of what issues you may be encountering:
@@ -798,7 +805,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 8. For the Image URI, type:
 
     ```text
-    mcr.microsoft.com/ascforiot/azureiotsecurity:latest
+    mcr.microsoft.com/ascforiot/azureiotsecurity:1.0.2
     ```
 
     ![Screenshot showing the Add IoT Edge Module dialog.](media/ex2_image018.png "Set the name and Image URI")
@@ -836,30 +843,32 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 12. Select **Runtime settings**.
 
-13. In the **Edge Hub** section, change the image name to **mcr.microsoft.com/ascforiot/edgehub:latest**, then select **Apply**.
+13. In the **Edge Agent** section, change the image name to **mcr.microsoft.com/azureiotedge-agent:1.0**, then select **Apply**.
 
-14. Select **Next: Routes>**.
+14. In the **Edge Hub** section, change the image name to **mcr.microsoft.com/ascforiot/edgehub:1.0**, then select **Apply**.
 
-15. On the routes dialog, add another route called `ASCForIoTToIoTHub` with the value `FROM /messages/modules/azureiotsecurity/* INTO $upstream`:
+15. Select **Next: Routes>**.
+
+16. On the routes dialog, add another route called `ASCForIoTToIoTHub` with the value `FROM /messages/modules/azureiotsecurity/* INTO $upstream`:
 
     ![Screenshot showing the available routes.](media/ex2_image019.png "Add a new Route")
 
-16. Select **Review + create**.
+17. Select **Review + create**.
 
-17. Select **Create**.
+18. Select **Create**.
 
-18. Switch back to your terminal\SSH session, then run the following command to start the security agent:
+19. Switch back to your terminal\SSH session, then run the following command to start the security agent:
 
     ```PowerShell
     sudo systemctl start ASCIoTAgent
     sudo systemctl status ASCIoTAgent
     ```
 
-19. The status should now show **active (running)**.
+20. The status should now show **active (running)**.
 
     ![Screenshot showing the process as active and running.](media/ex2_image020.png "The process is now active")
 
-20. If you do not see **active (running)** you may need to change your docker permissions:
+21. If you do not see **active (running)** you may need to change your docker permissions:
 
     ```PowerShell
     sudo groupadd docker
@@ -870,7 +879,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
     ```
 
-21. If still not started, run the following command and attempt to debug any issues:
+22. If still not started, run the following command and attempt to debug any issues:
 
     ```PowerShell
     sudo journalctl -u ASCIoTAgent
@@ -934,7 +943,116 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
     mdatp health --field real_time_protection_enabled
     ```
 
-## Exercise 5: Simulate IoT attacks
+## Exercise 5: Setup Device to Edge Device Communication
+
+Duration: 30 minutes
+
+In this exercise you will setup a device to edge device communication channel.
+
+### Task 1: Create Device Certificates
+
+1. Switch to the **oilwells-edge-01** device SSH session
+2. Run the following commands:
+
+```Powershell
+git clone https://github.com/Azure/iotedge.git
+
+cd
+cp iotedge/tools/CACertificates/*.cnf .
+cp iotedge/tools/CACertificates/certGen.sh .
+
+./certGen.sh create_root_and_intermediate
+
+./certGen.sh create_edge_device_identity_certificate "oilwells-edge-001"
+
+./certGen.sh create_edge_device_ca_certificate "oilwells-ca"
+
+./certGen.sh create_device_certificate "oilwells-d01-primary"
+./certGen.sh create_device_certificate "oilwells-d01-secondary"
+```
+
+### Task 2: Upload and Verify Root CA to IoT Hub
+
+1. Run the following command:
+
+    ```PowerShell
+    sudo nano /home/s2admin/certs/azure-iot-test-only.root.ca.cert.pem
+    ```
+
+2. Copy the text in the file to a machine that can be used to upload via browser
+3. Switch to the Azure Portal, browse to the IoT Hub
+4. Under **Settings**, select **Certificates**
+5. Select **Add**
+6. For the name, type **Oilwells CA**
+7. Select the .pem file
+8. Select **Save**
+9. Select the new certificate, then select **Generate verification code**
+10. Copy the verification code and run the following in the SSH session:
+
+    ```PowerShell
+    ./certGen.sh create_verification_certificate "<verification code>"
+
+    ./certGen.sh create_device_certificate "oilwells-d01"
+    ```
+
+11. Run the following, again copy the text into a file that can be used to upload
+
+    ```PowerShell
+    sudo nano /home/s2admin/certs/iot-device-verification-code-full-chain.cert.pem
+    ```
+
+12. In the Azure Portal, select to upload the new verification certificate
+13. Select **Verify**, you should now see the certificate is verified.
+
+### Task 3: Setup Edge Device
+
+1. Switch to the **oilwells-d01** device SSH session
+2. Run the following commands to update the certificates:
+
+    ```PowerShell
+    sudo cp /home/s2admin/certs/azure-iot-test-only.root.ca.cert.pem /usr/local/share/ca-certificates/azure-iot-test-only.root.ca.cert.pem.crt
+    sudo update-ca-certificates
+    ```
+
+3. Run the following to edit the iot edge configuration:
+
+    ```PowerShell
+    sudo nano /etc/iotedge/config.yaml
+    ```
+
+4. Uncomment and update the `device_ca_cert`, `device_ca_pk` and `trusted_ca_certs` paths to the following:
+
+    ```PowerShell
+    certificates;
+      device_ca_cert: "/home/s2admin/certs/iot-edge-device-identity-oilwells-edge-001-full-chain.cert.pem"
+      device_ca_pk: "/home/s2admin/private/iot-edge-device-identity-oilwells-edge-001.key.pem"
+      trusted_ca_certs: "/home/s2admin/certs/azure-iot-test-only.root.ca.cert.pem"
+    ```
+
+5. Save and close the file
+6. Run the following to restart the IoT Edge service:
+
+    ```PowerShell
+    sudo systemctl restart iotedge
+    ```
+
+7. If you have issues, run the following:
+
+    ```PowerShell
+    sudo journalctl -u iotedge
+    ```
+
+### Task 4: Setup Device
+
+1. Switch to the **oilwells-d01** device SSH session
+2. Run the following commands:
+
+    ```PowerShell
+    ```
+
+3. TODO
+
+## Exercise 6: Simulate IoT attacks
 
 Duration: 10 minutes
 
@@ -1374,21 +1492,62 @@ This exercise will show you how to query with Azure Sentinel and deploy remediat
 19. Select **Save**
 20. Select **Publish**, in the dialog, select **Yes**
 
-### Task 3: Remediation with Runbooks
+### Task 3: Create a Logic App
 
-1. Under **Configuration**, select **Automation**
-2. Select **Create->Add new playbook**
-3. Select your lab resource group
-4. For the name, type **IoT-Remediation-001**
-5. Select **Enable log analytics**, then select your lab **oilwells-logging[YOUR-I NIT]** workspace
-6. Select **Review + create**
-7. Select **Create**
-8. Select **Go To resource**
-9. Select **Blank Logic App**
-10. Search for **When a response to an Azure Sentinel alert is triggered**
-11. Select **Sign In**
-12. Select **New step**
-13. Select **Save**
+1. Browse back the Azure Portal
+2. In the global search, search for **Logic Apps**, select it.
+3. Select **+Add**
+4. Select the lab subscription and resource group
+5. For the type, select **Consumption**
+6. For the name, type **Reboot**
+7. Select the **Enable log analytics** checkbox
+8. Select the **oilwells-logging-INIT** log analytics workspace
+9. Select **Review + create**
+10. Select **Create**, once it is created, select **Go to resource**
+11. Select **Blank Logic App**
+12. For the trigger, select **When Azure Sentinel incident creation rule was triggered**
+13. Select **Sign in**
+14. Select the **+** button in the workspace, then select **Add an action**
+15. Search for **Create job** in the **Azure Automation** namespace
+16. Select it, then select **Sign in**
+17. Select the lab subscription and resource group
+18. Select the automation account
+19. Add the Hybrid Automation Worker Group parameter, set to `IoTEdge`
+20. Add the Runbook Name parameter, select **Reboot**
+
+    ![The logic app create job step](./media/logic_app_runbook_logic.png "The logic app create job step")
+
+21. Select **Save**
+
+### Task 4: Configure an Alert / Incident
+
+1. Switch to the Azure Portal and Azure Sentinel
+2. Select the log analytics workspace if needed
+3. Under **Configuration**, select **Automation**
+4. Select **Create->Add new rule**
+5. For the name, type **Reboot**
+6. For the actions, select **Run playbook**
+7. Select the **Manage playbook permissions** link
+
+    ![Azure Sentinel permissions.](./media/sentinel_automation_rule_create_permissions.png "Set the Azure Sentinel Permissions")
+
+8. Select the lab resource group
+9. Select **Apply**
+10. Select the **Reboot** playbook
+11. Select **Apply**
+
+    ![Azure Sentinel automation rule created.](./media/sentinel_automation_rule_created.png "Azure Sentinel automation rule created")
+
+### Task 6: Configure an Alert / Incident
+
+1. Open the `\Hands-on lab\Scripts\CreateIncident.ps1` in Windows PowerShell ISE
+2. Update the values in the script, press **F5** to run it
+3. Browse back to Azure Portal and Azure Sentinel
+4. Select **Incidents**, you should see a new incident
+
+    ![Azure Sentinel incident created.](./media/sentinel_automation_incident_create.png "Azure Sentinel incident created")
+
+5. As part of the incident, you will see that the runbook has executed and thusly, the worker in the run group will reboot.
 
 ## Exercise 8: Device Messaging and Time Series Insights
 
