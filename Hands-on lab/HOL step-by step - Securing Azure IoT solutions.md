@@ -2062,7 +2062,7 @@ In this exercise, attendees will de-provision any Azure resources that were crea
 
 3. Select **Delete** in the command bar, and confirm the deletion by re-typing the Resource group name and selecting **Delete**.
 
-4. Switch to the Azure Defender for IoT portal, select **Pricig**
+4. Switch to the Azure Defender for IoT portal, select **Pricing**
 
 5. Select your lab subscription, select the ellipses, then select **Offboard subscription**
 

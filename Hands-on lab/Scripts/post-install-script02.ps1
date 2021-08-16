@@ -47,13 +47,13 @@ function DownloadImages()
 
     #iotmgmt
     $zippath = "c:\temp\iotmgmt.zip";
-    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/iotmgmt.zip";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/IoT Management Console.zip";
     $verifyPath = "C:\VMs\iotmgmt\Virtual Machines\EC7F7411-C66C-418E-A3B7-7382CD37E245.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
 
     #iotsensor
     $zippath = "c:\temp\iotsensor.zip";
-    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/iotsensor.zip";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/IoT Sensor.zip";
     $verifyPath = "C:\VMs\iotsensor\Virtual Machines\3539698D-B373-46FB-80DF-B6B46F387A1A.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
 }
