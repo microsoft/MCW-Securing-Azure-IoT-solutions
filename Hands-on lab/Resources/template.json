@@ -738,7 +738,7 @@
             }],
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "Standard_D2s_v3"
+                    "vmSize": "Standard_D4s_v3"
                 },
                 "storageProfile": {
                     "imageReference": {
@@ -755,7 +755,7 @@
                         "managedDisk": {
                             "storageAccountType": "Premium_LRS"                            
                         },
-                        "diskSizeGB": 127
+                        "diskSizeGB": 200
                     },
                     "dataDisks": []
                 },
