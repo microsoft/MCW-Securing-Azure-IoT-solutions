@@ -34,27 +34,27 @@ function FreshStart()
 function DownloadImages()
 {
     #oilwells-edge-001
-    $zippath = "c:\temp\oilwellsedge001.zip";
-    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/oilwellsedge_2021_03_26.zip";
-    $verifyPath = "C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx";
+    $zippath = "c:\temp\oilwells-edge-001.zip";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/oilwells-edge-001.zip";
+    $verifyPath = "C:\VMs\oilwells-edge-001\Virtual Machines\ED3E2BA8-D55D-4C02-AACF-9B38F2C2858E.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
 
     #oilwells-d01
-    $zippath = "c:\temp\oilwellsd01.zip";
-    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/oilwellsd01_2021_03_26.zip";
-    $verifyPath = "C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx";
+    $zippath = "c:\temp\oilwells-d01.zip";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/oilwells-d01.zip";
+    $verifyPath = "C:\VMs\oilwells-d01\Virtual Machines\5DEDCADB-AD22-47F0-98F7-5489512C36D0.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
 
     #iotmgmt
     $zippath = "c:\temp\iotmgmt.zip";
-    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/iotmgmt_03_26.zip";
-    $verifyPath = "C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/iotmgmt.zip";
+    $verifyPath = "C:\VMs\iotmgmt\Virtual Machines\EC7F7411-C66C-418E-A3B7-7382CD37E245.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
 
     #iotsensor
     $zippath = "c:\temp\iotsensor.zip";
-    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/iotsensor_03_26.zip";
-    $verifyPath = "C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/iotsensor.zip";
+    $verifyPath = "C:\VMs\iotsensor\Virtual Machines\3539698D-B373-46FB-80DF-B6B46F387A1A.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
 }
 
@@ -120,7 +120,7 @@ function MountImage($name, $path, $noCPU, $memoryInGB)
     }
 }
 
-function SetupTPM($vmName}
+function SetupTPM($vmName)
 {
     #setup TPM
     $owner = Get-HgsGuardian -Name "Guardian11" -ea silentlycontinue
