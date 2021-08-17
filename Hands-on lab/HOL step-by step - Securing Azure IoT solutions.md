@@ -2034,7 +2034,7 @@ This exercise will show you how to install the Azure Defender for IoT agent and 
 4. Select the lab subscription
 5. Select **Subscribe**, in the dialog select **Confirm**
 
-> **NOTE** An onboarded subscription is free for the first 30 days, then is [charged at $2000/month](https://azure.microsoft.com/en-us/pricing/details/azure-defender/) after that per 1000 devices.  Be sure that you deallocate your subscription when done!
+> **NOTE** An onboarded subscription is free for the first 30 days, then is [charged at $2000/month](https://azure.microsoft.com/en-us/pricing/details/azure-defender/) per 1000 devices.  Be sure that you deallocate your subscription when done!
 
 ### Task 4: Onboard a sesnor
 
