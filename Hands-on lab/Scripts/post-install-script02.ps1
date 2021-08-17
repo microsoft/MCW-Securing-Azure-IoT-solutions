@@ -39,23 +39,31 @@ function DownloadImages()
     $verifyPath = "C:\VMs\oilwells-edge-001\Virtual Machines\ED3E2BA8-D55D-4C02-AACF-9B38F2C2858E.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
 
+    #remove-item $zipPath;
+
     #oilwells-d01
     $zippath = "c:\temp\oilwells-d01.zip";
     $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/oilwells-d01.zip";
     $verifyPath = "C:\VMs\oilwells-d01\Virtual Machines\5DEDCADB-AD22-47F0-98F7-5489512C36D0.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
 
+    #remove-item $zipPath;
+
     #iotmgmt
     $zippath = "c:\temp\iotmgmt.zip";
     $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/IoT Management Console.zip";
-    $verifyPath = "C:\VMs\iotmgmt\Virtual Machines\EC7F7411-C66C-418E-A3B7-7382CD37E245.vmcx";
+    $verifyPath = "C:\VMs\IoT Management Console\Virtual Machines\EC7F7411-C66C-418E-A3B7-7382CD37E245.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
+
+    #remove-item $zipPath;
 
     #iotsensor
     $zippath = "c:\temp\iotsensor.zip";
     $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/IoT Sensor.zip";
-    $verifyPath = "C:\VMs\iotsensor\Virtual Machines\3539698D-B373-46FB-80DF-B6B46F387A1A.vmcx";
+    $verifyPath = "C:\VMs\IoT Sensor\Virtual Machines\3539698D-B373-46FB-80DF-B6B46F387A1A.vmcx";
     DownloadImage $zipPath $downloadUrl $verifyPath;
+
+    #remove-item $zipPath;
 }
 
 function DownloadImage($zipPath, $downloadUrl, $verifyPath)
@@ -106,8 +114,8 @@ function MountImage($name, $path, $noCPU, $memoryInGB)
         $vmProcessorCount = $noCPU;
         $vmMemoryStartUpBytes = $memoryInGB;
         $vmMemoryMinimumBytes =  500MB;
-        $vmMemoryMaximumBytes =  4GB;
-        $vmDynamicMemoryEnabled = $false;
+        $vmMemoryMaximumBytes =  $memoryInGB;
+        $vmDynamicMemoryEnabled = $true;
 
         #New-VMSwitch -name $vmSwitchName  -NetAdapterName Ethernet -AllowManagementOS $true
 
@@ -186,15 +194,13 @@ $vmNewDiskPath = "C:\VMs\oilwells-d01\Virtual Hard Disks\oilwells-d01.vhdx";
 
 MountImage $vmName $vmNewDiskPath 2 1GB;
 
-$vmName = "IoT Management Console";
-$vmNewDiskPath = "C:\VMs\iotmgmt\Virtual Hard Disks\iotmgmt.vhdx";
+#IoT Management
+$vmVmcx = "C:\VMs\IoT Management Console\Virtual Machines\EC7F7411-C66C-418E-A3B7-7382CD37E245.vmcx";
+Import-VM $vmVmcx;
 
-MountImage $vmName $vmNewDiskPath 2 1GB;
-
-$vmName = "IoT Sensor";
-$vmNewDiskPath = "C:\VMs\iotsensor\Virtual Hard Disks\iotsensor.vhdx";
-
-MountImage $vmName $vmNewDiskPath 4 8GB;
+#IoT Sensor
+$vmVmcx = "C:\VMs\IoT Sensor\Virtual Machines\3539698D-B373-46FB-80DF-B6B46F387A1A.vmcx";
+Import-VM $vmVmcx;
 
 #diable the task
 Disable-ScheduledTask -TaskName "MCW Setup Script"

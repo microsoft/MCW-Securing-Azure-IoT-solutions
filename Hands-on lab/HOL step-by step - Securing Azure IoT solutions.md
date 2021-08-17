@@ -9,7 +9,7 @@ Hands-on lab step-by-step
 </div>
 
 <div class="MCWHeader3">
-March 2021
+Sept 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -56,36 +56,30 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 2: Install the IoT Hub Security Agent Module](#task-2-install-the-iot-hub-security-agent-module)
   - [Exercise 5: Microsoft Defender for Endpoint (Linux)](#exercise-5-microsoft-defender-for-endpoint-linux)
     - [Task 1: Install the Microsoft Defender for Endpoint Agent](#task-1-install-the-microsoft-defender-for-endpoint-agent)
-  - [Exercise 5: Setup Device to Edge Device Communication](#exercise-5-setup-device-to-edge-device-communication)
+  - [Exercise 6: Setup Device to Edge Device Communication](#exercise-6-setup-device-to-edge-device-communication)
     - [Task 1: Create Device Certificates](#task-1-create-device-certificates)
     - [Task 2: Upload and Verify Root CA to IoT Hub](#task-2-upload-and-verify-root-ca-to-iot-hub)
     - [Task 3: Setup Edge Device](#task-3-setup-edge-device)
     - [Task 4: Setup Device](#task-4-setup-device)
     - [Task 5: Test Device to Edge Device Application Communciation (Optional)](#task-5-test-device-to-edge-device-application-communciation-optional)
     - [Task 5: Setup Child Edge Device to Parent Edge Device Heirarchy (Optional)](#task-5-setup-child-edge-device-to-parent-edge-device-heirarchy-optional)
-  - [Exercise 6: Simulate IoT attacks](#exercise-6-simulate-iot-attacks)
+  - [Exercise 7: Simulate IoT attacks](#exercise-7-simulate-iot-attacks)
     - [Task 1: Setup and execute attack scripts](#task-1-setup-and-execute-attack-scripts)
     - [Task 2: Configure Azure Agent](#task-2-configure-azure-agent)
     - [Task 3: Perform brute force attack](#task-3-perform-brute-force-attack)
-  - [Exercise 6: Configure security and alerts](#exercise-6-configure-security-and-alerts)
+  - [Exercise 8: Configure security and alerts](#exercise-8-configure-security-and-alerts)
     - [Task 1: Create IoT Baseline checks](#task-1-create-iot-baseline-checks)
     - [Task 2: Review Azure Security for IoT log data](#task-2-review-azure-security-for-iot-log-data)
     - [Task 3: Create custom security alerts for device events](#task-3-create-custom-security-alerts-for-device-events)
     - [Task 4: Create custom security alerts for azure events](#task-4-create-custom-security-alerts-for-azure-events)
     - [Task 5: Send a DirectMethod](#task-5-send-a-directmethod)
     - [Task 6: Device Investigation with Logs](#task-6-device-investigation-with-logs)
-  - [Exercise 7: Azure Sentinel Hunting](#exercise-7-azure-sentinel-hunting)
+  - [Exercise 9: Azure Sentinel Hunting](#exercise-9-azure-sentinel-hunting)
     - [Task 1: Azure Sentinel Configuration](#task-1-azure-sentinel-configuration)
     - [Task 2: Create Linux Hybrid Worker](#task-2-create-linux-hybrid-worker)
     - [Task 3: Create a Logic App](#task-3-create-a-logic-app)
     - [Task 4: Configure an Alert / Incident](#task-4-configure-an-alert--incident)
     - [Task 6: Configure an Alert / Incident](#task-6-configure-an-alert--incident)
-  - [Exercise 8: Device Messaging and Time Series Insights](#exercise-8-device-messaging-and-time-series-insights)
-    - [Task 1: Setup Time Series Insights](#task-1-setup-time-series-insights)
-    - [Task 2: Send Security Messages](#task-2-send-security-messages)
-    - [Task 3: Review the Time Series Portal](#task-3-review-the-time-series-portal)
-  - [Exercise 9: Perform an IoT Hub Manual Failover](#exercise-9-perform-an-iot-hub-manual-failover)
-    - [Task 1: Perform a manual failover](#task-1-perform-a-manual-failover)
   - [Exercise 10: Azure Defender for IoT (Optional)](#exercise-10-azure-defender-for-iot-optional)
     - [Task 1: Install Azure Defender for IoT sensor (Pre-built)](#task-1-install-azure-defender-for-iot-sensor-pre-built)
     - [Task 2: Install Azure Defender for IoT sensor (From scatch)](#task-2-install-azure-defender-for-iot-sensor-from-scatch)
@@ -93,6 +87,12 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 4: Install Azure Defender for IoT Management Console (Manual)](#task-4-install-azure-defender-for-iot-management-console-manual)
     - [Task 3: Onboard subscription](#task-3-onboard-subscription)
     - [Task 4: Onboard a sesnor](#task-4-onboard-a-sesnor)
+  - [Exercise 11: Device Messaging and Time Series Insights (Optional)](#exercise-11-device-messaging-and-time-series-insights-optional)
+    - [Task 1: Setup Time Series Insights](#task-1-setup-time-series-insights)
+    - [Task 2: Send Security Messages](#task-2-send-security-messages)
+    - [Task 3: Review the Time Series Portal](#task-3-review-the-time-series-portal)
+  - [Exercise 12: Perform an IoT Hub Manual Failover](#exercise-12-perform-an-iot-hub-manual-failover)
+    - [Task 1: Perform a manual failover](#task-1-perform-a-manual-failover)
   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete resource group](#task-1-delete-resource-group)
 
@@ -162,25 +162,37 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 ### Task 1: Link Device Provisioning Service to IoT Hub
 
-1. Open the Azure Portal.
+1. Open the Azure Portal with your lab credentials.
 
-2. Browse to your lab resource group.
+2. Navigate to your lab Azure Resource Group.
 
-3. Select the **oilwells-prov-[YOUR INITS]** device provisioning resource.
+3. Select the **oilwells-server-[YOUR INIT]** virtual machine.
 
-4. In the Device Provisioning Service blade, under **Settings**, select **Linked IoT Hubs**.
+4. Select **Connect**, then select **SSH**.
 
-5. Select **+Add**.
+5. Login via RDP to the **oilwells-server-INIT** virtual machine with `s2admin` and password `S2@dmins2@dmin`.
+
+6. While inside the virtual machine, open the Azure Portal as your lab credentials in Chrome.
+
+7. Browse to your lab resource group.
+
+8. Select the **oilwells-prov-[YOUR INITS]** device provisioning resource.
+
+    ![Select the device provisioning service.](media/ex1_oilwells_prov.png "Device Prov is highlighted")
+
+9. In the Device Provisioning Service blade, under **Settings**, select **Linked IoT Hubs**.
+
+10. Select **+Add**.
 
     ![Link the Device Provision Service to the IoT Hub.](media/ex1_image001.png "Linked IoT Hubs")
 
-6. Select the **oilwells-iothub-[YOUR INITS]** IoT hub.
+11. Select the **oilwells-iothub-[YOUR INITS]** IoT hub.
 
-7. Select the **iotowner** access policy.
+12. Select the **iotowner** access policy.
 
     ![Configure the link settings.](media/ex1_image002.png "Linked IoT Hubs")
 
-8. Select **Save**, your IoT Hub and Provisioning Service will now be linked.
+13. Select **Save**, your IoT Hub and Provisioning Service will now be linked.
 
 ### Task 2: Enable Azure Security Center for IoT
 
@@ -284,19 +296,31 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 ### Task 1: Configure your devices
 
-1. Navigate to your lab Azure Resource Group.
+1. Inside the **oilwells-server-INIT** RDP session, open the Hyper-V console
 
-2. Select the **oilwells-edgevm-[YOUR INIT]** virtual machine.
+2. Select the **oilwells-edge-001** guest virtual machine.
 
-3. Select **Connect**, then select **SSH**
+3. In the Hyper-V console, login to the vm using `wsuser` and password `S2@dmins2@dmin`
 
-4. Open a PowerShell window and run the following:
+4. Open a terminal window and run the following:
+
+    ```bash
+    ifconfig
+    ```
+
+5. Record the `eth0` IP address.
+
+    ![Run the ifconfig tool.](media/ex1_ifconfig.png "Output of the ifconfig tool is displayed.")
+
+6. From the Windows 10 virtual machine host, open a PowerShell window and run the following:
 
     ```PowerShell
     ssh s2admin@{IP ADDRESS}
     ```
 
-5. Run the following commands, this could take up to 10 minutes to complete.
+7. If prompted, type **yes**, then enter the password
+
+8. In the new SSH window, run the following commands, this could take up to 10 minutes to complete.
 
     - Depending on your hosting environment and command line tool (cmd.exe, bash, PowerShell, etc.), you may need to run each line one at a time to avoid skipping any commands. You are updating and upgrading as some required packages will requires these updates.
 
@@ -327,53 +351,57 @@ With the Azure resources in place, you can now start creating and provisioning d
 
    > **Note**: Ubuntu 20.04 will not work with these labs.
 
-6. Repeat the above for the **oilwells-d01-[YOUR INIT]** virtual machine.
+9. Repeat the steps above for the **oilwells-d01** guest virtual machine.
 
 ### Task 3: Download and compile the Azure IoT SDK
 
-1. On both virtual machines (**oilwells-d01** and **oilwells-edgevm**), run the following commands:
+1. On both virtual machines (**oilwells-d01** and **oilwells-edge-001**), run the following commands:
 
-> **Note**: You can find the latest release of the Azure IoT SDK [here](https://github.com/Azure/azure-iot-sdk-c/releases).  You can open the git to see what the latest release tag is (we reference `LTS_07_2020` below), but be aware the remainder of the lab may not work properly based on a new release.
+    > **Note**: You can find the latest release of the Azure IoT SDK [here](https://github.com/Azure/azure-iot-sdk-c/releases).  You can open the git to see what the latest release tag is (we reference `LTS_07_2020` below), but be aware the remainder of the lab may not work properly based on a new release.
 
-```PowerShell
-git clone https://github.com/Azure/iotedge --recursive
+    ```PowerShell
+    sudo chown -R $USER ~/.
+    rm -rf ~/
+    rm -rf /var/certs
 
-git clone -b LTS_07_2020_Ref01 https://github.com/Azure/azure-iot-sdk-c.git --recursive
+    git clone https://github.com/Azure/iotedge --recursive
 
-cd azure-iot-sdk-c
+    git clone -b LTS_07_2020_Ref01 https://github.com/Azure/azure-iot-sdk-c.git --recursive
 
-git submodule update --init
-```
+    cd azure-iot-sdk-c
 
-Determine if you have a hardware-based TPM by running the following and observing if you get any results back.
+    git submodule update --init
+    ```
 
-```bash
-dmesg | grep -i tpm
-```
+    Determine if you have a hardware-based TPM by running the following and observing if you get any results back.
 
-For these labs, because we are using the latest Azure Windows 10 images and VM Compute, you should see the Microsoft Virtual TPM displayed:
+    ```bash
+    dmesg | grep -i tpm
+    ```
 
-![The Virtual TPM from HyperV.](media/virtual-tpm.png "The Virtual TPM texy is highlighted.")
+    For these labs, because we are using the latest Azure Windows 10 images and VM Compute, you should see the Microsoft Virtual TPM displayed:
 
-If you are using a `hardware-based` simulator (which is the case with the pre-configured lab environment), then run the following command:
+    ![The Virtual TPM from HyperV.](media/virtual-tpm.png "The Virtual TPM texy is highlighted.")
 
-```PowerShell
-cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=OFF .
-```
+    If you are using a `hardware-based` image (which is the case with the pre-configured lab environment), then run the following command:
 
-Otherwise with a `software-based` TPM, run the following:
+    ```PowerShell
+    cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=OFF .
+    ```
 
-```PowerShell
-cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=ON .
-```
+    Otherwise with a `software-based` TPM, run the following:
 
-Whether software or hardware, setup the new registration and endorsement key tool by running the following:
+    ```PowerShell
+    cmake -Duse_prov_client:BOOL=ON -Duse_tpm_simulator:BOOL=ON .
+    ```
 
-```PowerShell
-cd provisioning_client/tools/tpm_device_provision
+    Whether software or hardware, setup the new registration and endorsement key tool by running the following:
 
-make
-```
+    ```PowerShell
+    cd provisioning_client/tools/tpm_device_provision
+
+    make
+    ```
 
 ### Task 4: Attempt device enrollment
 
@@ -383,7 +411,7 @@ make
     sudo ./tpm_device_provision
     ```
 
-    >**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Azure VM Ubuntu image that does not have a hardware TPM enabled, nor does it have a software TPM installed.  However, the Windows 10 `server` image does have a Gen2 image setup that allows nested virtualization with a Hyper-V Virtual TPM installed.
+    >**Note**:  This command will fail on a device that does not have a hardware or software TPM installed.  In order to utilize a hardware-based TPM, you would need an actual device with a TPM security chip, or a nested machine with a TPM enabled virtual machine running.  The Azure ARM template provisions an Azure VM Ubuntu image that does not have a hardware TPM enabled, nor does it have a software TPM installed.  However, the Windows 10 `server` image does have a Gen2 image setup that allows nested virtualization with a Hyper-V Virtual TPM installed.  As of 08/2021, a secured Azure Virtual Machine will surface as TPM, but it is not compatible with any of the current Azure IoT code/tools/software.
 
     ![This shows what happens with the device does not have a hardware or software TPM.](media/ex2_image003.png "Failed TPM command")
 
@@ -465,7 +493,7 @@ make
 
     >**Note**: In the real world, all your devices should have hardware-based TPMs.
 
-5. Repeat the above steps on the **oilwells-d01-[YOUR INIT]** virtual machine.
+5. Repeat the above steps on the **oilwells-d01** virtual machine in the Windows 10 host.
 
 ### Task 1: Create IoT Hub Edge Device Enrollment
 
@@ -491,23 +519,25 @@ make
 
 ### Task 1: Create IoT Hub Device Enrollment
 
-1. Switch to the Azure Portal and navigate to the **oilwells-prov-[YOUR INIT]** Device Provisioning Service.
+1. Repeat the previous steps to generate the registration Id and Key for the **oilwells-d01** guest virtual machine.
 
-2. Under **Settings**, select **Manage enrollments**.
+2. Switch to the Azure Portal and navigate to the **oilwells-prov-[YOUR INIT]** Device Provisioning Service.
 
-3. Select **+Add Individual Enrollment**.
+3. Under **Settings**, select **Manage enrollments**.
+
+4. Select **+Add Individual Enrollment**.
 
     ![Managed Enrollments and Add individual enrollments are highlighted.](media/ex2_image006.png "Navigating to add an individual device enrollment")
 
-4. For the **Mechanism**, select **TPM**.
+5. For the **Mechanism**, select **TPM**.
 
-5. Enter your device Endorsement Key and Registration Id
+6. Enter your device Endorsement Key and Registration Id
 
-6. For the **IoT Hub Device ID**, type **oilwells-d01**.
+7. For the **IoT Hub Device ID**, type **oilwells-d01**.
 
-7. Select the **False** toggle for the IoT Edge Device setting.
+8. Select the **False** toggle for the IoT Edge Device setting.
 
-8. Select **Save**.
+9. Select **Save**.
 
 ## Exercise 3: Install and configure IoT Edge
 
@@ -549,7 +579,7 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
     sudo apt-get install aziot-edge
     ```
 
-    > **Note**: Previous versions of this lab used a previous version of IoT Edge (`<=1.09`), but has since been upgraded to use `1.1.4` or later.
+    > **Note**: Previous versions of this lab used a version of IoT Edge (`<=1.09`), but has since been upgraded to use `1.1.4` or later.
 
 ### Task 2: Configure the IoT Edge agent
 
@@ -573,11 +603,13 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
 
 7. Select **Save**.
 
+    > **Note** This step isn't necessary as the device provisioning service would create the device in the IoT Hub, but for the ease of flow of the lab, it is completed here.
+
 8. Select the new **oilwells-edge-001** item, copy the primary key and primary device connection strings.
 
     ![The IoT Edge device dialog with the copy link highlighted for the the device primary key.](media/ex2_image014.png "Copy the primary device key")
 
-9. Switch back to your terminal window or SSH shell, run the following command to open a text editor:
+9.  Switch back to your terminal window or SSH shell, run the following command to open a text editor:
 
     `<=1.1.4`
 
@@ -593,7 +625,9 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
     sudo nano /etc/aziot/config.toml
     ```
 
-10. There are several ways to register your device with the provisioning service.  This includes manually with a device connection string, TPM registration, and symmetric key.  
+10. Edit the host name to be `oilwells-edge-001`
+
+11. There are several ways to register your device with the provisioning service.  This includes manually with a device connection string, TPM registration, and symmetric key.  
 
     The simplest provisioning method is "manual" with a device connection string.  Each way is presented below, you need **only pick one**.  Note that TPM registration requires a software or hardware TPM.  As of 08/2021, Trusted Platform in Azure will not work, but a nested VM inside a HyperV image (in the case of this lab, inside Windows 10) does.
 
@@ -601,9 +635,15 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
 
     - Manual Provisioning
 
-        - Using the device connection string you copied from above, paste it into the config.yaml file.
+        - Using the device connection string you copied from above, paste it into the `config.yaml` or `config.toml` file:
+
+        - `<=1.1.4`
 
             ![The configuration file is displayed with the manual settings uncommented.](media/ex2_image008a.png "Configure TPM DPS Settings")
+
+        - `>=1.2.0`
+
+            ![The configuration file is displayed with the manual settings uncommented.](media/ex1_dps_tpm_v2.png "Configure TPM DPS Settings")
 
         - Save the file, press **CTRL-X**, then **Y**, then **Enter**.
 
@@ -715,36 +755,46 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
         ls -l /dev/tpmrm0
         ```
 
-        - You should see something similar to the following, ensure that `iotedge` or `aziottpm` is displayed:
+        - You should see something similar to the following, ensure that `iotedge` or `aziottpm` is displayed depending on your IoT Edge version:
 
         ```bash
         crw-rw---- 1 iotedge iotedge 10, 224 Jul 20 16:27 /dev/tpm0
         ```
 
-11. After completing **one** of the above methods, run the following commands to restart the iotedge service:
+12. After completing **one** of the above methods, run the following commands to restart the iotedge service:
 
-    ```bash
-    sudo systemctl restart iotedge
-    sudo systemctl status iotedge
-    ```
+    - `<=1.1.4`
 
-12. You should see the iotedge client status as **active (running)**.  Press **Ctrl-C** to exit the status message.
+        ```bash
+        sudo systemctl restart iotedge
+        sudo systemctl status iotedge
+        ```
 
-    ![The Azure IoT Edge daemon shows a green active status.](media/ex2_image009.png "Successful service start")
+        You should see the iotedge client status as **active (running)**.  Press **Ctrl-C** to exit the status message.
 
-    > **Note**: If you do not see **active (running)**, then run the following command to see diagnostics logs that may help you troubleshoot the issue:
+        ![The Azure IoT Edge daemon shows a green active status.](media/ex2_image009.png "Successful service start")
 
-    `<=1.1.4`
+        > **Note**: If you do not see **active (running)**, then run the following command to see diagnostics logs that may help you troubleshoot the issue:
 
-    ```PowerShell
-    sudo journalctl -u iotedge -e
-    ```
+        ```PowerShell
+        sudo journalctl -u iotedge -e
+        ```
 
-    - Additionally, you can run the following command to get an idea of what issues you may be encountering:
+    - `>=1.2`
 
-    ```PowerShell
-    sudo iotedge check
-    ```
+        ```bash
+        sudo iotedge config apply    
+        ```
+
+        You should see the iotedge services all display **Running**.
+
+        ![Services all show Running.](media/ex3_services_v2.png "All services show running.")
+
+        > **Note**: If you do not see **active (running)**, then run the following command to see diagnostics logs that may help you troubleshoot the issue:
+
+        ```PowerShell
+        sudo iotedge check
+        ```
 
 13. After the above configurations, the IoT Edge modules will be downloaded and created in docker containers. You can review the docker images by running (it may take a few minutes for them to initialize on first start):
 
@@ -762,9 +812,9 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 ### Task 1: Install the Security agent
 
-1. Switch to the **oilwells-edge-001** IoT Edge Device
+1. Switch to the **oilwells-edge-001** IoT Edge Device SSH window
 
-2. Run the following, copy the primary key for the device from the IoT Hub in the Azure Portal and paste it into the `/var/certs/key` file.
+2. Run the following to create the key file.
 
     ```PowerShell
     sudo mkdir /var/certs
@@ -772,7 +822,9 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
     sudo nano /var/certs/key
     ```
 
-3. Run the following commands, be sure to replace the ubuntu version:
+3. Copy the primary key for the device from the IoT Hub in the Azure Portal and paste it into the `/var/certs/key` file.
+
+4. Run the following commands, be sure to replace the ubuntu version:
 
     >**Note**: Change the ubuntu version "os_version" as appropriate (`16.04` vs `18.04`).  You can get your version by running `lsb_release -a`.
 
@@ -781,7 +833,6 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
     git clone https://github.com/Azure/Azure-IoT-Security-Agent-C.git --recursive
 
-    sudo apt-get install -y libcurl3 libcurl-openssl1.0-dev
     sudo apt-get install -y auditd audispd-plugins
 
     #create release folder
@@ -809,20 +860,20 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
     > **Note**: The Device Id is case-sensitive. Be sure you specify the correct device id or the service will not start.
 
-4. Run the following command to start the security agent:
+5. Run the following command to start the security agent:
 
     ```PowerShell
     sudo systemctl start ASCIoTAgent
     sudo systemctl status ASCIoTAgent
     ```
 
-5. The status of the service will not be **started**.  Run the following command:
+6. The status of the service will not be **started**.  Run the following command:
 
     ```PowerShell
     sudo journalctl -u ASCIoTAgent -e
     ```
 
-6. Scroll to the bottom of the logs, you should see an error about the azureiotsecurity module not being registered.
+7. Scroll to the bottom of the logs, you should see an error about the azureiotsecurity module not being registered.
 
     ![An error is displayed about the ASC for IoT agent not being registered.](media/ex4_image011.png "Missing the ASC for IoT agent module")
 
@@ -904,7 +955,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 19. Switch back to your terminal\SSH session, then run the following command to start the security agent:
 
     ```PowerShell
-    sudo systemctl start ASCIoTAgent
+    sudo systemctl restart ASCIoTAgent
     sudo systemctl status ASCIoTAgent
     ```
 
@@ -926,14 +977,14 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 22. If still not started, run the following command and attempt to debug any issues:
 
     ```PowerShell
-    sudo journalctl -u ASCIoTAgent
+    sudo journalctl -u ASCIoTAgent -e
     ```
 
 ## Exercise 5: Microsoft Defender for Endpoint (Linux)
 
 ### Task 1: Install the Microsoft Defender for Endpoint Agent
 
-1. Switch to the **oilwells-edge-01** device, run the following commands:
+1. Switch to the **oilwells-edge-01** device, run the following commands, be sure to replace `{os_version}`:
 
     ```PowerShell
     cd
@@ -942,7 +993,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
     sudo apt-get install libplist-utils
 
-    curl -o microsoft.list https://packages.microsoft.com/config/ubuntu/18.04/prod.list
+    curl -o microsoft.list https://packages.microsoft.com/config/ubuntu/{os_version}/prod.list
 
     sudo mv ./microsoft.list /etc/apt/sources.list.d/microsoft-prod.list
 
@@ -963,11 +1014,15 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 4. Select **Endpoints**
 
+    ![Select Endpoint Settings.](media/defender_endpoint_settings.png "The EndPoints link is highlighted")
+
 5. Under **Device management**, select **Onboarding**
 
 6. In the dropdown, select **Linux Server**
 
 7. Select **Download onboarding package** to download the zip package.  Once downloaded unzip it
+
+    ![Click path for downloading the onboarding script.](media/defender_endpoint_onboarding.png "The click path links are highlighted.")
 
 8. Open the `MicrosoftDefenderATPOnboardingLinuxServer.py` file, copy its contents to your IoT Device:
 
@@ -975,7 +1030,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
     sudo nano MicrosoftDefenderATPOnboardingLinuxServer.py
     ```
 
-9. Run the following commands to configure the agent:
+9.  Run the following commands to configure the agent:
 
     ```PowerShell
     python MicrosoftDefenderATPOnboardingLinuxServer.py
@@ -987,7 +1042,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
     mdatp health --field real_time_protection_enabled
     ```
 
-## Exercise 5: Setup Device to Edge Device Communication
+## Exercise 6: Setup Device to Edge Device Communication
 
 Duration: 30 minutes
 
@@ -998,22 +1053,23 @@ In this exercise you will setup a device to edge device communication channel.
 1. Switch to the **oilwells-edge-01** device SSH session
 2. Run the following commands:
 
-```Powershell
-git clone https://github.com/Azure/iotedge.git
+    ```Powershell
+    cd 
 
-cd
-cp iotedge/tools/CACertificates/*.cnf .
-cp iotedge/tools/CACertificates/certGen.sh .
+    git clone https://github.com/Azure/iotedge.git
 
-./certGen.sh create_root_and_intermediate
+    cp iotedge/tools/CACertificates/*.cnf .
+    cp iotedge/tools/CACertificates/certGen.sh .
 
-./certGen.sh create_edge_device_identity_certificate "oilwells-edge-001"
+    ./certGen.sh create_root_and_intermediate
 
-./certGen.sh create_edge_device_ca_certificate "oilwells-ca"
+    ./certGen.sh create_edge_device_identity_certificate "oilwells-edge-001"
 
-./certGen.sh create_device_certificate "oilwells-d01-primary"
-./certGen.sh create_device_certificate "oilwells-d01-secondary"
-```
+    ./certGen.sh create_edge_device_ca_certificate "oilwells-ca"
+
+    ./certGen.sh create_device_certificate "oilwells-d01-primary"
+    ./certGen.sh create_device_certificate "oilwells-d01-secondary"
+    ```
 
 ### Task 2: Upload and Verify Root CA to IoT Hub
 
@@ -1047,11 +1103,11 @@ cp iotedge/tools/CACertificates/certGen.sh .
 
 12. In the Azure Portal, select to upload the new verification certificate
 13. Select **Verify**, you should now see the certificate is verified.
-14. Run the following command to copy the certs to the child device, be sure to replace the `{DEVICE_IP}` value:
+14. In the `oilwells-edge-001` SSH session, run the following command to copy the certs to the child device `oilwells-d01`, be sure to replace the `{DEVICE_IP}` value:
 
     ```PowerShell
-    scp -r /home/s2admin/certs s2admin@{DEVICE_IP}:/home/s2admin
-    scp -r /home/s2admin/private s2admin@{DEVICE_IP}:/home/s2admin
+    scp -r /home/wsuser/certs wsuser@{DEVICE_IP}:/home/wsuser
+    scp -r /home/wsuser/private wsuser@{DEVICE_IP}:/home/wsuser
     ```
 
     > **NOTE** In production you would not copy all of these files to a downstream device.
@@ -1062,7 +1118,7 @@ cp iotedge/tools/CACertificates/certGen.sh .
 2. Run the following commands to update the certificates:
 
     ```PowerShell
-    sudo cp /home/s2admin/certs/azure-iot-test-only.root.ca.cert.pem /usr/local/share/ca-certificates/azure-iot-test-only.root.ca.cert.pem.crt
+    sudo cp /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem /usr/local/share/ca-certificates/azure-iot-test-only.root.ca.cert.pem.crt
     sudo update-ca-certificates
     ```
 
@@ -1078,9 +1134,9 @@ cp iotedge/tools/CACertificates/certGen.sh .
 
         ```PowerShell
         certificates;
-        device_ca_cert: "/home/s2admin/certs/iot-edge-device-identity-oilwells-edge-001-full-chain.cert.pem"
-        device_ca_pk: "/home/s2admin/private/iot-edge-device-identity-oilwells-edge-001.key.pem"
-        trusted_ca_certs: "/home/s2admin/certs/azure-iot-test-only.root.ca.cert.pem"
+        device_ca_cert: "/home/wsuser/certs/iot-edge-device-identity-oilwells-edge-001-full-chain.cert.pem"
+        device_ca_pk: "/home/wsuser/private/iot-edge-device-identity-oilwells-edge-001.key.pem"
+        trusted_ca_certs: "/home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem"
         ```
 
    - `>=1.2`
@@ -1091,37 +1147,19 @@ cp iotedge/tools/CACertificates/certGen.sh .
 
        - Uncomment and update the values and section by uncommenting the lines and setting the values to the following:
 
-<!--
-        ```PowerShell
-        [provisioning]
-        source = "manual"
-        iothub_hostname = "oilwells-iothub-INIT.azure-devices.net"
-        device_id = "oilwells-edge-001"
-
-        [provisioning.authentication]
-        method = "x509"
-
-        identity_cert = "/home/s2admin/certs/iot-edge-device-identity-oilwells-edge-001-full-chain.cert.pem"                # file URI, or...
-        identity_cert = { method = "est", common_name = "oilwells-edge-001" }      # dynamically issued via EST, or...
-        identity_cert = { method = "local_ca", common_name = "oilwells-edge-001" } # dynamically issued by a local CA
-        #
-        identity_pk = "/home/s2admin/private/iot-edge-device-identity-oilwells-edge-001.key.pem"              # file URI, or...
-        identity_pk = "pkcs11:slot-id=0;object=device%20id?pin-value=1234" # PKCS#11 URI
-        ```
--->
 
         ```PowerShell
-        trust_bundle_cert = "file:///home/s2admin/certs/azure-iot-test-only.root.ca.cert.pem"
+        trust_bundle_cert = "file:///home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem"
         ```
 
         ```PowerShell
         [edge_ca]
-        cert = "file:///home/s2admin/certs/iot-edge-device-identity-oilwells-edge-001-full-chain.cert.pem"                
-        pk = "file:///home/s2admin/private/iot-edge-device-identity-oilwells-edge-001.key.pem"             
+        cert = "file:///home/wsuser/certs/iot-edge-device-identity-oilwells-edge-001-full-chain.cert.pem"                
+        pk = "file:///home/wsuser/private/iot-edge-device-identity-oilwells-edge-001.key.pem"             
         ```
 
-1. Save and close the file
-2. Run the following to restart the IoT Edge service:
+4. Save and close the file
+5. Run the following to restart the IoT Edge service:
 
     - `<=1.1.4`
 
@@ -1135,7 +1173,7 @@ cp iotedge/tools/CACertificates/certGen.sh .
     sudo iotedge config apply
     ```
 
-3. If you have issues, run the following:
+6. If you have issues, run the following:
 
     - `<=1.1.4`
 
@@ -1149,13 +1187,13 @@ cp iotedge/tools/CACertificates/certGen.sh .
     sudo iotedge system status
     ```
 
-4. Switch to the Azure Portal
-5. Browse to your lab resource group
-6. Select the **oilwells-nsg-INIT** network security group
-7. Select **Inbound Security Rules**, then select **Add**
-8. For the destination port, type **8883**
-9. For the name, type **Port_8883**
-10. Select **Apply**
+7. Switch to the Azure Portal
+8. Browse to your lab resource group
+9. Select the **oilwells-nsg-INIT** network security group
+10. Select **Inbound Security Rules**, then select **Add**
+11. For the destination port, type **8883**
+12. For the name, type **Port_8883**
+13. Select **Apply**
 
 ### Task 4: Setup Device
 
@@ -1181,7 +1219,7 @@ cp iotedge/tools/CACertificates/certGen.sh .
 14. Run the following command to trust the CA Certificate
 
     ```PowerShell
-    sudo cp /home/s2admin/certs/azure-iot-test-only.root.ca.cert.pem /usr/local/share/ca-certificates/azure-iot-test-only.root.ca.cert.pem.crt
+    sudo cp /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem /usr/local/share/ca-certificates/azure-iot-test-only.root.ca.cert.pem.crt
     sudo update-ca-certificates
     ```
 
@@ -1200,7 +1238,7 @@ cp iotedge/tools/CACertificates/certGen.sh .
 17. Test the connection:
 
     ```PowerShell
-    openssl s_client -connect {EDGE_IP}:8883 -CAfile /home/s2admin/certs/azure-iot-test-only.root.ca.cert.pem -showcerts
+    openssl s_client -connect {EDGE_IP}:8883 -CAfile /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem -showcerts
     ```
 
 18. You should receive a response with all the certificate information
@@ -1256,7 +1294,7 @@ cp iotedge/tools/CACertificates/certGen.sh .
     HostName=oilwells-iothub-INIT.azure-devices.net;DeviceId=oilwells-d01;x509=true;GatewayHostName=oilwells-edgevm-INIT
     ```
 
-## Exercise 6: Simulate IoT attacks
+## Exercise 7: Simulate IoT attacks
 
 Duration: 10 minutes
 
@@ -1308,7 +1346,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 
 3. Record the `Workspace ID` and the `Primary key` values.
 
-4. In the **oilwells-edge-001** virtual machine, run the following commands, be sure to replace the workspace tokens with the values you records above:
+4. In the **oilwells-edge-001** and **oilwells-d01** virtual machines, run the following commands, be sure to replace the workspace tokens with the values you records above:
 
     ```bash
     cd
@@ -1321,25 +1359,17 @@ This exercise will have you install some "fake" processes and open some non-stan
 
 5. Switch back to the Azure Portal.
 
-6. In the blade menu, select **Agents Management** and then select **Linux Servers**, you should see **1 LINUX COMPUTER CONNECTED**.
-
-    ![A linux computer is now connected via the Azure Agent.](media/loganalytics-linuxconnected.png "The device is now connected to log analytics")
-
-7. Under **Workspace Data Sources**, select **Virtual Machines**.
-
-8. Select the **oilwells-d01-INIT**.
-
-9. Select **Connect**.
+6. In the blade menu, select **Agents Management** and then select **Linux Servers**, after some time, you should see **2 LINUX COMPUTER CONNECTED**.
 
     > **Note**: It may take a few minutes for the OMS logs to show up and a heartbeat to be registered in Log Analytics for the IoT Linux machine.
 
 ### Task 3: Perform brute force attack
 
-1. On your local machine, or in the **oilwells-server-[YOUR INIT]** Windows 10 virtual machine, open a new PowerShell ISE window.
+1. In the **oilwells-server-[YOUR INIT]** Windows 10 virtual machine, open a new PowerShell ISE window.
 
 2. Browse to the `\Hands-on-lab\Scripts\BruteForce.ps1` script from this lab repo.
 
-3. Update the script with the IP address of the **oilwells-edgevm-INIT** device.  You can get the IP from the Azure Portal.
+3. Update the script with the Hyper-V assigned IP address of the **oilwells-edge-001** device. You can get the IP by running `ifconfig`.
 
     > **NOTE** You may need to enable SSH in the HyperV guest:
 
@@ -1368,7 +1398,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 
     ![The new brute force alert is displayed.](media/bruteforce-alert.png "Brute force alert displayed")
 
-## Exercise 6: Configure security and alerts
+## Exercise 8: Configure security and alerts
 
 Duration: 20 minutes
 
@@ -1413,7 +1443,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 9. Switch to your terminal/SSH/putty session connected to the **oilwells-edge-001** IoT Device, run the following commands:
 
     ```bash
-    sudo nano /home/s2admin/oms_audit.xml
+    sudo nano /home/wsuser/oms_audit.xml
     ```
 
 10. Copy and paste the local `/Hands-on lab/scripts/oms_audits.xml` or [remote](../Hands-on%20lab/Scripts/oms_audits.xml) file content into the session window, then save it.
@@ -1582,13 +1612,25 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
     > **Note**: If you do not get a response, you may need to restart the `iotedge` service on the device.
 
-    ```bash
-    sudo systemctl restart iotedge
-    sudo systemctl status iotedge
+    - `<=1.1.4`
 
-    sudo systemctl restart ASCIoTAgent
-    sudo systemctl status ASCIoTAgent
-    ```
+        ```bash
+        sudo systemctl restart iotedge
+        sudo systemctl status iotedge
+        ```
+
+    - `>=1.2`
+
+        ```bash
+        sudo iotedge config apply
+        ```
+    
+    - `all`
+
+        ```
+        sudo systemctl restart ASCIoTAgent
+        sudo systemctl status ASCIoTAgent
+        ```
 
 ### Task 6: Device Investigation with Logs
 
@@ -1642,7 +1684,7 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 6. Highlight the query, then select **Run**. Review the results.
 
-## Exercise 7: Azure Sentinel Hunting
+## Exercise 9: Azure Sentinel Hunting
 
 Duration: 30 minutes
 
@@ -1668,7 +1710,7 @@ This exercise will show you how to query with Azure Sentinel and deploy remediat
 
 ### Task 2: Create Linux Hybrid Worker
 
-1. On the **Win10** virtualm machine, open a PowerShell window, run the following, be sure to replace the value to match your lab environment:
+1. On the **Win10** virtual machine, open a PowerShell window, run the following, be sure to replace the value to match your lab environment:
 
     ```PowerShell
     Connect-AzAccount
@@ -1768,117 +1810,9 @@ This exercise will show you how to query with Azure Sentinel and deploy remediat
 
 5. As part of the incident, you will see that the runbook has executed and thusly, the worker in the run group will reboot.
 
-## Exercise 8: Device Messaging and Time Series Insights
-
-Duration: 15 minutes
-
-This exercise will walk you through integrating Time Series Insights and then sending security log messages from a simulated device.
-
-### Task 1: Setup Time Series Insights
-
-1. Switch to the Azure Portal, select the **iotsecurity-\[your initials or first name\]** resource group.
-
-2. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
-
-    ![The Time Series Insights Azure resource is highlighted.](media/ex7_image001.png "Browse to the Time Series Insights resource")
-
-3. Under **Settings**, select **Event Sources**.
-
-4. Select **+Add**.
-
-    ![Event sources and the add link is highlighted](media/ex7_image002.png "Add a new Event Source")
-
-5. For the name, type **oilwells-iothub-\[your initials or first name\]**.
-
-6. For the source, select **Iot Hub**.
-
-7. Select your **oilwells-iothub-\[your initials or first name\]** IoT Hub.
-
-8. For the IoT hub policy name, select **iothubowner**
-
-9. For the IoT hub consumer group, select **$default**
-
-10. Select **Save**.
-
-11. In the blade menu, select **Data Access Policies**.
-
-12. Select **+Add**.
-
-13. Select **Select user**, then search for your user account.
-
-14. For the role, select **Reader** and **Contributor**.
-
-15. Select **OK**.
-
-16. Select **OK**.
-
-### Task 2: Send Security Messages
-
-1. Open the **\Hands-on-lab\simulated-device\simulated-device.sln** project.
-
-2. From Solution explorer, open the **SimulatedDevice.cs** file.
-
-    ![Solution explorer with the simulateddevice.cs file selected.](media/ex7_image005.png "Open the SimulatedDevice.cs file")
-
-3. Update the device connection string with your **oilwells-edge-001** device.
-
-    ![The connection string variable is highlighted.](media/ex7_image006.png "Update the device connection string")
-
-4. Review the code, notice it is simply creating a set of random event messages, some of which are security oriented.
-
-5. Run the program, press **F5**.  Wait for this tool to run for 2-3 minutes.
-
-### Task 3: Review the Time Series Portal
-
-1. Switch to the Azure Portal.
-
-2. Select the **iotsecurity-\[your initials or first name\]** resource group.
-
-3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
-
-4. Select the **Go to TSI Explorer** link, close any dialogs.
-
-    ![Go to environment is hightlighted.](media/ex7_image003.png "Open the Time Series Portal")
-
-5. Select **Add new query**
-
-6. Select a `from` and `to` date settings that fit to the window you ran the device security message simulation, select **Save**
-
-   ![The FROM and TO date textboxes and the search button are highlighted.](media/ex7_image004.png "Set the time range and then select search")
-
-7. Select the **SPLIT BY** drop down, then select **SecurityAlert**.
-
-8. In the filter, right-click the **Events/SecurityAlert/true** property, select **Show only this series**, you should now see all the custom message sent from the device(s) that were set to SecurityAlerts.
-
-    ![The SecurityAlert SPLIT is highlighted and the true value is also highlighted.](media/ex7_image007.png "Filter for only security events")
-
-    ![A graph of security events is displayed.](media/ex7_image008.png "Review the security graph")
-
-## Exercise 9: Perform an IoT Hub Manual Failover
-
-Duration: 10 minutes
-
-This exercise will have you perform an IoT Hub failover to a different region.
-
-### Task 1: Perform a manual failover
-
-1. Open the Azure Portal.
-
-2. Browse to your IoT Hub.
-
-3. In the blade menu, in the **Settings** section, select **Failover**.
-
-4. In the top menu, select **Start Failover**.
-
-    ![Failover and Start Failover are highlighted.](media/iothub-failover.png "Start an IoT Hub Failover")
-
-5. Type your IoT Hub name, then select **Failover**.  It can take several minutes to failover the IoT Hub.
-
-    ![Failover success is displayed.](media/iothub-failoversuccess.png "The Failover is complete.")
-
 ## Exercise 10: Azure Defender for IoT (Optional)
 
-Duration: 120 minutes
+Duration: 30-120 minutes
 
 This exercise will show you how to install the Azure Defender for IoT agent and management console.
 
@@ -2047,6 +1981,114 @@ This exercise will show you how to install the Azure Defender for IoT agent and 
 15. Select the **Use a locally generated self signed certificate...** option, select select **I Confirm**
 16. Select **NEXT**
 17. Select **FINISH**, your sensor is now ready to monitor network traffic and send data to Azure
+
+## Exercise 11: Device Messaging and Time Series Insights (Optional)
+
+Duration: 15 minutes
+
+This exercise will walk you through integrating Time Series Insights and then sending security log messages from a simulated device.
+
+### Task 1: Setup Time Series Insights
+
+1. Switch to the Azure Portal, select the **iotsecurity-\[your initials or first name\]** resource group.
+
+2. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
+
+    ![The Time Series Insights Azure resource is highlighted.](media/ex7_image001.png "Browse to the Time Series Insights resource")
+
+3. Under **Settings**, select **Event Sources**.
+
+4. Select **+Add**.
+
+    ![Event sources and the add link is highlighted](media/ex7_image002.png "Add a new Event Source")
+
+5. For the name, type **oilwells-iothub-\[your initials or first name\]**.
+
+6. For the source, select **Iot Hub**.
+
+7. Select your **oilwells-iothub-\[your initials or first name\]** IoT Hub.
+
+8. For the IoT hub policy name, select **iothubowner**
+
+9. For the IoT hub consumer group, select **$default**
+
+10. Select **Save**.
+
+11. In the blade menu, select **Data Access Policies**.
+
+12. Select **+Add**.
+
+13. Select **Select user**, then search for your user account.
+
+14. For the role, select **Reader** and **Contributor**.
+
+15. Select **OK**.
+
+16. Select **OK**.
+
+### Task 2: Send Security Messages
+
+1. Open the **\Hands-on-lab\simulated-device\simulated-device.sln** project.
+
+2. From Solution explorer, open the **SimulatedDevice.cs** file.
+
+    ![Solution explorer with the simulateddevice.cs file selected.](media/ex7_image005.png "Open the SimulatedDevice.cs file")
+
+3. Update the device connection string with your **oilwells-edge-001** device.
+
+    ![The connection string variable is highlighted.](media/ex7_image006.png "Update the device connection string")
+
+4. Review the code, notice it is simply creating a set of random event messages, some of which are security oriented.
+
+5. Run the program, press **F5**.  Wait for this tool to run for 2-3 minutes.
+
+### Task 3: Review the Time Series Portal
+
+1. Switch to the Azure Portal.
+
+2. Select the **iotsecurity-\[your initials or first name\]** resource group.
+
+3. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
+
+4. Select the **Go to TSI Explorer** link, close any dialogs.
+
+    ![Go to environment is hightlighted.](media/ex7_image003.png "Open the Time Series Portal")
+
+5. Select **Add new query**
+
+6. Select a `from` and `to` date settings that fit to the window you ran the device security message simulation, select **Save**
+
+   ![The FROM and TO date textboxes and the search button are highlighted.](media/ex7_image004.png "Set the time range and then select search")
+
+7. Select the **SPLIT BY** drop down, then select **SecurityAlert**.
+
+8. In the filter, right-click the **Events/SecurityAlert/true** property, select **Show only this series**, you should now see all the custom message sent from the device(s) that were set to SecurityAlerts.
+
+    ![The SecurityAlert SPLIT is highlighted and the true value is also highlighted.](media/ex7_image007.png "Filter for only security events")
+
+    ![A graph of security events is displayed.](media/ex7_image008.png "Review the security graph")
+
+## Exercise 12: Perform an IoT Hub Manual Failover
+
+Duration: 10 minutes
+
+This exercise will have you perform an IoT Hub failover to a different region.
+
+### Task 1: Perform a manual failover
+
+1. Open the Azure Portal.
+
+2. Browse to your IoT Hub.
+
+3. In the blade menu, in the **Settings** section, select **Failover**.
+
+4. In the top menu, select **Start Failover**.
+
+    ![Failover and Start Failover are highlighted.](media/iothub-failover.png "Start an IoT Hub Failover")
+
+5. Type your IoT Hub name, then select **Failover**.  It can take several minutes to failover the IoT Hub.
+
+    ![Failover success is displayed.](media/iothub-failoversuccess.png "The Failover is complete.")
 
 ## After the hands-on lab
 
