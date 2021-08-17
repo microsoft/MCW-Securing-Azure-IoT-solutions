@@ -303,6 +303,8 @@ Briefly sketch-out and propose a high-level solution that meets the customer's b
 
 12. Azure Service Bus
 
+13. Azure Defender for IoT
+
 *Device Security*
 
 Describe how you will secure the following:
@@ -326,6 +328,8 @@ Describe how you will utilize Azure security features to secure the various reso
 1. How will you secure the IoT Hub?
 
 2. How will you secure the IoT Device Provisioning Service?
+
+3. How can you monitor devices that cannot have an agent installed on them?
 
 *Ensure secure Device updates*
 
@@ -355,19 +359,19 @@ Timeframe: 30 minutes
 
 Directions:
 
-1.  Pair with another table.
+1. Pair with another table.
 
-2.  One table is the Microsoft team and the other table is the customer.
+2. One table is the Microsoft team and the other table is the customer.
 
-3.  The Microsoft team presents their proposed solution to the customer.
+3. The Microsoft team presents their proposed solution to the customer.
 
-4.  The customer makes one of the objections from the list of objections.
+4. The customer makes one of the objections from the list of objections.
 
-5.  The Microsoft team responds to the objection.
+5. The Microsoft team responds to the objection.
 
-6.  The customer team gives feedback to the Microsoft team.
+6. The customer team gives feedback to the Microsoft team.
 
-7.  Tables switch roles and repeat Steps 2-6.
+7. Tables switch roles and repeat Steps 2-6.
 
 ##  Wrap-up
 
@@ -390,6 +394,8 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure IoT Edge (Authenticate downstream device)  |  <https://docs.microsoft.com/en-us/azure/iot-edge/how-to-authenticate-downstream-device/>|
 | Azure IoT Edge (Connect downstream device)  |  <https://docs.microsoft.com/en-us/azure/iot-edge/how-to-connect-downstream-device/>|
 | Azure IoT Edge Certificates  |  <https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-certs/>|
+| Azure Defender for IoT | https://docs.microsoft.com/en-us/azure/defender-for-iot/organizations/overview | 
+| Microsoft Defender for Endpoint | https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/microsoft-defender-endpoint?view=o365-worldwide |
 | Azure IoT Device Provisioning Service   | https://docs.microsoft.com/en-us/azure/iot-dps/  |
 | Provisioning devices with vTPM   | https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-linux/  |
 | Provisioning devices with sTPM   | https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-windows/  |
@@ -491,8 +497,10 @@ Describe how you will secure the following:
 2. How will you secure the IoT Devices?
 
     Similar to an IoT Edge device, these devices should have the Azure IoT Security agent installed.  Devices should also utilize hardware based secure silicon features (such as TPM, eSE, Arm TrustZone and Intel SGX) to ensure that the device is not accessed physically and modified in any way.  
-    
+
     All devices should have unique certificates to identify them to the IoT Edge devices and the IoT Hub.
+
+    Microsoft Defender for Endpoint can also be installed to provide added protection using the advanced machine learning and artificial intelligence features of the Microsoft Defender stack.
 
 3. How will you monitor and audit device access?
 
@@ -537,6 +545,12 @@ Describe how you will utilize Azure security features to secure the various reso
 
     - Similar to an IoT Hub resource, you can utilize Azure Access Control (IAM) and a similar Shared Access Policies setup to achieve your desired permissions configuration.
     - You can also enable Diagnostic settings to log management plane changes.
+
+3. How can you monitor devices that cannot have an agent installed on them?
+
+    - Azure Defender for IoT provides for a agentless monitoring sensor that uses a SPAN port to monitor traffic on the device network.
+
+    - Any Indicators of Compromise (IoC) can be picked up from the traffic and then logs sent to Log Analytics and Sentinel for furtner alerting.
 
 Additionally:
 
