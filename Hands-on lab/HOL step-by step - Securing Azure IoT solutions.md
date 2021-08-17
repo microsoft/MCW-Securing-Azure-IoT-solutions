@@ -1728,6 +1728,12 @@ This exercise will evaluate the logs from when you enabled diagnostic logging on
 
 6. Highlight the query, then select **Run**. Review the results.
 
+7. If you would like to get logs from Azure Sentinel or Log analytics for **Azure Defender for IoT**, you can run the following query:
+
+    ```kql
+    SecurityAlert | where ProductName == "Azure Security Center for IoT"
+    ```
+
 ## Exercise 9: Azure Sentinel Hunting
 
 Duration: 30 minutes
@@ -1738,11 +1744,17 @@ This exercise will show you how to query with Azure Sentinel and deploy remediat
 
 1. Switch back to the Azure Portal
 2. In the global search, search for **Azure Sentinel**, select it
+
+    ![Search for and select Azure Sentinel.](media/sentinel-select.png "Search for and select Azure Sentinel")
+
 3. Select **Create**
 4. Select the **oilwells-logging-[YOUR INIT]** log analytics workspace
 5. Select **Add**
 6. Under configuration, select **Data connectors**
 7. Search for **IoT**
+
+    ![Browse to the Azure Defender for IoT Data Connector.](media/sentinel-data-connectors-iot.png "Browse to the Azure Defender for IoT Data Connector")
+
 8. Select **Azure Defender for IoT**, then select **Open connector page**
 9. For your lab subscription, select **Connect**
 10. For the **Create incidents**, select **Enable**
@@ -1766,11 +1778,17 @@ This exercise will show you how to query with Azure Sentinel and deploy remediat
 
 2. Switch to the Azure Portal
 3. Browse to the **oilwells-automation-INIT** Automation Account
+
+    ![Browse to the Automation Account.](media/sentinel-automation-account.png "Browse to the Automation Account")
+
 4. Under **Configuration Management**, select **Inventory**
 5. Select **Enable**
 6. Under **Update Management**, select **Update management**
 7. Select **Enable**
 8. Under **Account Settings**, select **Keys**, copy the primary access key and the URL
+
+    ![Copy the Automation Account keys and url.](media/sentinel-automation-account-keys.png "Copy the Automation Account keys and url")
+
 9. Switch to the **oilwells-edge-001** virtual machine SSH session
 
 10. Run the following commands to add the VM to a Hybrid worker, be sure to replace the values to match your environment.  Set the **hybridGroupName** to "IoTEdge":
@@ -1783,6 +1801,9 @@ This exercise will show you how to query with Azure Sentinel and deploy remediat
 
 11. Switch back to the Automation Account
 12. Under **Process Automation**, select **Hybrid worker groups**, you should now see the **IoTEdge** group displayed
+
+    ![Hybrid group is displayed.](media/sentinel-automation-account-hybrid-group.png "Hybrid group is displayed")
+
 13. Under **Process Automation**, select **Runbooks**
 14. Select **Create a runbook**
 15. For the name, type **Reboot**
@@ -1890,9 +1911,15 @@ This exercise will show you how to install the Azure Defender for IoT agent and 
 1. Login to the **win10** virtual machine
 2. Open the Azure Portal
 3. Browse to the **Security Center** portal
-4. Select **Azure Defender**, then select **IoT Security** to open the **Azure Defender for IoT** portal
+4. Under **Cloud Security**, select **Azure Defender**, then select **IoT Security** to open the **Azure Defender for IoT** portal
 5. Select **Set up a sensor**
+
+    ![Setup a sensor.](./media/azure-defender-iot-setup-sensor.png "Select Set up a sensor")
+
 6. Select the **10.3.1 (Stable) and above** sensor, then select **Download**
+
+    ![Setup a sensor download.](./media/azure-defender-iot-setup-sensor-download.png "Select Set up a sensor download")
+
 7. Select **Continue without submitting**
 8. Open the **Hyper-V manager** management console
 9. Select the local server
@@ -2001,6 +2028,9 @@ This exercise will show you how to install the Azure Defender for IoT agent and 
 1. Switch back to the Azure Portal and the Azure Defender for IoT page
 2. Select **Pricing**
 3. Select **Onboard subscription**
+
+    ![Onboard a subscription.](./media/azure-defender-iot-setup-onboard-subscription.png "Onboard a subscription")
+
 4. Select the lab subscription
 5. Select **Subscribe**, in the dialog select **Confirm**
 
