@@ -62,7 +62,6 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 3: Setup Edge Device](#task-3-setup-edge-device)
     - [Task 4: Setup Device](#task-4-setup-device)
     - [Task 5: Test Device to Edge Device Application Communciation (Optional)](#task-5-test-device-to-edge-device-application-communciation-optional)
-    - [Task 5: Setup Child Edge Device to Parent Edge Device Heirarchy (Optional)](#task-5-setup-child-edge-device-to-parent-edge-device-heirarchy-optional)
   - [Exercise 7: Simulate IoT attacks](#exercise-7-simulate-iot-attacks)
     - [Task 1: Setup and execute attack scripts](#task-1-setup-and-execute-attack-scripts)
     - [Task 2: Configure Azure Agent](#task-2-configure-azure-agent)
@@ -494,6 +493,21 @@ With the Azure resources in place, you can now start creating and provisioning d
     >**Note**: In the real world, all your devices should have hardware-based TPMs.
 
 5. Repeat the above steps on the **oilwells-d01** virtual machine in the Windows 10 host.
+
+6. In order to SSH into the child device, you will need to enable SSH. Switch to the Hyper-V for the `oilwells-d01` and run the following:
+
+    ```Powershell
+    sudo apt-get install -y openssh-server
+
+    sudo nano /etc/ssh/sshd_config
+    ```
+
+    - Uncomment the `PasswordAuthentication yes` line
+
+    ```Powershell
+    sudo systemctl stop ssh
+    sudo systemctl start ssh
+    ```
 
 ### Task 1: Create IoT Hub Edge Device Enrollment
 
@@ -940,7 +954,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 13. In the **Edge Agent** section, change the image name to **mcr.microsoft.com/azureiotedge-agent:1.1**, then select **Apply**.
 
-14. In the **Edge Hub** section, change the image name to **mcr.microsoft.com/ascforiot/edgehub:1.1**, then select **Apply**.
+14. In the **Edge Hub** section, change the image name to **mcr.microsoft.com/azureiotedge-hub:1.1**, then select **Apply**.
 
 15. Select **Next: Routes>**.
 
@@ -1076,17 +1090,23 @@ In this exercise you will setup a device to edge device communication channel.
 1. Run the following command:
 
     ```PowerShell
-    sudo nano /home/s2admin/certs/azure-iot-test-only.root.ca.cert.pem
+    sudo nano /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem
     ```
 
 2. Copy the text in the file to a machine that can be used to upload via browser
 3. Switch to the Azure Portal, browse to the IoT Hub
 4. Under **Settings**, select **Certificates**
 5. Select **Add**
-6. For the name, type **Oilwells CA**
+
+    ![Add the certicate to the IoT Hub.](media/iothub-ca-certificate.png "Click path for uploading the CA certificate.")
+
+6. For the name, type **oilwells-ca**
 7. Select the .pem file
 8. Select **Save**
 9. Select the new certificate, then select **Generate verification code**
+
+    ![Generate verification code.](media/iothub-ca-generate-code.png "Select Generate verification code.")
+
 10. Copy the verification code and run the following in the SSH session:
 
     ```PowerShell
@@ -1098,11 +1118,14 @@ In this exercise you will setup a device to edge device communication channel.
 11. Run the following, again copy the text into a file that can be used to upload
 
     ```PowerShell
-    sudo nano /home/s2admin/certs/iot-device-verification-code-full-chain.cert.pem
+    sudo nano /home/wsuser/certs/iot-device-verification-code-full-chain.cert.pem
     ```
 
 12. In the Azure Portal, select to upload the new verification certificate
 13. Select **Verify**, you should now see the certificate is verified.
+
+    ![Verified CA Certificate.](media/iothub-ca-verified.png "Verified status is displayed.")
+
 14. In the `oilwells-edge-001` SSH session, run the following command to copy the certs to the child device `oilwells-d01`, be sure to replace the `{DEVICE_IP}` value:
 
     ```PowerShell
@@ -1114,15 +1137,14 @@ In this exercise you will setup a device to edge device communication channel.
 
 ### Task 3: Setup Edge Device
 
-1. Switch to the **oilwells-d01** device SSH session
-2. Run the following commands to update the certificates:
+1. Run the following commands to update the certificates on both devices `oilwells-edge-001` and `oilwells-d01`:
 
     ```PowerShell
     sudo cp /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem /usr/local/share/ca-certificates/azure-iot-test-only.root.ca.cert.pem.crt
     sudo update-ca-certificates
     ```
 
-3. Run the following to edit the iot edge configuration:
+2. On the `oilwells-edge-001` device, run the following to edit the iot edge configuration:
 
     - `<=1.1.4`
 
@@ -1147,10 +1169,11 @@ In this exercise you will setup a device to edge device communication channel.
 
        - Uncomment and update the values and section by uncommenting the lines and setting the values to the following:
 
-
         ```PowerShell
         trust_bundle_cert = "file:///home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem"
         ```
+
+        ![Trust Bundle.](media/iothub-trust-bundle.png "Trust Bundle section is displayed.")
 
         ```PowerShell
         [edge_ca]
@@ -1158,8 +1181,8 @@ In this exercise you will setup a device to edge device communication channel.
         pk = "file:///home/wsuser/private/iot-edge-device-identity-oilwells-edge-001.key.pem"             
         ```
 
-4. Save and close the file
-5. Run the following to restart the IoT Edge service:
+3. Save and close the file
+4. Run the following to restart the IoT Edge service:
 
     - `<=1.1.4`
 
@@ -1171,6 +1194,12 @@ In this exercise you will setup a device to edge device communication channel.
 
     ```PowerShell
     sudo iotedge config apply
+    ```
+
+5. Be sure to open the firewall ports:
+
+    ```bash
+    sudo ufw allow 8883/tcp
     ```
 
 6. If you have issues, run the following:
@@ -1187,21 +1216,27 @@ In this exercise you will setup a device to edge device communication channel.
     sudo iotedge system status
     ```
 
-7. Switch to the Azure Portal
-8. Browse to your lab resource group
-9. Select the **oilwells-nsg-INIT** network security group
-10. Select **Inbound Security Rules**, then select **Add**
-11. For the destination port, type **8883**
-12. For the name, type **Port_8883**
-13. Select **Apply**
+7. When running your IoT Edge device in Azure, you would need to open up NSG port access:
+
+   1. Switch to the Azure Portal
+   2. Browse to your lab resource group
+   3. Select the **oilwells-nsg-INIT** network security group
+   4. Select **Inbound Security Rules**, then select **Add**
+   5. For the destination port, type **8883**
+   6. For the name, type **Port_8883**
+   7. Select **Apply**
 
 ### Task 4: Setup Device
 
 1. Switch to the **oilwells-d01** device SSH session
+
 2. Run the following commands to get the SHA1 fingerprints on the device cert files:
 
     ```PowerShell
+    cd certs
+
     openssl x509 -in iot-device-oilwells-d01-primary.cert.pem -text -fingerprint | sed 's/[:]//g'
+    
     openssl x509 -in iot-device-oilwells-d01-secondary.cert.pem -text -fingerprint | sed 's/[:]//g'
     ```
 
@@ -1216,68 +1251,89 @@ In this exercise you will setup a device to edge device communication channel.
 11. Select the **oilwells-edge-001** device
 12. Select **OK**
 13. Select **Save**
-14. Run the following command to trust the CA Certificate
 
-    ```PowerShell
-    sudo cp /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem /usr/local/share/ca-certificates/azure-iot-test-only.root.ca.cert.pem.crt
-    sudo update-ca-certificates
-    ```
-
-15. Run the following command to open the HOSTS file
+14. Switch to the `oilwells-d01` device, run the following command to open the HOSTS file
 
     ```PowerShell
     sudo nano /etc/hosts
     ```
 
-16. Add the following to the hosts file, be sure to replace `INIT`:
+15. Add the following to the hosts file, be sure to replace `INIT`:
 
     ```text
-    {EDGE_IP} oilwells-edgevm-INIT
+    {EDGE_IP} oilwells-edge-001
     ```
 
-17. Test the connection:
+16. Test the various connections:
 
     ```PowerShell
-    openssl s_client -connect {EDGE_IP}:8883 -CAfile /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem -showcerts
+    openssl s_client -connect oilwells-edge-001:8883 -CAfile /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem -showcerts
+
+    openssl s_client -connect oilwells-edge-001:443 -CAfile /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem -showcerts
+
+    openssl s_client -connect oilwells-edge-001:5671 -CAfile /home/wsuser/certs/azure-iot-test-only.root.ca.cert.pem -showcerts
     ```
 
-18. You should receive a response with all the certificate information
+17. You should receive a response with all the certificate information:
+
+    ![Result from test connection.](media/iothub-test-8883.png "Result from the command is displayed.")
 
 ### Task 5: Test Device to Edge Device Application Communciation (Optional)
 
-1. Download the IoTEdgeAndMISample project:
+1. In the `oilwells-d01` SSH session, download the IoTEdgeAndMISample project:
 
     ```PowerShell
-    git clone https://github.com/Azure-Samples/IoTEdgeAndMlSample --recursive
+    sudo apt-get install -y git curl
+
+    git clone https://github.com/Azure/iotedge --recursive
     ```
 
-2. Install DotNet
+2. Install DotNet 3.1
 
     ```PowerShell
-    sudo apt-get update; \
-    sudo apt-get install -y apt-transport-https && \
-    sudo apt-get update && \
-    sudo apt-get install -y dotnet-sdk-3.1
-
-    sudo apt-get update; \
-    sudo apt-get install -y apt-transport-https && \
-    sudo apt-get update && \
-    sudo apt-get install -y aspnetcore-runtime-3.1
+    sudo snap install dotnet-sdk --classic --channel=3.1
     ```
 
 3. Compile the proejct:
 
     ```PowerShell
-    dotnet build IoTEdgeAndMlSample/DeviceHarness/DeviceHarness.csproj
+    cd iotedge/samples/dotnet/EdgeX509AuthDownstreamDevice
+
+    sudo dotnet build 
     ```
 
-4. Run the program, when prompted set the connection string to `HostName=oilwells-iothub-INIT.azure-devices.net;DeviceId=oilwells-d01;x509=true;GatewayHostName=oilwells-edgevm-INIT`:
+4. Run the following to edit the configuration file:
 
     ```PowerShell
-    cd IoTEdgeAndMlSample/DeviceHarness
-
-    dotnet run
+    sudo nano Properties/launchSettings.json
     ```
+
+5. Set the `IOTHUB_HOSTNAME` to **oilwells-iothub-INIT.azure-devices.net**
+
+6. Set the `IOTHUB_GATEWAY_HOSTNAME` to **oilwells-edge-001**
+
+7. Set the `DEVICE_ID` and set it to **oilwells-d01**:
+
+8. Set the `DEVICE_IDENTITY_X509_CERTIFICATE_PEM_PATH` and set it to **/home/wsuser/certs/iot-device-oilwells-d01-primary-full-chain.cert.pem**:
+
+9. Set the `DEVICE_IDENTITY_X509_CERTIFICATE_KEY_PEM_PATH` and set it to **/home/wsuser/private/iot-device-oilwells-d01-primary-full-chain.key.pem**:
+
+10. Set the `IOTEDGE_TRUSTED_CA_CERTIFICATE_PEM_PATH` to **/home/wsuser/certs//home/wsuser/certs/azure-iot-test-only.intermediate-full-chain.cert.pem**
+
+11. Run the program:
+
+    ```PowerShell
+    cd ..
+    
+    sudo dotnet run
+    ```
+
+12. You should see the messages flow from the device to the edge device:
+
+    ![Messagse being sent from dotnet application.](media/iothub-dotnet-message-send.png "Successful message sending is displayed.")
+
+<!--
+### Maybe for later???
 
 ### Task 5: Setup Child Edge Device to Parent Edge Device Heirarchy (Optional)
 
@@ -1288,11 +1344,14 @@ In this exercise you will setup a device to edge device communication channel.
     ```
 
 2. Change the authentication to be a manual connection string
+
 3. Set the connection string to the following, be sure to replace the `INIT`:
 
     ```text
-    HostName=oilwells-iothub-INIT.azure-devices.net;DeviceId=oilwells-d01;x509=true;GatewayHostName=oilwells-edgevm-INIT
+    HostName=oilwells-iothub-INIT.azure-devices.net;DeviceId=oilwells-d01;x509=true;GatewayHostName=oilwells-edge-001
     ```
+
+-->
 
 ## Exercise 7: Simulate IoT attacks
 
@@ -1370,21 +1429,6 @@ This exercise will have you install some "fake" processes and open some non-stan
 2. Browse to the `\Hands-on-lab\Scripts\BruteForce.ps1` script from this lab repo.
 
 3. Update the script with the Hyper-V assigned IP address of the **oilwells-edge-001** device. You can get the IP by running `ifconfig`.
-
-    > **NOTE** You may need to enable SSH in the HyperV guest:
-
-    ```Powershell
-    sudo apt-get install -y openssh-server
-
-    sudo nano /etc/ssh/sshd_config
-    ```
-
-    - Uncomment the `PasswordAuthentication yes` line
-
-    ```Powershell
-    sudo systemctl stop ssh
-    sudo systemctl start ssh
-    ```
 
 4. Press **F5** to run the script. The script will attempt to login to the iot device using the wrong credentials with the plink tool of Putty.
 
