@@ -598,7 +598,10 @@
               "sku": {
                 "name": "Basic"
               }
-            }
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.operationalinsights/workspaces', concat('oilwells-logging-', parameters('alias')))]"
+              ]
           },
         {
             "type": "Microsoft.Storage/storageAccounts",
@@ -765,13 +768,6 @@
 					"adminPassword": "[parameters('password')]",
                     "secrets": [],
                     "allowExtensionOperations": true
-                },
-                "securityProfile": {
-                    "uefiSettings": {
-                        "secureBootEnabled": true,
-                        "vTpmEnabled": true
-                    },
-                    "securityType": "TrustedLaunch"
                 },
                 "networkProfile": {
                     "networkInterfaces": [

@@ -372,6 +372,10 @@ CreateRebootTask "MCW Setup Script" $scriptPath "C:\LabFiles\MCW-Securing-Azure-
 
 sleep 20
 
+$size = (Get-PartitionSupportedSize -DiskNumber 0 -PartitionNumber 4)
+
+Resize-Partition -DiskNumber 0 -PartitionNumber 4 -Size $size.SizeMax
+
 Stop-Transcript
 
 Restart-Computer -Force

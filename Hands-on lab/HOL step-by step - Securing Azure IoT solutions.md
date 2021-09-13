@@ -229,25 +229,21 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 2. In the blade menu, select **Activity Log**.
 
-3. In the top menu, select **Logs**.
+3. Select the **Diagnostic settings** link.
 
-    ![This screenshot highlights the activity log link and the logs link for navigating to the Azure Activity Logs.](media/ex1_image005.png "Navigate to resource group Activity Logs")
+4. Select your lab subscription.
 
-4. Select the **diagnostic settings** link.
+5. then select the **Add diagnostic setting** link.
 
-5. Select your lab subscription.
+6. For the name, type **iotsecuritylogging**.
 
-6. then select the **Add diagnostic setting** link.
+7. Select all the checkboxes.
 
-7. For the name, type **iotsecuritylogging**.
+8. Select the **Send to Log Analytics** checkbox.
 
-8. Select all the checkboxes.
+9. Select the **oilwells-logging-[YOUR INIT]**.
 
-9. Select the **Send to Log Analytics** checkbox.
-
-10. Select the **oilwells-logging-[YOUR INIT]**.
-
-11. In the top menu, select **Save**, this will send all Azure level configuration and diagnostic events to the Log Analytics workspace.
+10. In the top menu, select **Save**, this will send all Azure level configuration and diagnostic events to the Log Analytics workspace.
 
 ### Task 4: Configure diagnostic logging on IoT Hub
 
@@ -299,27 +295,31 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 2. Select the **oilwells-edge-001** guest virtual machine.
 
+    > **Note** It can take some time to download, unzip and mount the pre-created images so you may not see them show up immediately.
+
 3. In the Hyper-V console, login to the vm using `wsuser` and password `S2@dmins2@dmin`
 
-4. Open a terminal window and run the following:
+4. If prompted, select **Remind me Later** for upgrading the image.
+
+5. Open a terminal window and run the following:
 
     ```bash
     ifconfig
     ```
 
-5. Record the `eth0` IP address.
+6. Record the `eth0` IP address.
 
     ![Run the ifconfig tool.](media/ex1_ifconfig.png "Output of the ifconfig tool is displayed.")
 
-6. From the Windows 10 virtual machine host, open a PowerShell window and run the following:
+7. From the Windows 10 virtual machine host, open a PowerShell window and run the following:
 
     ```PowerShell
-    ssh s2admin@{IP ADDRESS}
+    ssh wsuser@{IP ADDRESS}
     ```
 
-7. If prompted, type **yes**, then enter the password
+8. If prompted, type **yes**, then enter the password
 
-8. In the new SSH window, run the following commands, this could take up to 10 minutes to complete.
+9. In the new SSH window, run the following commands, this could take up to 10 minutes to complete.
 
     - Depending on your hosting environment and command line tool (cmd.exe, bash, PowerShell, etc.), you may need to run each line one at a time to avoid skipping any commands. You are updating and upgrading as some required packages will requires these updates.
 
@@ -350,7 +350,7 @@ With the Azure resources in place, you can now start creating and provisioning d
 
    > **Note**: Ubuntu 20.04 will not work with these labs.
 
-9. Repeat the steps above for the **oilwells-d01** guest virtual machine.
+10. Repeat the steps above for the **oilwells-d01** guest virtual machine.
 
 ### Task 3: Download and compile the Azure IoT SDK
 
@@ -359,13 +359,12 @@ With the Azure resources in place, you can now start creating and provisioning d
     > **Note**: You can find the latest release of the Azure IoT SDK [here](https://github.com/Azure/azure-iot-sdk-c/releases).  You can open the git to see what the latest release tag is (we reference `LTS_07_2020` below), but be aware the remainder of the lab may not work properly based on a new release.
 
     ```PowerShell
-    sudo chown -R $USER ~/.
-    rm -rf ~/
-    rm -rf /var/certs
+    sudo chown -R $USER:$USER /home/wsuser
+    sudo rm -rf /var/certs
 
     git clone https://github.com/Azure/iotedge --recursive
 
-    git clone -b LTS_07_2020_Ref01 https://github.com/Azure/azure-iot-sdk-c.git --recursive
+    sudo git clone -b LTS_07_2020_Ref01 https://github.com/Azure/azure-iot-sdk-c --recursive
 
     cd azure-iot-sdk-c
 
@@ -623,7 +622,7 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
 
     ![The IoT Edge device dialog with the copy link highlighted for the the device primary key.](media/ex2_image014.png "Copy the primary device key")
 
-9.  Switch back to your terminal window or SSH shell, run the following command to open a text editor:
+9. Switch back to your terminal window or SSH shell, run the following command to open a text editor:
 
     `<=1.1.4`
 
@@ -639,7 +638,7 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
     sudo nano /etc/aziot/config.toml
     ```
 
-10. Edit the host name to be `oilwells-edge-001`
+10. Uncomment the line and edit the host name to be `oilwells-edge-001`
 
 11. There are several ways to register your device with the provisioning service.  This includes manually with a device connection string, TPM registration, and symmetric key.  
 
@@ -730,7 +729,7 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
         sudo nano /etc/udev/rules.d/tpmaccess.rules
         ```
 
-        - Copy the following into the file and then save the file:
+        - Replace the file with the following lines and then save the file:
 
         `<=1.1.4`
 
@@ -797,7 +796,9 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
     - `>=1.2`
 
         ```bash
-        sudo iotedge config apply    
+        sudo iotedge config apply
+
+        sudo iotedge system status
         ```
 
         You should see the iotedge services all display **Running**.
@@ -842,7 +843,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
     >**Note**: Change the ubuntu version "os_version" as appropriate (`16.04` vs `18.04`).  You can get your version by running `lsb_release -a`.
 
-    ```PowerShell
+    ```bash
     cd
 
     git clone https://github.com/Azure/Azure-IoT-Security-Agent-C.git --recursive
@@ -1007,18 +1008,10 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
     sudo apt-get install libplist-utils
 
-    curl -o microsoft.list https://packages.microsoft.com/config/ubuntu/{os_version}/prod.list
-
-    sudo mv ./microsoft.list /etc/apt/sources.list.d/microsoft-prod.list
-
     sudo apt-get install gpg
-
-    curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 
     sudo apt-get install apt-transport-https
     
-    sudo apt-get update
-
     sudo apt-get install mdatp
     ```
 
@@ -1044,7 +1037,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
     sudo nano MicrosoftDefenderATPOnboardingLinuxServer.py
     ```
 
-9.  Run the following commands to configure the agent:
+9. Run the following commands to configure the agent:
 
     ```PowerShell
     python MicrosoftDefenderATPOnboardingLinuxServer.py
@@ -1070,7 +1063,7 @@ In this exercise you will setup a device to edge device communication channel.
     ```Powershell
     cd 
 
-    git clone https://github.com/Azure/iotedge.git
+    #git clone https://github.com/Azure/iotedge.git
 
     cp iotedge/tools/CACertificates/*.cnf .
     cp iotedge/tools/CACertificates/certGen.sh .
@@ -1180,6 +1173,8 @@ In this exercise you will setup a device to edge device communication channel.
         cert = "file:///home/wsuser/certs/iot-edge-device-identity-oilwells-edge-001-full-chain.cert.pem"                
         pk = "file:///home/wsuser/private/iot-edge-device-identity-oilwells-edge-001.key.pem"             
         ```
+
+        ![Trust Bundle.](media/iothub-trust-bundle-1.2.png "Trust Bundle section is displayed.")
 
 3. Save and close the file
 4. Run the following to restart the IoT Edge service:
@@ -1316,15 +1311,13 @@ In this exercise you will setup a device to edge device communication channel.
 
 8. Set the `DEVICE_IDENTITY_X509_CERTIFICATE_PEM_PATH` and set it to **/home/wsuser/certs/iot-device-oilwells-d01-primary-full-chain.cert.pem**:
 
-9. Set the `DEVICE_IDENTITY_X509_CERTIFICATE_KEY_PEM_PATH` and set it to **/home/wsuser/private/iot-device-oilwells-d01-primary-full-chain.key.pem**:
+9. Set the `DEVICE_IDENTITY_X509_CERTIFICATE_KEY_PEM_PATH` and set it to **/home/wsuser/private/iot-device-oilwells-d01-primary.key.pem**:
 
-10. Set the `IOTEDGE_TRUSTED_CA_CERTIFICATE_PEM_PATH` to **/home/wsuser/certs//home/wsuser/certs/azure-iot-test-only.intermediate-full-chain.cert.pem**
+10. Set the `IOTEDGE_TRUSTED_CA_CERTIFICATE_PEM_PATH` to **/home/wsuser/certs/azure-iot-test-only.intermediate-full-chain.cert.pem**
 
 11. Run the program:
 
     ```PowerShell
-    cd ..
-    
     sudo dotnet run
     ```
 
@@ -1897,7 +1890,7 @@ This exercise will show you how to install the Azure Defender for IoT agent and 
     network edit-settings
     ```
 
-    - For the IP address, add 15 to the host value
+    - For the IP address, add `15` to the server IP host value
     - For the subnet, copy the subnet you output above
     - Set the DNS to `8.8.8.8`
     - For the gateway enter the Windows 10 host IP
@@ -1972,7 +1965,7 @@ This exercise will show you how to install the Azure Defender for IoT agent and 
     sudo cyberx_management_network_reconfigure
     ```
 
-    - For the IP address, add 10 to the host value
+    - For the IP address, add `10` to the server IP host value
     - For the subnet, copy the subnet you output above
     - Set the DNS to `8.8.8.8`
     - For the gateway enter the Windows 10 host IP
