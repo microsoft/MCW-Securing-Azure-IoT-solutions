@@ -237,7 +237,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 6. For the name, type **iotsecuritylogging**.
 
-7. Select all the checkboxes.
+7. Under **Category details**, select all the checkboxes.
 
 8. Select the **Send to Log Analytics** checkbox.
 
@@ -642,7 +642,7 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
 
 11. There are several ways to register your device with the provisioning service.  This includes manually with a device connection string, TPM registration, and symmetric key.  
 
-    The simplest provisioning method is "manual" with a device connection string.  Each way is presented below, you need **only pick one**.  Note that TPM registration requires a software or hardware TPM.  As of 08/2021, Trusted Platform in Azure will not work, but a nested VM inside a HyperV image (in the case of this lab, inside Windows 10) does.
+    The simplest provisioning method is "manual" with a device connection string.  Each way is presented below, you need **only pick one**.  Note that TPM registration requires a software or hardware TPM.  As of 08/2021, Trusted Platform in Azure will not work, but a nested VM inside a HyperV image (in the case of this lab, inside Windows 10) does and **TPM is the method you should choose**.
 
     >**Note**: YAML file structure formats are very specific.  Be sure that the leading lines have "tabs" that are made up of only 2 space characters.
 
@@ -1439,7 +1439,7 @@ This exercise will have you install some "fake" processes and open some non-stan
 
 Duration: 20 minutes
 
-This exercise will evaluate the logs from when you enabled diagnostic logging on your Azure resources and then setup some alerts based on any important configuration changes that an Azure user may make to your IoT infrastructure.
+This exercise will evaluate the logs from when you enabled diagnostic logging on your Azure resources and then setup some alerts based on any important configuration changes that an Azure user may make to your IoT infrastructure.  You will also setup a baseline such that if a local user makes a change on your IoT Device, the security agent will make note of it and notify you.
 
 ### Task 1: Create IoT Baseline checks
 
