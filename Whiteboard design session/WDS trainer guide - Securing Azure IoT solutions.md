@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-Sept 2021
+September 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -538,7 +538,7 @@ Describe how you will utilize Azure security features to secure the various reso
 
     - Utilizing Azure Access control (IAM) mechanisms you can set the permissions to access and modify the IoT Hub resource to the proper individuals.
     - By implementing Shared Access Policies, you can create policies that grant permission to perform actions on the IoT Hub such as Registry read, Registry write, Service connect, and Device connect
-    - Using IP Filters, you can limit the devices that can connect to your IoT hub to a set of IP Addresses.
+    - Using IP Filters, you can limit the devices that can connect to your IoT Hub to a set of IP Addresses.
     - Enabling Diagnostic settings to send changes to a Log Analytics workspace will enable to you fire alerts based on management plane activities.
 
 2. How will you secure the IoT Device Provisioning Service?
@@ -610,7 +610,7 @@ Each of the remote devices has a guardian module that performs secure communicat
 
 1. Contoso, Ltd staff are worried it may be impossible to manage the many thousands of IoT devices they have deployed around the world with any one product.
 
-    Utilizing the Azure IoT Hub Device Provisioning Service, Contoso can enable a zero-touch, just-in-time provisioning to specific IoT hubs without any human intervention.  The service scales to many millions of devices in a secure and scalable manner that will meet Contoso's needs.
+    Utilizing the Azure IoT Hub Device Provisioning Service, Contoso can enable a zero-touch, just-in-time provisioning to specific IoT Hubs without any human intervention.  The service scales to many millions of devices in a secure and scalable manner that will meet Contoso's needs.
 
 2. Can Azure handle all the different types of operating systems and processor architectures of their devices?
 

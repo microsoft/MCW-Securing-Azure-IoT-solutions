@@ -16,7 +16,7 @@ namespace simulated_device
     {
         private static DeviceClient s_deviceClient;
 
-        // The device connection string to authenticate the device with your IoT hub.
+        // The device connection string to authenticate the device with your IoT Hub.
         // Using the Azure CLI:
         // az iot hub device-identity show-connection-string --hub-name {YourIoTHubName} --device-id MyDotnetDevice --output table
         private readonly static string s_connectionString = "HostName={YOURHUBNAME}.azure-devices.net;DeviceId={YOURDEVICENAME};SharedAccessKey={YOURKEY}";
@@ -72,7 +72,7 @@ namespace simulated_device
                 var message = new Message(Encoding.ASCII.GetBytes(messageString));
 
                 // Add a custom application property to the message.
-                // An IoT hub can filter on these properties without access to the message body.
+                // An IoT Hub can filter on these properties without access to the message body.
                 message.Properties.Add("SecurityAlert", (category == "Security") ? "true" : "false");
 
                 // Send the telemetry message
@@ -86,7 +86,7 @@ namespace simulated_device
         {
             Console.WriteLine("IoT Hub Quickstarts #1 - Simulated device. Ctrl-C to exit.\n");
 
-            // Connect to the IoT hub using the MQTT protocol
+            // Connect to the IoT Hub using the MQTT protocol
             s_deviceClient = DeviceClient.CreateFromConnectionString(s_connectionString, TransportType.Mqtt);
             SendDeviceToCloudMessagesAsync();
             Console.ReadLine();

@@ -4,7 +4,7 @@ Configuration SetupVM
 
   Node $MachineName
   {
-    #Install HyperV
+    #Install Hyper-V
     WindowsFeature Hyper-V
     {
       Ensure = "Present"
