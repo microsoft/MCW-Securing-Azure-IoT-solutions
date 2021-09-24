@@ -52,6 +52,88 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [High-level architecture](#high-level-architecture)
   - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
   - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
+[Additional references](#additional-references)
+- [Trainer information](#trainer-information)
+  - [Role of the trainer](#role-of-the-trainer)
+  - [Whiteboard design session flow](#whiteboard-design-session-flow)
+  - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
+  - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
+- [Securing Azure IoT solutions whiteboard design session student guide](#securing-azure-iot-solutions-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
+- [Securing Azure IoT solutions whiteboard design session trainer guide](#securing-azure-iot-solutions-whiteboard-design-session-trainer-guide)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
+  - [Step 3: Present the solution](#step-3-present-the-solution-1)
+  - [Wrap-up](#wrap-up-1)
+  - [Preferred target audience](#preferred-target-audience)
+  - [Preferred solution](#preferred-solution)
+    - [High-level architecture](#high-level-architecture)
+  - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
+  - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
+[Wrap-up](#wrap-up)
+[Additional references](#additional-references)
+- [Trainer information](#trainer-information)
+  - [Role of the trainer](#role-of-the-trainer)
+  - [Whiteboard design session flow](#whiteboard-design-session-flow)
+  - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
+  - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
+- [Securing Azure IoT solutions whiteboard design session student guide](#securing-azure-iot-solutions-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
+- [Securing Azure IoT solutions whiteboard design session trainer guide](#securing-azure-iot-solutions-whiteboard-design-session-trainer-guide)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
+  - [Step 3: Present the solution](#step-3-present-the-solution-1)
+  - [Wrap-up](#wrap-up-1)
+  - [Preferred target audience](#preferred-target-audience)
+  - [Preferred solution](#preferred-solution)
+    - [High-level architecture](#high-level-architecture)
+  - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
+  - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
+[Additional references](#additional-references)
+- [Trainer information](#trainer-information)
+  - [Role of the trainer](#role-of-the-trainer)
+  - [Whiteboard design session flow](#whiteboard-design-session-flow)
+  - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
+  - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
+- [Securing Azure IoT solutions whiteboard design session student guide](#securing-azure-iot-solutions-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
+- [Securing Azure IoT solutions whiteboard design session trainer guide](#securing-azure-iot-solutions-whiteboard-design-session-trainer-guide)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
+  - [Step 3: Present the solution](#step-3-present-the-solution-1)
+  - [Wrap-up](#wrap-up-1)
+  - [Preferred target audience](#preferred-target-audience)
+  - [Preferred solution](#preferred-solution)
+    - [High-level architecture](#high-level-architecture)
+  - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
+  - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
 
 <!-- /TOC -->
 
@@ -259,7 +341,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
 
-Time frame: 60 minutes
+Timeframe: 60 minutes
 
 **Business needs**
 
@@ -373,13 +455,13 @@ Directions:
 
 7. Tables switch roles and repeat Steps 2-6.
 
-##  Wrap-up
+## Wrap-up
 
-Time frame: 15 minutes
+Timeframe: 15 minutes
 
 Directions: Tables reconvene with the larger group to hear the facilitator/SME share the preferred solution for the case study.
 
-##  Additional references
+## Additional references
 
 |    |            |
 |----------|:-------------:|
@@ -423,7 +505,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 - Ask, "What questions do you have about the customer case study?"
 
-- Briefly review the steps and time frames of the whiteboard design session.
+- Briefly review the steps and Timeframes of the whiteboard design session.
 
 - Ready, set, go! Let the table participants begin.
 
@@ -432,12 +514,10 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 - Check in with your tables to ensure that they are transitioning from step to step on time.
 
 - Provide some feedback on their responses to the business needs and design.
-
-   - Try asking questions first that will lead the participants to discover the answers on their own.
+  - Try asking questions first that will lead the participants to discover the answers on their own.
 
 - Provide feedback for their responses to the customer's objections.
-
-   - Try asking questions first that will lead the participants to discover the answers on their own.
+  - Try asking questions first that will lead the participants to discover the answers on their own.
 
 ## Step 3: Present the solution
 
@@ -446,12 +526,9 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 - For the first round, assign one table as the presenting team and the other table as the customer.
 
 - Have the presenting team present their solution to the customer team.
-
-   - Have the customer team provide one objection for the presenting team to respond to.
-
-   - The presentation, objections, and feedback should take no longer than 15 minutes.
-
-   - If needed, the trainer may also provide feedback.
+  - Have the customer team provide one objection for the presenting team to respond to.
+  - The presentation, objections, and feedback should take no longer than 15 minutes.
+  - If needed, the trainer may also provide feedback.
 
 ## Wrap-up
 
@@ -548,9 +625,9 @@ Describe how you will utilize Azure security features to secure the various reso
 
 3. How can you monitor devices that cannot have an agent installed on them?
 
-    - Azure Defender for IoT provides for a agentless monitoring sensor that uses a SPAN port to monitor traffic on the device network.
+    - Azure Defender for IoT provides an agentless monitoring sensor that uses a SPAN port to monitor traffic on the device network.
 
-    - Any Indicators of Compromise (IoC) can be picked up from the traffic and then logs sent to Log Analytics and Sentinel for furtner alerting.
+    - Any Indicators of Compromise (IoC) can be picked up from the traffic and then logs sent to Log Analytics and Sentinel for further alerting.
 
 Additionally:
 
