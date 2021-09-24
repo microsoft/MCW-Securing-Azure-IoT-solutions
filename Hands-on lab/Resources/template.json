@@ -21,7 +21,14 @@
         "azureSubscriptionID": "[subscription().subscriptionId]",
         "azureTenantID": "[subscription().tenantId]",
         "rgName": "[resourceGroup().name]",
-        "postInstallParameters": "[concat(' -azureUsername ', parameters('username'), ' -azurePassword ', parameters('password'), ' -azureTenantID ', variables('azureTenantID'), ' -azureSubscriptionID ', variables('azureSubscriptionID'))]"
+        "postInstallParameters": "[concat(' -azureUsername ', parameters('username'), ' -azurePassword ', parameters('password'), ' -azureTenantID ', variables('azureTenantID'), ' -azureSubscriptionID ', variables('azureSubscriptionID'))]",
+        "automationMap": {
+            "eastus": { "region": "East US 2" },
+            "southcentralus": { "region": "South Central US" },
+            "westcentralus": { "region": "West Cental US" },
+            "westus2": { "region": "West US 2" },
+            "westus": { "region": "West US" }
+          }
     },
     "resources": [
 		{
@@ -470,7 +477,7 @@
         {
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2019-02-01",
-            "name": "[concat('oilwells-ip-', parameters('alias'))]",
+            "name": "[concat('oilwells-d01-ip-', parameters('alias'))]",
             "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Basic",
@@ -486,7 +493,39 @@
         {
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2019-02-01",
-            "name": "[concat('oilwells-server-ip-', parameters('alias'))]",
+            "name": "[concat('oilwells-d02-ip-', parameters('alias'))]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2019-02-01",
+            "name": "[concat('oilwells-mon-ip-', parameters('alias'))]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "Basic",
+                "tier": "Regional"
+            },
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4,
+                "ipTags": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2019-02-01",
+            "name": "[concat('oilwells-edge-ip-', parameters('alias'))]",
             "location": "[resourceGroup().location]",
             "sku": {
                 "name": "Basic",
@@ -538,6 +577,32 @@
                 "retentionInDays": 30
             }
         },
+        {
+            "type": "Microsoft.OperationalInsights/workspaces/linkedServices",
+            "apiVersion": "2015-11-01-preview",
+            "name": "[concat('oilwells-logging-', parameters('alias'), '/' , 'Automation')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+              "resourceId": "[resourceId('Microsoft.Automation/automationAccounts', concat('oilwells-automation-', parameters('alias')))]"
+            },
+            "dependsOn": [
+              "[resourceId('Microsoft.Automation/automationAccounts', concat('oilwells-automation-', parameters('alias')))]"
+            ]
+          },
+          {
+            "type": "Microsoft.Automation/automationAccounts",
+            "apiVersion": "2015-10-31",
+            "name": "[concat('oilwells-automation-', parameters('alias'))]",
+            "location": "[variables('automationMap')[resourceGroup().location].region]",
+            "properties": {
+              "sku": {
+                "name": "Basic"
+              }
+            },
+            "dependsOn": [
+                "[resourceId('microsoft.operationalinsights/workspaces', concat('oilwells-logging-', parameters('alias')))]"
+              ]
+          },
         {
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-04-01",
@@ -639,69 +704,11 @@
         },
         {
             "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2018-10-01",
-			"name": "[concat('oilwells-edgevm-', parameters('alias'))]",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-nic-', parameters('alias')))]",
-                "[resourceId('Microsoft.Storage/StorageAccounts', concat('oilwellsstorage', parameters('alias')))]"
-            ],
-            "properties": {
-                "hardwareProfile": {
-                    "vmSize": "Standard_B1ms"
-                },
-                "storageProfile": {
-                    "imageReference": {
-                        "publisher": "Canonical",
-                        "offer": "UbuntuServer",
-                        "sku": "18.04-LTS",
-                        "version": "latest"
-                    },
-                    "osDisk": {
-                        "osType": "Linux",
-                        "name": "[concat('oilwells-edgevm-', parameters('alias'), '_OsDisk')]",
-                        "createOption": "FromImage",
-                        "caching": "ReadWrite",
-                        "managedDisk": {
-                            "storageAccountType": "Premium_LRS"                            
-                        },
-                        "diskSizeGB": 30
-                    },
-                    "dataDisks": []
-                },
-                "osProfile": {
-                    "computerName": "[concat('oilwells-edgevm-', parameters('alias'))]",
-                    "adminUsername": "[parameters('username')]",
-					"adminPassword": "[parameters('password')]",
-                    "linuxConfiguration": {
-                        "disablePasswordAuthentication": false,
-                        "provisionVMAgent": true
-                    },
-                    "secrets": [],
-                    "allowExtensionOperations": true
-                },
-                "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-nic-', parameters('alias')))]"
-                        }
-                    ]
-                },
-                "diagnosticsProfile": {
-                    "bootDiagnostics": {
-                        "enabled": true,
-                        "storageUri": "[concat('https://', 'oilwellsstorage', parameters('alias'), '.blob.core.windows.net/')]"
-                    }
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Compute/virtualMachines",
-            "apiVersion": "2018-10-01",
+            "apiVersion": "2021-03-01",
 			"name": "[concat('oilwells-server-', parameters('alias'))]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-nic-', parameters('alias')))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-mon-nic-', parameters('alias')))]",
                 "[resourceId('Microsoft.Storage/StorageAccounts', concat('oilwellsstorage', parameters('alias')))]"
             ],
             "resources": [
@@ -734,7 +741,7 @@
             }],
             "properties": {
                 "hardwareProfile": {
-                    "vmSize": "Standard_D2s_v3"
+                    "vmSize": "Standard_D4s_v3"
                 },
                 "storageProfile": {
                     "imageReference": {
@@ -751,7 +758,7 @@
                         "managedDisk": {
                             "storageAccountType": "Premium_LRS"                            
                         },
-                        "diskSizeGB": 127
+                        "diskSizeGB": 200
                     },
                     "dataDisks": []
                 },
@@ -765,7 +772,146 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-server-nic-', parameters('alias')))]"
+                            "properties": {
+                                "primary": true
+                              },
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-mon-nic-', parameters('alias')))]"
+                        },
+                        {
+                            "properties": {
+                                "primary": false
+                              },
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-span-nic-', parameters('alias')))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('https://', 'oilwellsstorage', parameters('alias'), '.blob.core.windows.net/')]"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2021-03-01",
+			"name": "[concat('oilwells-edgevm-', parameters('alias'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-edge-nic-', parameters('alias')))]",
+                "[resourceId('Microsoft.Storage/StorageAccounts', concat('oilwellsstorage', parameters('alias')))]"
+            ],
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B1ms"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18_04-lts-gen2",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat('oilwells-edgevm-', parameters('alias'), '_OsDisk')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS"                            
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[concat('oilwells-edgevm-', parameters('alias'))]",
+                    "adminUsername": "[parameters('username')]",
+					"adminPassword": "[parameters('password')]",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "securityProfile": {
+                    "uefiSettings": {
+                        "secureBootEnabled": true,
+                        "vTpmEnabled": true
+                    },
+                    "securityType": "TrustedLaunch"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-edge-nic-', parameters('alias')))]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[concat('https://', 'oilwellsstorage', parameters('alias'), '.blob.core.windows.net/')]"
+                    }
+                }
+            }
+        },
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2021-03-01",
+			"name": "[concat('oilwells-d01-', parameters('alias'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-d01-nic-', parameters('alias')))]",
+                "[resourceId('Microsoft.Storage/StorageAccounts', concat('oilwellsstorage', parameters('alias')))]"
+            ],
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_B1ms"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18_04-lts-gen2",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat('oilwells-d01-', parameters('alias'), '_OsDisk')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "storageAccountType": "Premium_LRS"                            
+                        },
+                        "diskSizeGB": 30
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[concat('oilwells-d01-', parameters('alias'))]",
+                    "adminUsername": "[parameters('username')]",
+					"adminPassword": "[parameters('password')]",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true
+                },
+                "securityProfile": {
+                    "uefiSettings": {
+                        "secureBootEnabled": true,
+                        "vTpmEnabled": true
+                    },
+                    "securityType": "TrustedLaunch"
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat('oilwells-d01-nic-', parameters('alias')))]"
                         }
                     ]
                 },
@@ -780,10 +926,10 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2019-02-01",
-			"name": "[concat('oilwells-nic-', parameters('alias'))]",
+			"name": "[concat('oilwells-mon-nic-', parameters('alias'))]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-ip-', parameters('alias')))]",
+                "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-mon-ip-', parameters('alias')))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', concat('oilwells-nsg-', parameters('alias')))]"
             ],
@@ -795,7 +941,7 @@
                             "privateIPAddress": "10.1.0.5",
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-ip-', parameters('alias')))]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-mon-ip-', parameters('alias')))]"
                             },
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]"
@@ -809,7 +955,6 @@
                     "dnsServers": [],
                     "appliedDnsServers": []
                 },
-                "macAddress": "00-0D-3A-35-E9-B3",
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": true,
                 "networkSecurityGroup": {
@@ -822,22 +967,22 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "apiVersion": "2019-02-01",
-			"name": "[concat('oilwells-server-nic-', parameters('alias'))]",
+			"name": "[concat('oilwells-d01-nic-', parameters('alias'))]",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-server-ip-', parameters('alias')))]",
+                "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-d01-ip-', parameters('alias')))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', concat('oilwells-nsg-', parameters('alias')))]"
             ],
             "properties": {
                 "ipConfigurations": [
                     {
-                        "name": "ipconfig2",
+                        "name": "ipconfig1",
                         "properties": {
-                            "privateIPAddress": "10.1.0.4",
+                            "privateIPAddress": "10.1.0.5",
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-server-ip-', parameters('alias')))]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-d01-ip-', parameters('alias')))]"
                             },
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]"
@@ -851,7 +996,125 @@
                     "dnsServers": [],
                     "appliedDnsServers": []
                 },
-                "macAddress": "00-0D-3A-35-E9-B4",
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": true,
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat('oilwells-nsg-', parameters('alias')))]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2019-02-01",
+			"name": "[concat('oilwells-edge-nic-', parameters('alias'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-edge-ip-', parameters('alias')))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', concat('oilwells-nsg-', parameters('alias')))]"
+            ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "privateIPAddress": "10.1.0.6",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-edge-ip-', parameters('alias')))]"
+                            },
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": []
+                },
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": true,
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat('oilwells-nsg-', parameters('alias')))]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2019-02-01",
+			"name": "[concat('oilwells-span-nic-', parameters('alias'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', concat('oilwells-nsg-', parameters('alias')))]"
+            ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "privateIPAddress": "10.1.0.5",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": []
+                },
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": true,
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', concat('oilwells-nsg-', parameters('alias')))]"
+                },
+                "primary": true,
+                "tapConfigurations": []
+            }
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "apiVersion": "2019-02-01",
+			"name": "[concat('oilwells-d02-nic-', parameters('alias'))]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-d02-ip-', parameters('alias')))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', concat('oilwells-nsg-', parameters('alias')))]"
+            ],
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "properties": {
+                            "privateIPAddress": "10.1.0.5",
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat('oilwells-d02-ip-', parameters('alias')))]"
+                            },
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', concat('oilwells-vnet-', parameters('alias')), 'default')]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": []
+                },
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": true,
                 "networkSecurityGroup": {

@@ -9,7 +9,7 @@ Whiteboard design session trainer guide
 </div>
 
 <div class="MCWHeader3">
-March 2021
+September 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,6 +26,88 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
+- [Trainer information](#trainer-information)
+  - [Role of the trainer](#role-of-the-trainer)
+  - [Whiteboard design session flow](#whiteboard-design-session-flow)
+  - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
+  - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
+- [Securing Azure IoT solutions whiteboard design session student guide](#securing-azure-iot-solutions-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
+- [Securing Azure IoT solutions whiteboard design session trainer guide](#securing-azure-iot-solutions-whiteboard-design-session-trainer-guide)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
+  - [Step 3: Present the solution](#step-3-present-the-solution-1)
+  - [Wrap-up](#wrap-up-1)
+  - [Preferred target audience](#preferred-target-audience)
+  - [Preferred solution](#preferred-solution)
+    - [High-level architecture](#high-level-architecture)
+  - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
+  - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
+[Additional references](#additional-references)
+- [Trainer information](#trainer-information)
+  - [Role of the trainer](#role-of-the-trainer)
+  - [Whiteboard design session flow](#whiteboard-design-session-flow)
+  - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
+  - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
+- [Securing Azure IoT solutions whiteboard design session student guide](#securing-azure-iot-solutions-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
+- [Securing Azure IoT solutions whiteboard design session trainer guide](#securing-azure-iot-solutions-whiteboard-design-session-trainer-guide)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
+  - [Step 3: Present the solution](#step-3-present-the-solution-1)
+  - [Wrap-up](#wrap-up-1)
+  - [Preferred target audience](#preferred-target-audience)
+  - [Preferred solution](#preferred-solution)
+    - [High-level architecture](#high-level-architecture)
+  - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
+  - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
+[Wrap-up](#wrap-up)
+[Additional references](#additional-references)
+- [Trainer information](#trainer-information)
+  - [Role of the trainer](#role-of-the-trainer)
+  - [Whiteboard design session flow](#whiteboard-design-session-flow)
+  - [Before the whiteboard design session: How to prepare](#before-the-whiteboard-design-session-how-to-prepare)
+  - [During the whiteboard design session: Tips for an effective whiteboard design session](#during-the-whiteboard-design-session-tips-for-an-effective-whiteboard-design-session)
+- [Securing Azure IoT solutions whiteboard design session student guide](#securing-azure-iot-solutions-whiteboard-design-session-student-guide)
+  - [Abstract and learning objectives](#abstract-and-learning-objectives)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
+    - [Customer situation](#customer-situation)
+    - [Customer needs](#customer-needs)
+    - [Customer objections](#customer-objections)
+    - [Infographic for common scenarios](#infographic-for-common-scenarios)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution)
+  - [Step 3: Present the solution](#step-3-present-the-solution)
+  - [Wrap-up](#wrap-up)
+  - [Additional references](#additional-references)
+- [Securing Azure IoT solutions whiteboard design session trainer guide](#securing-azure-iot-solutions-whiteboard-design-session-trainer-guide)
+  - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study-1)
+  - [Step 2: Design a proof of concept solution](#step-2-design-a-proof-of-concept-solution-1)
+  - [Step 3: Present the solution](#step-3-present-the-solution-1)
+  - [Wrap-up](#wrap-up-1)
+  - [Preferred target audience](#preferred-target-audience)
+  - [Preferred solution](#preferred-solution)
+    - [High-level architecture](#high-level-architecture)
+  - [Checklist of preferred objection handling](#checklist-of-preferred-objection-handling)
+  - [Customer quote (to be read back to the attendees at the end)](#customer-quote-to-be-read-back-to-the-attendees-at-the-end)
+[Additional references](#additional-references)
 - [Trainer information](#trainer-information)
   - [Role of the trainer](#role-of-the-trainer)
   - [Whiteboard design session flow](#whiteboard-design-session-flow)
@@ -259,7 +341,7 @@ They have implemented a proof of concept solution for collecting and analyzing d
 
 Design a solution and prepare to present the solution to the target customer audience in a 15-minute chalk-talk format.
 
-Time frame: 60 minutes
+Timeframe: 60 minutes
 
 **Business needs**
 
@@ -303,6 +385,8 @@ Briefly sketch-out and propose a high-level solution that meets the customer's b
 
 12. Azure Service Bus
 
+13. Azure Defender for IoT
+
 *Device Security*
 
 Describe how you will secure the following:
@@ -326,6 +410,8 @@ Describe how you will utilize Azure security features to secure the various reso
 1. How will you secure the IoT Hub?
 
 2. How will you secure the IoT Device Provisioning Service?
+
+3. How can you monitor devices that cannot have an agent installed on them?
 
 *Ensure secure Device updates*
 
@@ -355,27 +441,27 @@ Timeframe: 30 minutes
 
 Directions:
 
-1.  Pair with another table.
+1. Pair with another table.
 
-2.  One table is the Microsoft team and the other table is the customer.
+2. One table is the Microsoft team and the other table is the customer.
 
-3.  The Microsoft team presents their proposed solution to the customer.
+3. The Microsoft team presents their proposed solution to the customer.
 
-4.  The customer makes one of the objections from the list of objections.
+4. The customer makes one of the objections from the list of objections.
 
-5.  The Microsoft team responds to the objection.
+5. The Microsoft team responds to the objection.
 
-6.  The customer team gives feedback to the Microsoft team.
+6. The customer team gives feedback to the Microsoft team.
 
-7.  Tables switch roles and repeat Steps 2-6.
+7. Tables switch roles and repeat Steps 2-6.
 
-##  Wrap-up
+## Wrap-up
 
-Time frame: 15 minutes
+Timeframe: 15 minutes
 
 Directions: Tables reconvene with the larger group to hear the facilitator/SME share the preferred solution for the case study.
 
-##  Additional references
+## Additional references
 
 |    |            |
 |----------|:-------------:|
@@ -390,6 +476,8 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure IoT Edge (Authenticate downstream device)  |  <https://docs.microsoft.com/en-us/azure/iot-edge/how-to-authenticate-downstream-device/>|
 | Azure IoT Edge (Connect downstream device)  |  <https://docs.microsoft.com/en-us/azure/iot-edge/how-to-connect-downstream-device/>|
 | Azure IoT Edge Certificates  |  <https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-certs/>|
+| Azure Defender for IoT | https://docs.microsoft.com/en-us/azure/defender-for-iot/organizations/overview | 
+| Microsoft Defender for Endpoint | https://docs.microsoft.com/en-us/microsoft-365/security/defender-endpoint/microsoft-defender-endpoint?view=o365-worldwide |
 | Azure IoT Device Provisioning Service   | https://docs.microsoft.com/en-us/azure/iot-dps/  |
 | Provisioning devices with vTPM   | https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-linux/  |
 | Provisioning devices with sTPM   | https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-windows/  |
@@ -417,7 +505,7 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 
 - Ask, "What questions do you have about the customer case study?"
 
-- Briefly review the steps and time frames of the whiteboard design session.
+- Briefly review the steps and Timeframes of the whiteboard design session.
 
 - Ready, set, go! Let the table participants begin.
 
@@ -426,12 +514,10 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 - Check in with your tables to ensure that they are transitioning from step to step on time.
 
 - Provide some feedback on their responses to the business needs and design.
-
-   - Try asking questions first that will lead the participants to discover the answers on their own.
+  - Try asking questions first that will lead the participants to discover the answers on their own.
 
 - Provide feedback for their responses to the customer's objections.
-
-   - Try asking questions first that will lead the participants to discover the answers on their own.
+  - Try asking questions first that will lead the participants to discover the answers on their own.
 
 ## Step 3: Present the solution
 
@@ -440,12 +526,9 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 - For the first round, assign one table as the presenting team and the other table as the customer.
 
 - Have the presenting team present their solution to the customer team.
-
-   - Have the customer team provide one objection for the presenting team to respond to.
-
-   - The presentation, objections, and feedback should take no longer than 15 minutes.
-
-   - If needed, the trainer may also provide feedback.
+  - Have the customer team provide one objection for the presenting team to respond to.
+  - The presentation, objections, and feedback should take no longer than 15 minutes.
+  - If needed, the trainer may also provide feedback.
 
 ## Wrap-up
 
@@ -491,8 +574,10 @@ Describe how you will secure the following:
 2. How will you secure the IoT Devices?
 
     Similar to an IoT Edge device, these devices should have the Azure IoT Security agent installed.  Devices should also utilize hardware based secure silicon features (such as TPM, eSE, Arm TrustZone and Intel SGX) to ensure that the device is not accessed physically and modified in any way.  
-    
+
     All devices should have unique certificates to identify them to the IoT Edge devices and the IoT Hub.
+
+    Microsoft Defender for Endpoint can also be installed to provide added protection using the advanced machine learning and artificial intelligence features of the Microsoft Defender stack.
 
 3. How will you monitor and audit device access?
 
@@ -530,13 +615,19 @@ Describe how you will utilize Azure security features to secure the various reso
 
     - Utilizing Azure Access control (IAM) mechanisms you can set the permissions to access and modify the IoT Hub resource to the proper individuals.
     - By implementing Shared Access Policies, you can create policies that grant permission to perform actions on the IoT Hub such as Registry read, Registry write, Service connect, and Device connect
-    - Using IP Filters, you can limit the devices that can connect to your IoT hub to a set of IP Addresses.
+    - Using IP Filters, you can limit the devices that can connect to your IoT Hub to a set of IP Addresses.
     - Enabling Diagnostic settings to send changes to a Log Analytics workspace will enable to you fire alerts based on management plane activities.
 
 2. How will you secure the IoT Device Provisioning Service?
 
     - Similar to an IoT Hub resource, you can utilize Azure Access Control (IAM) and a similar Shared Access Policies setup to achieve your desired permissions configuration.
     - You can also enable Diagnostic settings to log management plane changes.
+
+3. How can you monitor devices that cannot have an agent installed on them?
+
+    - Azure Defender for IoT provides an agentless monitoring sensor that uses a SPAN port to monitor traffic on the device network.
+
+    - Any Indicators of Compromise (IoC) can be picked up from the traffic and then logs sent to Log Analytics and Sentinel for further alerting.
 
 Additionally:
 
@@ -596,7 +687,7 @@ Each of the remote devices has a guardian module that performs secure communicat
 
 1. Contoso, Ltd staff are worried it may be impossible to manage the many thousands of IoT devices they have deployed around the world with any one product.
 
-    Utilizing the Azure IoT Hub Device Provisioning Service, Contoso can enable a zero-touch, just-in-time provisioning to specific IoT hubs without any human intervention.  The service scales to many millions of devices in a secure and scalable manner that will meet Contoso's needs.
+    Utilizing the Azure IoT Hub Device Provisioning Service, Contoso can enable a zero-touch, just-in-time provisioning to specific IoT Hubs without any human intervention.  The service scales to many millions of devices in a secure and scalable manner that will meet Contoso's needs.
 
 2. Can Azure handle all the different types of operating systems and processor architectures of their devices?
 

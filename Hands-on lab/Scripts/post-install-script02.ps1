@@ -31,45 +31,77 @@ function FreshStart()
     Add-VMDvdDrive $global:vmName -Path $vmDvdDrivePath # To eject run Remove-VMDvdDrive $vmName
 }
 
-function DownloadImage()
+function DownloadImages()
+{
+    #oilwells-edge-001
+    $zippath = "c:\temp\oilwells-edge-001.zip";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/oilwells-edge-001.zip";
+    $verifyPath = "C:\VMs\oilwells-edge-001\Virtual Machines\ED3E2BA8-D55D-4C02-AACF-9B38F2C2858E.vmcx";
+    DownloadImage $zipPath $downloadUrl $verifyPath;
+
+    #remove-item $zipPath;
+
+    #oilwells-d01
+    $zippath = "c:\temp\oilwells-d01.zip";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/oilwells-d01.zip";
+    $verifyPath = "C:\VMs\oilwells-d01\Virtual Machines\5DEDCADB-AD22-47F0-98F7-5489512C36D0.vmcx";
+    DownloadImage $zipPath $downloadUrl $verifyPath;
+
+    #remove-item $zipPath;
+
+    #iotmgmt
+    $zippath = "c:\temp\iotmgmt.zip";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/IoT Management Console.zip";
+    $verifyPath = "C:\VMs\IoT Management Console\Virtual Machines\EC7F7411-C66C-418E-A3B7-7382CD37E245.vmcx";
+    DownloadImage $zipPath $downloadUrl $verifyPath;
+
+    #remove-item $zipPath;
+
+    #iotsensor
+    $zippath = "c:\temp\iotsensor.zip";
+    $downloadUrl = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/IoT Sensor.zip";
+    $verifyPath = "C:\VMs\IoT Sensor\Virtual Machines\3539698D-B373-46FB-80DF-B6B46F387A1A.vmcx";
+    DownloadImage $zipPath $downloadUrl $verifyPath;
+
+    #remove-item $zipPath;
+}
+
+function DownloadImage($zipPath, $downloadUrl, $verifyPath)
 {
     write-host "Checking for zip";
 
-    $item = Get-Item "c:\temp\ubuntu.zip" -ea silentlycontinue;
+    $item = Get-Item $zipPath -ea silentlycontinue;
 
     if (!$item)
     {
-        write-host "Downloading Ubuntu zip";
-
-        #download the image...
-        #$url = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/UBUSRV_Updates.zip";
-        $url = "https://solliancepublicdata.blob.core.windows.net/virtualmachines/UBUSRV_2021_03_26.zip";
-        Start-BitsTransfer -Source $url -DisplayName Notepad -Destination "c:\temp\ubuntu.zip"
+        write-host "Downloading image zip : $downloadUrl";
+        
+        Start-BitsTransfer -Source $downloadurl -DisplayName Notepad -Destination $zipPath
     }
 
-    $item = get-item "C:\VMs\UBUSRV\Virtual Machines\BE674C9C-0461-4F44-B105-6893F5618F46.vmcx" -ErrorAction SilentlyContinue
+    $item = get-item $verifyPath -ea silentlycontinue;
 
     if (!$item)
     {
         #extract image
-        write-host "Extracting Ubuntu zip";
+        write-host "Extracting zip : $zipPath";
 
         #Expand-archive -path "c:\temp\ubuntu.zip" -destinationpath c:\VMs\Ubuntu2; #doesn't work with explorer zips
-        7z e c:\temp\ubuntu.zip -oc:\vms *.* -r -spf
+        7z e $zipPath -oc:\vms *.* -r -spf
     }
 }
 
-function MountImage()
+function MountImage($name, $path, $noCPU, $memoryInGB)
 {
-    $vm = Get-VM $global:vmName -ea silentlycontinue
+    $vm = Get-VM $Name -ea silentlycontinue
 
     if (!$vm)
     {
         write-host "Creating VM";
 
         # VM creation
-        $vmName = "UBUSRV";
-        $vmNewDiskPath = "C:\VMs\UBUSRV\Virtual Hard Disks\UBUSRV.vhdx";
+        $vmName = $name;
+        $vmNewDiskPath = $path;
         $vmNewDiskSize = 40GB;
         $vmPath = "C:\VMs";
         $vmGeneration = 2;
@@ -79,10 +111,10 @@ function MountImage()
         $vmFirmwareEnableSecureBoot = "On"; # Turn off if you trust and/or image isn't supported.
         $vmFirmwareSecureBootTemplate = "MicrosoftUEFICertificateAuthority";
 
-        $vmProcessorCount = 2;
-        $vmMemoryStartUpBytes = 1GB;
+        $vmProcessorCount = $noCPU;
+        $vmMemoryStartUpBytes = $memoryInGB;
         $vmMemoryMinimumBytes =  500MB;
-        $vmMemoryMaximumBytes =  3GB;
+        $vmMemoryMaximumBytes =  $memoryInGB;
         $vmDynamicMemoryEnabled = $true;
 
         #New-VMSwitch -name $vmSwitchName  -NetAdapterName Ethernet -AllowManagementOS $true
@@ -91,7 +123,30 @@ function MountImage()
         Set-VMFirmware $vmName -EnableSecureBoot $vmFirmwareEnableSecureBoot -SecureBootTemplate $vmFirmwareSecureBootTemplate
         Set-VMProcessor $vmName -Count $vmProcessorCount
         Set-VMMemory $vmName -DynamicMemoryEnabled $vmDynamicMemoryEnabled -MinimumBytes $vmMemoryMinimumBytes -StartupBytes $vmMemoryStartUpBytes -MaximumBytes $vmMemoryMaximumBytes
+
+        SetupTPM $name;
     }
+}
+
+function SetupTPM($vmName)
+{
+    #setup TPM
+    $owner = Get-HgsGuardian -Name "Guardian11" -ea silentlycontinue
+
+    if (!$owner)
+    {
+        $owner = New-HgsGuardian -Name "Guardian11" -GenerateCertificates
+    }
+
+    $kp = New-HgsKeyProtector -Owner $owner -AllowUntrustedRoot
+    Set-VMKeyProtector -VMName $vmName -KeyProtector $kp.RawData
+
+    #turn on TPM
+    $vm = Get-VM $vmName -ea silentlycontinue
+    Enable-VMTPM -VM $vm
+
+    #start it
+    Start-VM $vmName;
 }
 
 function ImportImage()
@@ -127,29 +182,25 @@ mkdir c:\VMs -ea silentlycontinue;
 #do a second time???
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
 
-$global:vmName = "ubusrv"
+DownloadImages;
 
-DownloadImage;
+$vmName = "oilwells-edge-001";
+$vmNewDiskPath = "C:\VMs\oilwells-edge-001\Virtual Hard Disks\oilwells-edge-001.vhdx";
 
-MountImage;
+MountImage $vmName $vmNewDiskPath 2 1GB;
 
-#setup TPM
-$owner = Get-HgsGuardian -Name "Guardian11" -ea silentlycontinue
+$vmName = "oilwells-d01";
+$vmNewDiskPath = "C:\VMs\oilwells-d01\Virtual Hard Disks\oilwells-d01.vhdx";
 
-if (!$owner)
-{
-    $owner = New-HgsGuardian -Name "Guardian11" -GenerateCertificates
-}
+MountImage $vmName $vmNewDiskPath 2 1GB;
 
-$kp = New-HgsKeyProtector -Owner $owner -AllowUntrustedRoot
-Set-VMKeyProtector -VMName $global:vmName -KeyProtector $kp.RawData
+#IoT Management
+$vmVmcx = "C:\VMs\IoT Management Console\Virtual Machines\EC7F7411-C66C-418E-A3B7-7382CD37E245.vmcx";
+Import-VM $vmVmcx;
 
-#turn on TPM
-$vm = Get-VM $global:vmName -ea silentlycontinue
-Enable-VMTPM -VM $vm
-
-#start it
-Start-VM $global:vmName;
+#IoT Sensor
+$vmVmcx = "C:\VMs\IoT Sensor\Virtual Machines\3539698D-B373-46FB-80DF-B6B46F387A1A.vmcx";
+Import-VM $vmVmcx;
 
 #diable the task
 Disable-ScheduledTask -TaskName "MCW Setup Script"

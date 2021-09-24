@@ -353,7 +353,7 @@ write-host "Enable task history";
 wevtutil set-log Microsoft-Windows-TaskScheduler/Operational /enabled:true
 
 #enable hyperv
-write-host "Enable HyperV";
+write-host "Enable Hyper-V";
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All -NoRestart
 
 Uninstall-AzureRm
@@ -371,6 +371,10 @@ $scriptPath = "C:\LabFiles\MCW-Securing-Azure-IoT-solutions\hands-on lab\scripts
 CreateRebootTask "MCW Setup Script" $scriptPath "C:\LabFiles\MCW-Securing-Azure-IoT-solutions\hands-on lab\scripts"
 
 sleep 20
+
+$size = (Get-PartitionSupportedSize -DiskNumber 0 -PartitionNumber 4)
+
+Resize-Partition -DiskNumber 0 -PartitionNumber 4 -Size $size.SizeMax
 
 Stop-Transcript
 

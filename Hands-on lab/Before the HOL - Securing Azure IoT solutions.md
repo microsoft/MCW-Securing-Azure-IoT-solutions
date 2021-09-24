@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-March 2021
+September 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -108,7 +108,7 @@ Synopsis: In this exercise, you will set up your environment for use in the rest
 
     - As part of the deployment, you will see the following items created:
 
-       - Windows 10 (Gen2) virtual machine running HyperV with virtual TPM-enabled Ubuntu image.
+       - Windows 10 (Gen2) virtual machine running Hyper-V with virtual TPM-enabled Ubuntu image.
 
        - Azure Data Lake Storage account
 

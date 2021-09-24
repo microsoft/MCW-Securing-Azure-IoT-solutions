@@ -9,7 +9,7 @@ Whiteboard design session student guide
 </div>
 
 <div class="MCWHeader3">
-March 2021
+September 2021
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -26,7 +26,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
 
 <!-- TOC -->
 
-- [Securing Azure IoT solutions whiteboard design session student guide](#securing-the-iot-end-to-end-whiteboard-design-session-student-guide)
+- [Securing Azure IoT solutions whiteboard design session student guide](#securing-azure-iot-solutions-whiteboard-design-session-student-guide)
   - [Abstract and learning objectives](#abstract-and-learning-objectives)
   - [Step 1: Review the customer case study](#step-1-review-the-customer-case-study)
     - [Customer situation](#customer-situation)
@@ -200,6 +200,8 @@ Describe how you will utilize Azure security features to secure the various reso
 
 2. How will you secure the IoT Device Provisioning Service?
 
+3. How can you monitor devices that cannot have an agent installed on them?
+
 *Ensure secure Device updates*
 
 1. How will Contoso ensure they can push updates to the field in a secure manner?
@@ -263,6 +265,8 @@ Directions: Tables reconvene with the larger group to hear the facilitator/SME s
 | Azure IoT Edge (Authenticate downstream device)  |  <https://docs.microsoft.com/en-us/azure/iot-edge/how-to-authenticate-downstream-device/>|
 | Azure IoT Edge (Connect downstream device)  |  <https://docs.microsoft.com/en-us/azure/iot-edge/how-to-connect-downstream-device/>|
 | Azure IoT Edge Certificates  |  <https://docs.microsoft.com/en-us/azure/iot-edge/iot-edge-certs/>|
+| Azure Defender for IoT | https://docs.microsoft.com/en-us/azure/defender-for-iot/organizations/overview |
+| Microsoft Defender for Endpoint | https://docs.microsoft.com/en-us/microsoft-365/security/
 | Azure IoT Device Provisioning Service   | https://docs.microsoft.com/en-us/azure/iot-dps/  |
 | Provisioning devices with vTPM   | https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-linux/  |
 | Provisioning devices with sTPM   | https://docs.microsoft.com/en-us/azure/iot-edge/how-to-auto-provision-simulated-device-windows/  |

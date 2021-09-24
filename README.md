@@ -6,7 +6,7 @@ As we look to streamline content and improve training, we are considering retiri
 
 Contoso, Ltd. has major holdings in one of the world’s most important oil-producing regions. To overcome the challenges of monitoring and optimizing a vast number of widely dispersed field assets, Contoso, Ltd. is looking to streamline its operations with IoT solutions. They want to deploy IoT technologies to electronically collect data and use cloud-based solutions to store and analyze it in order to gain new insights into well operations and future drilling possibilities.
 
-March 2021
+September 2021
 
 ## Target audience
 
