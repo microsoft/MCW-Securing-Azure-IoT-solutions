@@ -1908,11 +1908,11 @@ This exercise will show you how to install the Azure Defender for IoT agent and 
 4. Under **Cloud Security**, select **Azure Defender**, then select **IoT Security** to open the **Azure Defender for IoT** portal.
 5. Select **Set up a sensor**.
 
-    ![Setup a sensor.](./media/azure-defender-iot-setup-sensor.png "Select Set up a sensor")
+    ![This image shows the Set up a sensor button in the Defender for IoT page in Azure Defender.](./media/azure-defender-iot-setup-sensor.png "Select Set up a sensor")
 
 6. Select the **10.3.1 (Stable) and above** sensor, then select **Download**
 
-    ![Setup a sensor download.](./media/azure-defender-iot-setup-sensor-download.png "Select Set up a sensor download")
+    ![This image highlights the IoT Agent Download button on the Defender for IoT page.](./media/azure-defender-iot-setup-sensor-download.png "Download sensor agent")
 
 7. Select **Continue without submitting**.
 8. Open the **Hyper-V manager** management console.
@@ -2023,7 +2023,7 @@ This exercise will show you how to install the Azure Defender for IoT agent and 
 2. Select **Pricing**.
 3. Select **Onboard subscription**.
 
-    ![Onboard a subscription.](./media/azure-defender-iot-setup-onboard-subscription.png "Onboard a subscription")
+    ![This image highlights the Onboard subscription button in the Defender for IoT page.](./media/azure-defender-iot-setup-onboard-subscription.png "Onboard a subscription button")
 
 4. Select the lab subscription.
 5. Select **Subscribe**, in the dialog select **Confirm**.
@@ -2062,13 +2062,13 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 2. Select the **oilwells-timeseries-\[your initials or first name\]** Time Series Insights environment.
 
-    ![The Time Series Insights Azure resource is highlighted.](media/ex7_image001.png "Browse to the Time Series Insights resource")
+    ![The Time Series Insights Azure resource is highlighted in the lab resource group.](media/ex7_image001.png "Browse to the Time Series Insights resource")
 
 3. Under **Settings**, select **Event Sources**.
 
 4. Select **+Add**.
 
-    ![Event sources and the add link is highlighted](media/ex7_image002.png "Add a new Event Source")
+    ![In the Event Sources page of the Time Series Insights environment, the Add link is highlighted.](media/ex7_image002.png "Add a new Event Source")
 
 5. For the name, type **oilwells-iothub-\[your initials or first name\]**.
 
@@ -2100,11 +2100,11 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 2. From Solution explorer, open the **SimulatedDevice.cs** file.
 
-    ![Solution explorer with the simulateddevice.cs file selected.](media/ex7_image005.png "Open the SimulatedDevice.cs file")
+    ![This image shows the simulateddevice.cs file selected in the Solution Explorer of Visual Studio.](media/ex7_image005.png "Open the SimulatedDevice.cs file")
 
 3. Update the device connection string with your **oilwells-edge-001** device.
 
-    ![The connection string variable is highlighted.](media/ex7_image006.png "Update the device connection string")
+    ![The connection string variable is highlighted, demonstrating the connection string placeholders.](media/ex7_image006.png "Update the device connection string")
 
 4. Review the code, notice it is simply creating a set of random event messages, some of which are security oriented.
 
@@ -2120,21 +2120,21 @@ This exercise will walk you through integrating Time Series Insights and then se
 
 4. Select the **Go to TSI Explorer** link, close any dialogs.
 
-    ![Go to environment is hightlighted.](media/ex7_image003.png "Open the Time Series Portal")
+    ![This image highlights the Go to TSI Explorer button in the Time Series Insights environment resource.](media/ex7_image003.png "Go to TSI Explorer button")
 
 5. Select **Add new query**
 
 6. Select a `from` and `to` date settings that fit to the window you ran the device security message simulation, select **Save**
 
-   ![The FROM and TO date textboxes and the search button are highlighted.](media/ex7_image004.png "Set the time range and then select search")
+   ![The date range is highlighted in the TSI Explorer.](media/ex7_image004.png "Set the date range")
 
 7. Select the **SPLIT BY** drop down, then select **SecurityAlert**.
 
 8. In the filter, right-click the **Events/SecurityAlert/true** property, select **Show only this series**, you should now see all the custom message sent from the device(s) that were set to SecurityAlerts.
 
-    ![The SecurityAlert SPLIT is highlighted and the true value is also highlighted.](media/ex7_image007.png "Filter for only security events")
+    ![This image highlights the Show only this series button for the security event series in the TSI Explorer.](media/ex7_image007.png "Filter for only security events")
 
-    ![A graph of security events is displayed.](media/ex7_image008.png "Review the security graph")
+    ![A graph of security events is displayed in the TSI Explorer for your review.](media/ex7_image008.png "Security events graph")
 
 ## Exercise 12: Perform an IoT Hub Manual Failover
 
@@ -2152,11 +2152,11 @@ This exercise will have you perform an IoT Hub failover to a different region.
 
 4. In the top menu, select **Start failover**.
 
-    ![Failover and Start Failover are highlighted.](media/iothub-failover.png "Start an IoT Hub Failover")
+    ![This image demonstrates the Failover blade and the Start Failover link in the IoT Hub to initiate a failover.](media/iothub-failover.png "Start an IoT Hub Failover")
 
 5. Type your IoT Hub name, then select **Failover**.  It can take several minutes to failover the IoT Hub.
 
-    ![Failover success is displayed.](media/iothub-failoversuccess.png "The Failover is complete.")
+    ![Failover success is displayed in the Failover blade.](media/iothub-failoversuccess.png "The Failover is complete.")
 
 ## After the hands-on lab
 
