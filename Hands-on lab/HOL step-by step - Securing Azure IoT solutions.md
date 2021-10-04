@@ -176,7 +176,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 8. Select the **oilwells-prov-[YOUR INITS]** device provisioning resource.
 
-    ![Select the device provisioning service.](media/ex1_oilwells_prov.png "Device Provisioning Service is highlighted")
+    ![Select the device provisioning service in the lab resource group.](media/ex1_oilwells_prov.png "Device Provisioning Service is highlighted")
 
 9. In the Device Provisioning Service blade, under **Settings**, select **Linked IoT Hubs**.
 
@@ -188,7 +188,7 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 12. Select the **iotowner** access policy.
 
-    ![Configure the link settings.](media/ex1_image002.png "Add link to IoT hub window")
+    ![Configure the link settings in the Add link to IoT hub window.](media/ex1_image002.png "Add link to IoT hub window")
 
 13. Select **Save**, your IoT Hub and Provisioning Service will now be linked.
 
@@ -308,7 +308,7 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 6. Record the `eth0` IP address.
 
-    ![Run the ifconfig tool and look for the eth0 ip address.](media/ex1_ifconfig.png "Output of the ifconfig tool with the ip address")
+    ![This image highlights the eth0 output from the ifconfig command.](media/ex1_ifconfig.png "Output of the ifconfig tool with the ip address")
 
 7. From the Windows 10 virtual machine host, open a PowerShell window and run the following:
 
@@ -539,7 +539,7 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 4. Select **+Add Individual Enrollment**.
 
-    ![Manage Enrollments and Add individual enrollment are highlighted.](media/ex2_image006.png "Navigating to add an individual device enrollment")
+    ![Manage Enrollments and Add individual enrollment are highlighted in the Device Provisioning Service resource.](media/ex2_image006.png "Navigating to add an individual device enrollment")
 
 5. For the **Mechanism**, select **TPM**.
 
@@ -909,7 +909,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 6. Select **+Add**, then select **IoT Edge Module**.
 
-    ![Screenshot with the Add and IoT Edge Module links highlighted.](media/ex2_image016.png "Add module links in the Deployment Modules window")
+    ![This image shows the Add and IoT Edge Module links highlighted in the Deployment Modules window.](media/ex2_image016.png "Add module links in the Deployment Modules window")
 
 7. In the new dialog, for the **IoT Edge Module Name**, type **azureiotsecurity**.
 
@@ -962,7 +962,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 16. On the routes dialog, add another route called `ASCForIoTToIoTHub` with the value `FROM /messages/modules/azureiotsecurity/* INTO $upstream`:
 
-    ![Screenshot showing the available routes.](media/ex2_image019.png "Adding a new Route")
+    ![This image shows the available routes on the module configuration wizard Routes page.](media/ex2_image019.png "Adding a new Route")
 
 17. Select **Review + create**.
 
@@ -977,7 +977,7 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 
 20. The status should now show **active (running)**.
 
-    ![Screenshot showing the process as active and running.](media/ex2_image020.png "Active agent process")
+    ![This image shows the Azure Security Center for IoT Agent as active and running.](media/ex2_image020.png "Active agent process")
 
 21. If you do not see **active (running)** you may need to change your docker permissions:
 
@@ -1092,7 +1092,7 @@ In this exercise you will setup a device to edge device communication channel.
 4. Under **Settings**, select **Certificates**.
 5. Select **Add**.
 
-    ![In IoT Hub, on the Certificates tab, Add a new CA certificate, as shown in the highlighted links.](media/iothub-ca-certificate.png "Add the certicate to the IoT Hub")
+    ![This image highlights the Add button on the Certificates tab of the IoT Hub.](media/iothub-ca-certificate.png "Add the certicate to the IoT Hub")
 
 6. For the name, type **oilwells-ca**.
 7. Select the .pem file.
