@@ -458,11 +458,7 @@ With the Azure resources in place, you can now start creating and provisioning d
 
     ![The command window is showing a running software TPM.](media/ex2_image004.png "A running software TPM")
 
-<<<<<<< Updated upstream
  3. Run the following commands to start a TPM resource manager:
-=======
-3. Run the following commands to start a TPM resource manager:
->>>>>>> Stashed changes
 
     ```PowerShell
     cd
@@ -493,11 +489,7 @@ With the Azure resources in place, you can now start creating and provisioning d
 
     > **Note**: Press Enter after the tss commands to type more commands.
 
-<<<<<<< Updated upstream
  4. With your hardware or software TPM running, attempt to provision again using the following commands:
-=======
-4. With your hardware or software TPM running, attempt to provision again using the following commands:
->>>>>>> Stashed changes
 
     ```PowerShell
     cd
@@ -507,7 +499,6 @@ With the Azure resources in place, you can now start creating and provisioning d
 
     ![With the software TPM running, a registration ID and endorsement key is generated.](media/ex2_image005.png "A running software TPM")
 
-<<<<<<< Updated upstream
  5. Copy the device **Registration Id** and the **Endorsement Key**.  Note that you may want to do this in the virtual machine rather than typing all the information.
 
     >**Note**: In the real world, all your devices should have hardware-based TPMs.
@@ -529,12 +520,6 @@ With the Azure resources in place, you can now start creating and provisioning d
     sudo systemctl start ssh
     ```
 
-=======
-5. Copy the device **Registration Id** and the **Endorsement Key**.  Note that you may want to do this in the virtual machine rather than typing all the information.
-
-    >**Note**: In the real world, all your devices should have hardware-based TPMs.
-
->>>>>>> Stashed changes
 ### Task 5: Create IoT Hub Edge Device Enrollment
 
 1. Switch to the Azure Portal and navigate to the **oilwells-prov-[YOUR INIT]** Device Provisioning Service.
@@ -1074,7 +1059,7 @@ This optional exercise requires you to configure and enable Microsoft Defender f
 
     ```PowerShell
     sudo apt-get install python
-
+    
     python MicrosoftDefenderATPOnboardingLinuxServer.py
     ```
 
@@ -1822,8 +1807,6 @@ This exercise will show you how to query with Azure Sentinel and deploy remediat
 10. Run the following commands to add the VM to a Hybrid worker, be sure to replace the values to match your environment.  Set the **hybridGroupName** to "IoTEdge":
 
     ```PowerShell
-    sudo apt-get install python
-    
     sudo /opt/microsoft/omsagent/bin/service_control restart <YOUR_WORKSPACE_ID>
 
     sudo python /opt/microsoft/omsconfig/modules/nxOMSAutomationWorker/DSCResources/MSFT_nxOMSAutomationWorkerResource/automationworker/scripts/onboarding.py --register -w <YOUR_WORKSPACE_ID> -k <automationSharedKey> -g <hybridGroupName> -e <automationEndpoint>
