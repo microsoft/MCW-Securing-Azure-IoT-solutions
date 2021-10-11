@@ -9,7 +9,7 @@
             "maxLength": 9
         },
 		"username": {
-            "defaultValue": "s2admin",
+            "defaultValue": "wsuser",
             "type": "string"
         },
 		"password": {

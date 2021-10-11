@@ -54,7 +54,7 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
   - [Exercise 4: Install Azure Security IoT agent](#exercise-4-install-azure-security-iot-agent)
     - [Task 1: Install the Security agent](#task-1-install-the-security-agent)
     - [Task 2: Install the IoT Hub Security Agent Module](#task-2-install-the-iot-hub-security-agent-module)
-  - [Exercise 5: Microsoft Defender for Endpoint (Linux)](#exercise-5-microsoft-defender-for-endpoint-linux)
+  - [Exercise 5: Microsoft Defender for Endpoint (Linux) - (Optional)](#exercise-5-microsoft-defender-for-endpoint-linux---optional)
     - [Task 1: Install the Microsoft Defender for Endpoint Agent](#task-1-install-the-microsoft-defender-for-endpoint-agent)
   - [Exercise 6: Setup Device to Edge Device Communication](#exercise-6-setup-device-to-edge-device-communication)
     - [Task 1: Create Device Certificates](#task-1-create-device-certificates)
@@ -166,9 +166,9 @@ You will also enable diagnostic logging such that you can create custom alerts l
 
 3. Select the **oilwells-server-[YOUR INIT]** virtual machine.
 
-4. Select **Connect**, then select **SSH**.
+4. Select **Connect**, then select **RDP**.
 
-5. Login via RDP to the **oilwells-server-INIT** virtual machine with `s2admin` and password `S2@dmins2@dmin`.
+5. Login via RDP to the **oilwells-server-INIT** virtual machine with `wsuser` and password `S2@dmins2@dmin`.
 
 6. While inside the virtual machine, open the Azure Portal as your lab credentials in Chrome.
 
@@ -349,7 +349,20 @@ With the Azure resources in place, you can now start creating and provisioning d
 
    > **Note**: Ubuntu 20.04 will not work with these labs.
 
-10. Repeat the steps above for the **oilwells-d01** guest virtual machine.
+10. Repeat the steps above for the **oilwells-d01** guest virtual machine. In order to SSH into the child device `oilwells-d01`, you will need to enable SSH. Open the Hyper-V window for the `oilwells-d01`, login using the lab username and credentials, open a terminal and run the following:
+
+    ```Powershell
+    sudo apt-get install -y openssh-server
+
+    sudo nano /etc/ssh/sshd_config
+    ```
+
+    - Uncomment the `PasswordAuthentication yes` line
+
+    ```Powershell
+    sudo systemctl stop ssh
+    sudo systemctl start ssh
+    ```
 
 ### Task 2: Download and compile the Azure IoT SDK
 
@@ -402,7 +415,7 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 ### Task 3: Attempt device enrollment
 
-1. Run the following commands:
+1. On the `oilwells-edgevm-01` device, run the following commands:
 
     ```PowerShell
     sudo ./tpm_device_provision
@@ -414,7 +427,7 @@ With the Azure resources in place, you can now start creating and provisioning d
 
 ### Task 4: Install a software TPM and Resource Manager and reattempt device enrollment
 
- 1. If you have a hardware TPM in your device the previous command would have succeeded and you can skip to step 6, again you can determine if you have a TPM device by running the following and observing if you get any results back.
+ 1. If you have a hardware TPM in your device the previous command would have succeeded and you can **skip to step 6**, again you can determine if you have a TPM device by running the following and observing if you get any results back.
 
     ```bash
     dmesg | grep -i tpm
@@ -581,6 +594,8 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
     sudo apt-get install -y moby-engine
     ```
 
+2. Choose **one of the agent paths** for your environment.  If you are new to the IoT Edge, then select the latest version path:
+
     `<=1.1.4`
 
     ```PowerShell
@@ -593,7 +608,7 @@ In this exercise you will install the Azure IoT Edge agent on your IoT device an
     sudo apt-get install aziot-edge
     ```
 
-    > **Note**: Previous versions of this lab used a version of IoT Edge (`<=1.09`), but has since been upgraded to use `1.1.4` or later.
+    > **Note**: Previous versions of this lab used a version of IoT Edge (`<=1.09`), but has since been upgraded to use `1.1.4` or later. The older path is included for reference.
 
 ### Task 2: Configure the IoT Edge agent
 
@@ -996,7 +1011,9 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
     sudo journalctl -u ASCIoTAgent -e
     ```
 
-## Exercise 5: Microsoft Defender for Endpoint (Linux)
+## Exercise 5: Microsoft Defender for Endpoint (Linux) - (Optional)
+
+This optional exercise requires you to configure and enable Microsoft Defender for Endpoint in your tenant which is outside the scope of this workshop/lab.
 
 ### Task 1: Install the Microsoft Defender for Endpoint Agent
 
@@ -1041,6 +1058,8 @@ In this exercise you will install the Azure Security IoT Agent directly and via 
 9. Run the following commands to configure the agent:
 
     ```PowerShell
+    sudo apt-get install python
+    
     python MicrosoftDefenderATPOnboardingLinuxServer.py
     ```
 
